@@ -1,0 +1,9 @@
+data/
+!data/sample/
+*.db
+*.xlsx
+out/
+.env
+.venv/
+__pycache__/
+usage_log.jsonl

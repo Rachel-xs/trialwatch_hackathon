@@ -1,0 +1,19 @@
+# ingest (A)
+requests
+openpyxl
+trafilatura
+beautifulsoup4
+pypdf
+langdetect
+# shared
+pydantic>=2.5
+# pipeline (B)
+rapidfuzz>=3.0
+rank_bm25>=0.2.2
+anthropic>=0.40          # not needed in mock mode
+# optional, for hybrid retrieval (multilingual embeddings):
+# sentence-transformers>=3.0
+# numpy
+# review desk (app/)
+streamlit>=1.50
+pandas

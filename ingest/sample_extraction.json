@@ -1,0 +1,41 @@
+{
+  "candidate_case": {
+    "case_id": null,
+    "person_name_original": "Dedi Contoh",
+    "person_name_normalized": "Dedi Contoh",
+    "country": "Indonesia",
+    "charges_original": "Pasal 27A jo Pasal 45 ayat (4) UU ITE",
+    "charges_en": "Attacking another person's honour via electronic media (ITE Law Art. 27A)",
+    "court": "Polres Contoh",
+    "case_number": "unknown",
+    "procedural_status": "complaint_filed",
+    "detention_status": "unknown",
+    "event_dates": [
+      {"date": "Senin (6/10) (year not stated)", "meaning": "Police report filed"}
+    ],
+    "next_hearing": "unknown",
+    "work_link": "News report on an alleged procurement scandal (fictional example)",
+    "language": "id",
+    "review_status": "pending"
+  },
+  "evidence_claims": [
+    {
+      "field": "procedural_status",
+      "value": "complaint_filed",
+      "source_id": "X001",
+      "paragraph_id": "X001-p002",
+      "exact_quote_original": "resmi melaporkan wartawan Dedi Contoh ke Polres Contoh",
+      "translation_en_optional": "officially reported journalist Dedi Contoh to Polres Contoh",
+      "support_status": "supported"
+    },
+    {
+      "field": "case_number",
+      "value": "unknown",
+      "source_id": "X001",
+      "paragraph_id": null,
+      "exact_quote_original": null,
+      "translation_en_optional": null,
+      "support_status": "unknown"
+    }
+  ]
+}
