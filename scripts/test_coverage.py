@@ -101,6 +101,18 @@ def main() -> int:
         "n_uncertain = 1 (C4)": cov["n_uncertain"] == 1,
         "no step failed": not log["failed_cases"],
     }
+    # round-up rule: a document merged into several cases gets the model check; a passing mention is not counted
+    from fairtrial.coverage import build_coverage
+    llm2 = LLM()
+    mock.register_all(llm2)
+    llm2.register_mock("coverage_match", lambda s_, u: {**mock.mock_coverage(s_, u), "mention": "passing"}
+                       if "news.example.org/2026/03/05" in u else mock.mock_coverage(s_, u))
+    run_docs = {d.document_id: d for d in docs}
+    cov2 = build_coverage(card.case, run_docs, llm2, doc_case_count={"doc2": 2})
+    d2 = next(a for a in cov2.articles if a.document_id == "doc2")
+    checks["round-up doc merged into 2 cases is model-checked"] = d2.method == "merge+llm"
+    checks["passing mention listed but not counted"] = (d2.mention == "passing" and cov2.n_passing == 1
+                                                        and cov2.n_articles == 2)
     print()
     for name, ok in checks.items():
         print(("PASS " if ok else "FAIL ") + name)

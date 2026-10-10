@@ -247,7 +247,7 @@ def run(docs: list[SourceDocument], llm: LLM, court_store: CourtRecordStore, kno
             try:
                 from .coverage import build_coverage
                 cov_search = search_factory(case, log["coverage_search"], 10) if search_factory else None
-                cov = build_coverage(case, by_id, llm, search_fn=cov_search)
+                cov = build_coverage(case, by_id, llm, search_fn=cov_search, doc_case_count=doc_case_count)
                 log["coverage"].append({"case_id": case.case_id, "n_articles": cov.n_articles,
                                         "n_outlets": cov.n_outlets, "n_independent": cov.n_independent,
                                         "n_uncertain": cov.n_uncertain})

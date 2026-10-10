@@ -63,9 +63,10 @@ def main() -> int:
         g = mapping.get(c["case"]["case_id"])
         listed = {x["document_id"]: x for x in c["coverage"]["articles"]}
         found_by_search += sum(x["found_via"] == "search" and x["same_case"] == "yes" for x in listed.values())
+        counted = lambda x: x["same_case"] == "yes" and x.get("mention") != "passing"
         if not g:
             continue
-        pred = {d for d, x in listed.items() if x["same_case"] == "yes" and d in arts}
+        pred = {d for d, x in listed.items() if counted(x) and d in arts}
         uncertain = sorted(d for d, x in listed.items() if x["same_case"] == "uncertain" and d in arts)
         gold = {i for i, r in arts.items() if r["relevance"] in POS and g in split_ids(r["case_id"])}
         tp += len(pred & gold)

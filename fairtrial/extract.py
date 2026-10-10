@@ -4,6 +4,8 @@ Output is *unverified*: every claim starts as needs_review until verify.py runs.
 """
 from __future__ import annotations
 
+import re
+
 import hashlib
 import unicodedata
 
@@ -35,6 +37,31 @@ def numbered_source(doc: SourceDocument) -> str:
     lines += [f"[{pid}] {text}" for pid, text in paras.items()]
     meta = f"publisher={doc.publisher}; published_at={doc.published_at}; source_type={doc.source_type.value}"
     return meta + "\n" + wrap_untrusted(doc.source_url, "\n\n".join(lines))
+
+
+MONTHS = {m: i for i, names in enumerate([
+    ("januari", "january", "jan"), ("februari", "february", "feb", "pebruari"), ("maret", "march", "mar"),
+    ("april", "apr"), ("mei", "may"), ("juni", "june", "jun"), ("juli", "july", "jul"),
+    ("agustus", "august", "aug", "agu", "agt"), ("september", "sept", "sep"), ("oktober", "october", "okt", "oct"),
+    ("november", "nopember", "nov"), ("desember", "december", "des", "dec")], 1) for m in names}
+
+
+def iso_date(value: str) -> str:
+    """'22 September 2019' / '9 Mei 2022' / 'September 22, 2019' / '22/9/2019' -> '2019-09-22'.
+    Anything without a full day, month and year (e.g. '23 November') is returned unchanged."""
+    v = (value or "").strip()
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", v):
+        return v
+    m = re.fullmatch(r"(\d{1,2})\s+([A-Za-z]+)\.?\s+(\d{4})", v) or None
+    if m and m.group(2).lower() in MONTHS:
+        return f"{int(m.group(3)):04d}-{MONTHS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+    m = re.fullmatch(r"([A-Za-z]+)\.?\s+(\d{1,2}),?\s+(\d{4})", v)
+    if m and m.group(1).lower() in MONTHS:
+        return f"{int(m.group(3)):04d}-{MONTHS[m.group(1).lower()]:02d}-{int(m.group(2)):02d}"
+    m = re.fullmatch(r"(\d{1,2})[/.-](\d{1,2})[/.-](\d{4})", v)     # Indonesian order: day/month/year
+    if m and 1 <= int(m.group(2)) <= 12 and 1 <= int(m.group(1)) <= 31:
+        return f"{int(m.group(3)):04d}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+    return v
 
 
 def make_case_id(name: str, doc_id: str) -> str:
@@ -100,7 +127,8 @@ def extract_cases(doc: SourceDocument, llm: LLM) -> list[tuple[CandidateCase, li
             value = _coerce_enum(field, str(item.get("value", "unknown")))
             if field in DATE_FIELDS:
                 if value != "unknown":
-                    case.event_dates[field.removeprefix("date_")] = value
+                    # the case keeps ISO dates (timeline, scoring, digest); the claim keeps the source wording
+                    case.event_dates[field.removeprefix("date_")] = iso_date(value)
             elif hasattr(case, field):
                 setattr(case, field, value)
             if value == "unknown":

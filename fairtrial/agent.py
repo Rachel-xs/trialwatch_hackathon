@@ -80,7 +80,7 @@ def follow_up(
         }
         plan = llm.call_tool(model=STRONG_MODEL, system=AGENT_SYSTEM, user=json.dumps(state, ensure_ascii=False),
                              tool_name=AGENT_TOOL["name"], tool_description=AGENT_TOOL["description"],
-                             input_schema=AGENT_TOOL["input_schema"], max_tokens=400)
+                             input_schema=AGENT_TOOL["input_schema"], max_tokens=1200)  # 400 truncated on claude-sonnet-5
         action, args = plan.get("action", "stop"), plan.get("arguments") or {}
         step = {"round": round_no, "action": action, "arguments": args, "reason": plan.get("reason", "")}
 

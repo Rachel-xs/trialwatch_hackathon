@@ -92,7 +92,8 @@ class CoverageArticle(BaseModel):
 
 
 class Coverage(BaseModel):
-    n_articles: int = 0               # same_case == yes
+    n_articles: int = 0               # same_case == yes and the case is a main subject (not a passing mention)
+    n_passing: int = 0                # articles that only mention the case in passing (round-ups, background)
     n_outlets: int = 0                # distinct domains among them
     n_independent: int = 0            # distinct origin groups among them
     n_copies: int = 0                 # articles that repeat another one (n_articles - n_independent)
@@ -198,8 +199,13 @@ def assign_origin_groups(arts: list[CoverageArticle], texts: dict[str, str]) -> 
         a.origin_group = roots.setdefault(find(i), len(roots) + 1)
 
 
+def counts(a: CoverageArticle) -> bool:
+    """Counted as coverage: same case, and the case is a main subject of the article."""
+    return a.same_case == "yes" and a.mention != "passing"
+
+
 def summarise(arts: list[CoverageArticle], texts: dict[str, str], searched: bool = False) -> Coverage:
-    yes = [a for a in arts if a.same_case == "yes"]
+    yes = [a for a in arts if counts(a)]
     assign_origin_groups(yes, texts)
     dates = sorted(a.published_at[:10] for a in yes if a.published_at)
     order = {"yes": 0, "uncertain": 1, "no": 2}
@@ -217,6 +223,7 @@ def summarise(arts: list[CoverageArticle], texts: dict[str, str], searched: bool
         n_outlets=len({a.outlet for a in yes}),
         n_independent=n_ind,
         n_copies=len(yes) - n_ind,
+        n_passing=sum(a.same_case == "yes" and a.mention == "passing" for a in arts),
         span_days=span,
         searched=searched,
         confidence="partial" if searched else "limited",
@@ -235,16 +242,29 @@ def build_coverage(
     llm: LLM,
     search_fn: Optional[Callable[[str], list[SourceDocument]]] = None,
     max_model_checks: int = MAX_MODEL_CHECKS,
+    doc_case_count: Optional[dict[str, int]] = None,
 ) -> Coverage:
-    """run_docs: every document of this run (document_id -> doc). search_fn: optional, see search.py."""
+    """run_docs: every document of this run (document_id -> doc). search_fn: optional, see search.py.
+    doc_case_count: how many cases each document was merged into. A document in several cases is a
+    round-up or a background mention; it gets the model check so a passing mention is not counted."""
     arts: list[CoverageArticle] = []
     texts: dict[str, str] = {}
     seen_urls: set[str] = set()
 
-    # 1. documents resolve() already merged into this case: matched by extraction + merge rules
+    # 1. documents resolve() already merged into this case: matched by extraction + merge rules.
+    #    A document merged into several cases is checked by the model for main vs passing mention.
     for sid in case.source_ids:
         d = run_docs.get(sid)
         if not d:
+            continue
+        if (doc_case_count or {}).get(sid, 1) > 1:
+            a = match_article(case, d, llm, found_via="run")
+            if a.same_case == "no":          # extraction put it here, but the article is not about this case
+                a.same_case, a.rationale = "uncertain", f"merged into this case, but the check says no ({a.rationale})"
+            a.method = "merge+llm"
+            arts.append(a)
+            texts[sid] = _norm_text(d.original_text)
+            seen_urls.add(d.source_url)
             continue
         arts.append(CoverageArticle(document_id=sid, url=d.source_url, outlet=outlet_of(d.source_url),
                                     publisher=d.publisher, published_at=d.published_at, language=d.language,

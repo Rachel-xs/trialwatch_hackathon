@@ -108,7 +108,7 @@ def precedent_reason(case: CandidateCase, claims: list[EvidenceClaim], paragraph
     out = llm.call_tool(model=STRONG_MODEL, system=PRECEDENT_SYSTEM,
                         user=summary + "\n\nEvidence:\n" + wrap_untrusted("case_evidence", evidence),
                         tool_name=PRECEDENT_TOOL["name"], tool_description=PRECEDENT_TOOL["description"],
-                        input_schema=PRECEDENT_TOOL["input_schema"], max_tokens=500)
+                        input_schema=PRECEDENT_TOOL["input_schema"], max_tokens=1500)  # 500 truncated on claude-sonnet-5
     cited = [p for p in out.get("evidence_paragraph_ids", []) if p in pids]
     if not out.get("has_precedent_potential") or not cited:
         return None  # no evidence-backed reason -> no reason

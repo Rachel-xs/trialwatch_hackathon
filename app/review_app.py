@@ -533,6 +533,8 @@ with tab_cases:
                         f'{cov.get("n_copies", 0)} copied or translated. '
                         f'First seen {esc(cov.get("first_seen") or "unknown")}, latest {esc(cov.get("last_seen") or "unknown")}{span}.'
                         + (f' {cov["n_uncertain"]} more article(s) need a human check.' if cov.get("n_uncertain") else "")
+                        + (f' {cov["n_passing"]} round-up article(s) mention it only in passing (not counted).'
+                           if cov.get("n_passing") else "")
                         + f'<div class="tw-note">Coverage confidence: {esc(cov.get("confidence", "limited"))}. '
                           f'{esc(cov.get("source_gaps", ""))} {esc(cov.get("note", ""))}</div></div>',
                         unsafe_allow_html=True)
@@ -540,7 +542,8 @@ with tab_cases:
                     if arts:
                         lines = []
                         for a in arts:
-                            tag = "" if a["same_case"] == "yes" else " - <b>needs a check</b>"
+                            tag = (" - <b>needs a check</b>" if a["same_case"] != "yes"
+                                   else " - passing mention, not counted" if a.get("mention") == "passing" else "")
                             copy = f' · group {a["origin_group"]}' if a.get("origin_group") else ""
                             lines.append(f'<div class="tw-reason"><a href="{esc(a["url"])}" target="_blank" rel="noopener">'
                                          f'{esc(a["publisher"] or a["outlet"])}</a> · {esc(a["published_at"] or "date unknown")}'
