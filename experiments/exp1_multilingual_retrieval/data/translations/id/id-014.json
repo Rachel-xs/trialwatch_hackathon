@@ -1,0 +1,17 @@
+{
+  "doc_id": "id-014",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Social media users are charged with spreading false information",
+  "paragraphs": [
+    "A social media user in Surabaya was charged with spreading false information that caused havoc.",
+    "The charge used section 28 verses (3) the ITE Act (false information).",
+    "The defendant is not a journalist, he works as an online clothing dealer.",
+    "The trial is held at the Surabaya State Court and is postponed until next week.",
+    "The defendant's legal authority calls the client's upload a joke."
+  ],
+  "src_chars": 397,
+  "tgt_chars": 382,
+  "seconds": 0.966
+}

@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-001",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Reporter Nur Aisyah was charged with spreading false news.",
+  "paragraphs": [
+    "Warta Reporter Malumku, Nur Aisyah, was charged with spreading false news regarding the distribution of a catastrophic flood disaster.",
+    "According to the charges, Nur Aisyah published a report about the relief of the flood disaster on February 3, 2026, which the prosecutor judged to spread false information that caused havoc. The chapter used: section 28 verses (3) ITE Act (false information that caused havoc).",
+    "The indictment was read at Ambon State Court on April 14, 2026, the first hearing of the witness hearing was scheduled on May 5, 2026.",
+    "In the matter of Nur Aisyah, the power of Fitri Handayani's law called the news convicted without asking the expert opinion of the Press Council.",
+    "Nur Aisyah works as a reporter for Warta Malumku in Ambon.",
+    "The threat of punishment for this chapter is up to 6 years in prison."
+  ],
+  "src_chars": 926,
+  "tgt_chars": 817,
+  "seconds": 9.634
+}

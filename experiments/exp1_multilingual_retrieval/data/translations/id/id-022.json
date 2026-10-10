@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-022",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The verdict of journalist Tohru Kusuma",
+  "paragraphs": [
+    "The verdict has been read: The defendant was sentenced to six months in prison.",
+    "According to the charges, Tohru Kusuma published a story about a wild logging in the forest on April 28, 2026 that the prosecutor judged to broadcast a lie.",
+    "The Court of Justice Jambi reads the verdict on August 11, 2026.",
+    "In the matter of Tohru Kusuma, the legal power of Agus Santoso says this matter has been going on for two years and requests that the justice be settled at a reasonable time.",
+    "Tohru Kusuma works as a reporter at Jambi.",
+    "The prosecutor and the defendant can still appeal, Tohru Kusuma is not under arrest."
+  ],
+  "src_chars": 887,
+  "tgt_chars": 599,
+  "seconds": 1.086
+}

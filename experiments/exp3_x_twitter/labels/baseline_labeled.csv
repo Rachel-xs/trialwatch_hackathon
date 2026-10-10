@@ -1,0 +1,39 @@
+﻿序号,label,event_id,噪声类型,note
+1,noise,,2-体育娱乐,足球转会八卦，jurnalis 是消息来源（Jurnalis bola dot com blg）
+2,noise,,1-记者仅为消息来源或署名,沉船事故稿，actor 只出现在署名 'Editor: Jurnalis Warga'
+3,noise,,3-宗教政治长文议论,阿塞拜疆头巾禁令长文议论，6647 字；jurnalis 出现在'被监禁记者绝食'的旁述
+4,noise,,1-记者仅为消息来源或署名,KPK 传唤部长，actor 在引语归属 'kata Setyo kepada para jurnalis'
+5,noise,,3-宗教政治长文议论,宗教议论回复，wartawan 是修辞比喻'记者来之前'
+6,noise,,3-宗教政治长文议论,宗教长文 12446 字，与 #5 同一文案的长版
+7,uncertain,E3-bekasi-dlh,,Bekasi 环保局长被报案（记者是受害方，但报案方是记者/PWI 一侧）
+8,noise,,1-记者仅为消息来源或署名,政治访谈稿，'diskusi bersama jurnalis senior' 记者是对谈方/来源
+9,noise,,1-记者仅为消息来源或署名,TNI 网赌案，actor 在 'kata Maruli kepada wartawan'
+10,noise,,1-记者仅为消息来源或署名,同 #8 文案，记者为对谈方/来源
+11,uncertain,E4-serang,,Serang：记者 Aden 采访学生示威时被围殴，已送医；尚未见司法动作
+12,relevant,E2-flores-timur,,Flores Timur 网媒记者被殴案：两人已列嫌疑人且羁押（司法动作明确）
+13,noise,,1-记者仅为消息来源或署名,Tifa 名誉案庭审视频，actor 只在署名 'Video jurnalis: Cynthia Lova'
+14,uncertain,E3-bekasi-dlh,,同 E3，标题式转述
+15,noise,,1-记者仅为消息来源或署名,马来西亚抵制稿，actor 在 'katanya kepada wartawan'
+16,uncertain,E5-nias,,Nias：KSP3 就'给记者钱'指控到警局作说明，涉名誉案；记者角色待核
+17,noise,,1-记者仅为消息来源或署名,同 #13 系列，actor 只在视频署名
+18,noise,,1-记者仅为消息来源或署名,检察官受贿案视频，actor 只在 'Video Jurnalis: Siti Laela'
+19,noise,,1-记者仅为消息来源或署名,同 #18 系列，actor 只在视频署名
+20,noise,,2-体育娱乐,Mbappé 转会，'Menurut wartawan Sepanyol' 记者是来源
+21,noise,,4-Grok 账号回复,grok 回复，内容是对 Bekasi 案的法规解释；话题属 E3 但不是一手线索
+22,noise,,1-记者仅为消息来源或署名,Jampidsus 案，actor 在 'kata Febri kepada wartawan'
+23,relevant,E1-makassar-tni,,Makassar：TNI 军人 HM 被报到 Pomdam，涉嫌图谋消灭记者
+24,relevant,E1-makassar-tni,,同 E1，另一账号转述同一事件（与另一条同文案，已在去重时合并）
+25,uncertain,E3-bekasi-dlh,,同 E3，PWI Bekasi Raya 公开谴责，1376 字最长的一条非噪声帖
+26,noise,,1-记者仅为消息来源或署名,KPK 传唤部长，actor 在 'kepada wartawan'（引语归属，kata 拼成 kaya）
+27,noise,,2-体育娱乐,C罗国家队新闻，'jurnalis senior Portugal' 是来源
+28,noise,,5-事故/旧案/国外事件,Julian Assange 科普长文，国外旧案
+29,noise,,3-宗教政治长文议论,个人叙事（伴侣是记者、农民被拘），五类里最不贴合的一条，归长文议论
+30,noise,,5-事故/旧案/国外事件,墨西哥记者直播中被车撞，事故 + 国外
+31,noise,,3-宗教政治长文议论,Soros/CIA 阴谋论长文，actor 在 'kepada wartawan AS Glenn Greenwald'
+32,noise,,1-记者仅为消息来源或署名,'dilaporkan oleh ... melalui jurnalis Christopher Sweat' 记者是来源
+33,noise,,1-记者仅为消息来源或署名,车站治安新闻，actor 在 'ujar ... kepada wartawan'
+34,noise,,3-宗教政治长文议论,NED/CIPE 政治议论
+35,noise,,5-事故/旧案/国外事件,巽他海峡失联记者祈福，事故（与上一轮同一噪声）
+36,noise,,5-事故/旧案/国外事件,2011 年凶杀旧案，actor 在 'jelas Kapolres ... kepada wartawan'
+37,noise,,4-Grok 账号回复,grok 回复，提到 2019 年记者暴力案积压，属旧案转述
+38,noise,,3-宗教政治长文议论,政治长文抨击，'air mata jurnalis' 为修辞

@@ -1,0 +1,16 @@
+{
+  "doc_id": "tr-003",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The shopkeeper's room complains about the increase in rent",
+  "paragraphs": [
+    "The head of a shop room said the increase in store rent forced small businesses.",
+    "The president has requested that the rate of rent increase be limited to a new arrangement.",
+    "The members of the room will meet with the municipality next week.",
+    "The tradesman says the number of pre-season clients has dropped."
+  ],
+  "src_chars": 286,
+  "tgt_chars": 301,
+  "seconds": 0.485
+}

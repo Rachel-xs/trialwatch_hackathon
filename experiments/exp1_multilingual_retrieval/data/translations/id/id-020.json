@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-020",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The verdict of reporters Goddess Anggraini",
+  "paragraphs": [
+    "The verdict has been made on the news of a lie against the journalist in the news of Mine, the goddess Anggraini, has been read: the defendant has been released.",
+    "According to the charges, Goddess Anggraini published a report about the license of the nickel mines on October 5, 2025, which the prosecutor judged to broadcast a lie.",
+    "The House of Justice of the State Hammer Court reads the verdict on March 11, 2026, a complete copy of the verdict has not been published.",
+    "In the matter of Goddess Anggraini, Rina Susanti's legal counsel referred to it as being convicted without asking the expert opinion of the press board.",
+    "Goddess Anggraini works as a reporter for the News of Mine in Hammer, an alliance of journalists claiming to monitor the course of the trial.",
+    "The prosecutor and the defendant can still appeal, Goddess Anggraini is not under arrest."
+  ],
+  "src_chars": 816,
+  "tgt_chars": 849,
+  "seconds": 1.433
+}

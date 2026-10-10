@@ -1,0 +1,199 @@
+{
+  "generated_at": "2026-10-09T21:56:54.718123+00:00",
+  "source": "app.bsky.actor.searchActors",
+  "status": "UNCONFIRMED - nothing here may be used until a human confirms it and moves it into config/watchlist.yaml",
+  "searches": [
+    {
+      "searched_for": "AJI Indonesia",
+      "http_status": 200,
+      "candidates": [
+        {
+          "handle": "donnyturang.bsky.social",
+          "display_name": "DORANG",
+          "description_head": "Donny Turang | Jurnalis Utama Sertifikat Dewan Pers/AJI Indonesia. Eks Ketua Maj",
+          "followers_count": null
+        },
+        {
+          "handle": "mongabay.com",
+          "display_name": "Mongabay",
+          "description_head": "Award-winning nonprofit media outlet publishing global environmental science & n",
+          "followers_count": null
+        },
+        {
+          "handle": "juliaradio.bsky.social",
+          "display_name": "Julia Simon",
+          "description_head": "NPR's Energy and Climate Solutions Correspondent \nBay Area by way of Nigeria, In",
+          "followers_count": null
+        }
+      ]
+    },
+    {
+      "searched_for": "LBH Pers",
+      "http_status": 200,
+      "candidates": [
+        {
+          "handle": "altnih4science.bsky.social",
+          "display_name": "Alt NIH Bluesky 🧪",
+          "description_head": "Facts & strategy, in an authoritarian takeover. \nRightwing billionaires want to ",
+          "followers_count": null
+        },
+        {
+          "handle": "beachroy.bsky.social",
+          "display_name": "Beach Roy ☀️🏄🏼‍♂️🏝️🤙",
+          "description_head": "Roy van der Weijden.\nWoordknutselaar. \nPost op pers. titel. \n\nEn Theo!",
+          "followers_count": null
+        },
+        {
+          "handle": "danielkubiak.bsky.social",
+          "display_name": "Daniel Kubiak",
+          "description_head": "Sozialwissenschaftler\narbeitet am BIM an der HU Berlin\nlebt auf dem Land, forsch",
+          "followers_count": null
+        }
+      ]
+    },
+    {
+      "searched_for": "SAFEnet",
+      "http_status": 200,
+      "candidates": [
+        {
+          "handle": "safenet-eu.bsky.social",
+          "display_name": "SafeNet Project",
+          "description_head": "Safeguarding biodiversity and carbon-rich forest networks in Europe\n\nwww.safenet",
+          "followers_count": null
+        },
+        {
+          "handle": "safenetwork.mastodon.social.ap.brid.gy",
+          "display_name": "Autonomi",
+          "description_head": "Providing news of MaidSafe's Autonomi (formerly Safe Network) - the world's firs",
+          "followers_count": null
+        },
+        {
+          "handle": "safenet1.bsky.social",
+          "display_name": "Seifu N",
+          "description_head": "Statistics and Stochastic process ",
+          "followers_count": null
+        }
+      ]
+    },
+    {
+      "searched_for": "Dewan Pers",
+      "http_status": 200,
+      "candidates": [
+        {
+          "handle": "donnyturang.bsky.social",
+          "display_name": "DORANG",
+          "description_head": "Donny Turang | Jurnalis Utama Sertifikat Dewan Pers/AJI Indonesia. Eks Ketua Maj",
+          "followers_count": null
+        },
+        {
+          "handle": "altnih4science.bsky.social",
+          "display_name": "Alt NIH Bluesky 🧪",
+          "description_head": "Facts & strategy, in an authoritarian takeover. \nRightwing billionaires want to ",
+          "followers_count": null
+        },
+        {
+          "handle": "beachroy.bsky.social",
+          "display_name": "Beach Roy ☀️🏄🏼‍♂️🏝️🤙",
+          "description_head": "Roy van der Weijden.\nWoordknutselaar. \nPost op pers. titel. \n\nEn Theo!",
+          "followers_count": null
+        }
+      ]
+    },
+    {
+      "searched_for": "Komite Keselamatan Jurnalis",
+      "http_status": 200,
+      "candidates": [
+        {
+          "handle": "e-komite.bsky.social",
+          "display_name": "e-komite",
+          "description_head": "🔊 Patronsuz, Fonsuz, Bağımsız, Siyasal İçerik Platformu | İşçi sınıfı siyasetini",
+          "followers_count": null
+        },
+        {
+          "handle": "lawyer1997.bsky.social",
+          "display_name": "Kelebek🦋",
+          "description_head": "Selanik göçmeni, Sivil toplum gönüllüsü🦋Chp Engelli Hakları Komitesi, İlçe Komis",
+          "followers_count": null
+        },
+        {
+          "handle": "baharbicenaras.bsky.social",
+          "display_name": "Bahar Biçen Aras",
+          "description_head": "İSÜ Kütüphane Daire Başkanı | IFLA Kataloglama & ISBD Komite Üyesi | TKD İstanbu",
+          "followers_count": null
+        }
+      ]
+    },
+    {
+      "searched_for": "Tempo",
+      "http_status": 200,
+      "candidates": [
+        {
+          "handle": "tempobasketball.bsky.social",
+          "display_name": "Toronto Tempo",
+          "description_head": "Set the pace. Change the game. \nThe WNBA in Canada.\n\nhttps://linktr.ee/wnba_toro",
+          "followers_count": null
+        },
+        {
+          "handle": "jesstemporal.com",
+          "display_name": "Jess Temporal",
+          "description_head": "DevRel 🥑 • Author • Creator of gitfichas.com • 👩‍💻 myyarnstash.app • 🎙 pizzadeda",
+          "followers_count": null
+        },
+        {
+          "handle": "tempolab.games",
+          "display_name": "Bits & Bops 🎵 OUT NOW ON STEAM",
+          "description_head": "Bits & Bops is an collection of original rhythm minigames! \nOUT NOW ON STEAM: ht",
+          "followers_count": null
+        }
+      ]
+    },
+    {
+      "searched_for": "Tirto",
+      "http_status": 200,
+      "candidates": [
+        {
+          "handle": "tirtomas.eu",
+          "display_name": "Thomas Ribbrock",
+          "description_head": "You have to live on the edge of reality - to make your dreams come true!\n\nDutch ",
+          "followers_count": null
+        },
+        {
+          "handle": "tirto.id.web.brid.gy",
+          "display_name": "Tirto.ID - Jernih Mengalir Mencerahkan [Unofficial]",
+          "description_head": "Media online terkini. Menyajikan tulisan dan infografik berita nasional dan inte",
+          "followers_count": null
+        },
+        {
+          "handle": "tirtoo.bsky.social",
+          "display_name": "",
+          "description_head": "",
+          "followers_count": null
+        }
+      ]
+    },
+    {
+      "searched_for": "Project Multatuli",
+      "http_status": 200,
+      "candidates": [
+        {
+          "handle": "projectm-poster.bsky.social",
+          "display_name": "Project Multatuli",
+          "description_head": "Bukan akun resmi. Otomatis posting via RSS.",
+          "followers_count": null
+        },
+        {
+          "handle": "zacharias-szumer.bsky.social",
+          "display_name": "Zacharias Szumer",
+          "description_head": "Mid-functioning content generator/refiner for SBS News, Michael West Media, Crik",
+          "followers_count": null
+        },
+        {
+          "handle": "lincolnproject.us",
+          "display_name": "The Lincoln Project",
+          "description_head": "\"You cannot escape the responsibility of tomorrow by evading it today.” – Abraha",
+          "followers_count": null
+        }
+      ]
+    }
+  ]
+}

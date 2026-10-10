@@ -1,5 +1,6 @@
-data/
+data/*
 !data/sample/
+!data/external/
 *.db
 *.xlsx
 out/

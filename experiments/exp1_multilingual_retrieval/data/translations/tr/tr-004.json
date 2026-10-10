@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-004",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "4th hearing in Mehmet Yıldız's case",
+  "paragraphs": [
+    "The fourth hearing has been held against East Post correspondent Mehmet Yıldız on charges of terror organization propaganda.",
+    "According to the indictment, Mehmet Yildiz reported police violence in custody published on June 2, 2025. The verdict was carried out: Anti-Terror Law 7/2 (terror organization propaganda).",
+    "The trial was held in front of Diyarbakır 9th Heavy Penal Court on April 16, 2026. The court adjourned the hearing until July 9, 2026.",
+    "In the Mehmet Yıldız case, Attorney Hakan Demirtaş said they object to the hearing being closed to observers.",
+    "Mehmet Yildiz works as a reporter at the Eastern Post as a reporter. Journalists' organisations said the case could have a deterrent effect on freedom of the press.",
+    "The prosecutor's office will present its original debate at the next hearing. Mehmet Yıldız is under arrest."
+  ],
+  "src_chars": 865,
+  "tgt_chars": 827,
+  "seconds": 1.283
+}

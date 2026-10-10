@@ -1,0 +1,38 @@
+# FairTrial Track 1 — cross-lingual retrieval A/B experiment
+run_name: track1_baseline
+
+languages: [id, tr]
+
+# Chunk plan is computed ONCE on the source-language paragraphs and reused
+# verbatim for the English translations, so chunk k in Pipeline A and chunk k
+# in Pipeline B always cover the same paragraph span.
+chunk:
+  max_chars: 400
+  min_chars: 100
+
+embedder:
+  name: bge-m3          # bge-m3 | stub   (stub = plumbing smoke test only)
+  model: BAAI/bge-m3
+  device: auto          # auto | mps | cpu | cuda
+  batch_size: 8
+  max_length: 1024
+
+translator:
+  name: marian          # marian | manual | identity
+  models:
+    id: Helsinki-NLP/opus-mt-id-en
+    tr: Helsinki-NLP/opus-mt-tr-en
+  device: auto
+  max_new_tokens: 512
+  batch_size: 8
+
+retrieval:
+  top_k: 5
+  ks: [1, 3, 5, 10]
+  # Retrieve over the full 50-doc pool (both languages) by default — this is the
+  # realistic setting. A query may override with its own "lang_scope".
+  dedup_by_doc: false
+
+eval:
+  bootstrap_samples: 10000
+  seed: 20261009

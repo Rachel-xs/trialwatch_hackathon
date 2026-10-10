@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-012",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "2nd trial journalist Siti Marlina",
+  "paragraphs": [
+    "The 2nd hearing of hate talks against our Lombok journalist, Siti Marlina, has been held.",
+    "According to the charges, Siti Marlina published news of a land conflict between two groups of citizens on December 22, 2025, judged by prosecutors, spreading hatred against a particular group.",
+    "The trial was held at the Mataram State Court on March 9, 2026, where the panel of judges delayed the trial until March 30, 2026.",
+    "In the matter of Siti Marlina, Hasan Basri's legal power protested the decision of a panel of judges who closed the hearing to observers.",
+    "Siti Marlina works as our Lombok journalist in Mataram, an alliance of journalists claiming to monitor the course of the trial.",
+    "The D.A. will read the charges to the next trial."
+  ],
+  "src_chars": 823,
+  "tgt_chars": 724,
+  "seconds": 1.269
+}

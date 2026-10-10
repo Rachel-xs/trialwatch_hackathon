@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-014",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "First hearing in Mehmet Yıldız's case",
+  "paragraphs": [
+    "The first hearing has been held against Capital News correspondent Mehmet Yıldız on charge of violating the secrecy of the investigation.",
+    "According to the indictment, Mehmet Yıldız violated the confidentiality of the investigation with the report of a murder investigation published on 3 November 2025. The sentence is carried out: the Turkish Penal Code 285 (infringement of the confidentiality of the investigation).",
+    "The trial was held on April 2, 2026 in front of Ankara's 12th Criminal Court. The court postponed the trial until July 23, 2026.",
+    "In the Mehmet Yıldız case, Attorney Orhan Bilgin said the defence witnesses were not allowed to be heard.",
+    "Mehmet Yıldız is working as an Ankara correspondent at a broadcast agency called Capital News. Journalists' organisations said the case could have a deterrent effect on freedom of the press.",
+    "The prosecutor's office will present its original debate at the next hearing. Mehmet Yıldız is being tried without arrest."
+  ],
+  "src_chars": 872,
+  "tgt_chars": 962,
+  "seconds": 1.464
+}

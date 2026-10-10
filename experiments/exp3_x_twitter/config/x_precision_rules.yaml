@@ -1,0 +1,199 @@
+# Precision rules for the X lead layer. Read by scripts/x_precision_eval.py.
+#
+# This file is deliberately separate from config/keywords.yaml: keywords.yaml
+# decides what we ASK X for (and is shared with the Bluesky probe); this file
+# decides what we KEEP from what came back. Nothing here changes a query.
+#
+# Overfitting is the main risk: the calibration set is 38 posts covering 5
+# events. So every rule below is written as a linguistic or structural
+# principle that would hold on next week's posts, and each one records what it
+# keys on and what it must NOT key on. No rule may name an entity from the
+# calibration set -- no "Bekasi", no "Pomdam", no handle of a specific
+# newsroom, no event-specific vocabulary. If a rule only works because of a
+# word that happens to appear in those 38 posts, it does not belong here.
+#
+# Language codes: filtering uses scripts/x_lang.py is_indonesian(), which
+# accepts both `in` (what X returns) and `id` (what the query operator uses).
+version: 1
+calibration:
+  set: out/x_label/baseline_labeled.csv
+  posts: 38
+  events: 5
+  caveat: >
+    38 posts / 5 events is too small to fit thresholds on. Treat every number
+    produced against it as a direction, not a measurement, and re-check each
+    rule on the next fetch before trusting it.
+
+# `order` is FROZEN: it is exactly what produced the round-1 table and the
+# round-2 out-of-sample test, and it must not change, or those two numbers
+# stop being comparable. A new per-post rule goes in `order_v2`.
+order: [automated_accounts, length_ceiling, actor_event_proximity, attribution_frame]
+order_v2: [automated_accounts, length_ceiling, actor_event_proximity, attribution_frame]
+
+# account_flood is not in either order: it is not a per-post predicate. It
+# looks at a group of posts at once, so it runs in the de-duplication stage
+# (scripts/x_query_report.py), not in the per-post rule chain.
+
+rules:
+
+  automated_accounts:
+    enabled: true
+    action: exclude
+    principle: >
+      Platform-operated assistant and bot accounts answer questions about news
+      rather than report it. Their posts restate or explain a case that
+      someone else surfaced, so they are never the first or the primary trace
+      of an incident, and they inflate volume without adding an event. This
+      keys on the account being automated, never on what it said.
+    match: author_username in list (case-insensitive, exact)
+    accounts: [grok, AskPerplexity, ChatGPTapp, copilot, perplexity_ai]
+    notes: >
+      Exact handles only, never substrings: a substring test would eat any
+      newsroom whose handle contains "bot" or "ai". Add an account only when
+      it is an automated responder; do not add a human commentator here.
+
+  length_ceiling:
+    enabled: true
+    action: exclude
+    principle: >
+      A lead about one incident is a short item: headline, a sentence or two,
+      a link. Long bodies on X are essays, threads and opinion pieces, where a
+      journalist is a rhetorical figure or a passing example rather than the
+      subject of an event. X's own standard post limit is 280 characters;
+      anything far past it is a premium long post, which is a different genre.
+    match: len(full_text) > max_chars
+    max_chars: 1500
+    threshold_basis: >
+      Set at the empty band in the observed length distribution (1451 -> 2069
+      characters), at roughly five standard post lengths. On the calibration
+      set it drops 9 noise posts and no labelled post; the three relevant
+      posts are 137-216 characters, nowhere near the boundary, so the value is
+      not fitted to save them. Re-measure the distribution on each new fetch;
+      if the band moves, move the threshold rather than keeping this number.
+    sensitivity_required: true   # the eval prints a sweep, not one number
+
+  actor_event_proximity:
+    enabled: true
+    action: require
+    principle: >
+      A case lead predicates the event OF the journalist. Mere co-occurrence
+      somewhere in the same post is not that: in a long news roundup the
+      actor word and the event word can be hundreds of characters and several
+      unrelated stories apart. Requiring them inside one sentence, or across a
+      sentence boundary (Indonesian news style routinely splits a quote from
+      its subject), tests the predication instead of the vocabulary.
+    match: >
+      an actor term and an event term occur in the same sentence, or in two
+      sentences at most max_sentence_distance apart
+    max_sentence_distance: 1
+    actor_terms: [wartawan, jurnalis, pewarta, awak media, kuli tinta,
+                  journalist, reporter]
+    event_term_classes:
+      # Standard Indonesian criminal-process vocabulary plus its common
+      # morphology -- the terms a police or court action is reported with,
+      # independent of who the parties are. Not drawn from the 38 posts.
+      police_report: [dilaporkan ke polisi, dipolisikan, dilaporkan ke polres,
+                      dilaporkan ke polda, lapor polisi, laporan polisi,
+                      dilaporkan ke pomdam, dilaporkan ke propam]
+      suspect_status: [tersangka, ditetapkan tersangka, dijerat, didakwa,
+                       dituntut, divonis, terdakwa, dipidana]
+      custody: [ditahan, penahanan, diamankan polisi, dijemput polisi]
+      summons: [dipanggil polisi, dipanggil penyidik, diperiksa polisi,
+                dimintai keterangan, pemanggilan]
+      violence: [dianiaya, penganiayaan, dikeroyok, pengeroyokan, dipukul,
+                 diintimidasi, dirampas, perampasan alat, kekerasan terhadap
+                 jurnalis, kekerasan terhadap wartawan]
+      legal_frame: [pencemaran nama baik, UU ITE, kriminalisasi, delik pers,
+                    UU Pers]
+    notes: >
+      `dipanggil` and `diperiksa` are only listed with an institutional object
+      (polisi / penyidik). Bare `dipanggil` is the single highest-noise term in
+      the vocabulary -- it covers being called up to a squad, called to a
+      podium, called back to a ministry -- and the broad query already pays for
+      that noise; the rule layer should not.
+
+  attribution_frame:
+    enabled: true
+    action: exclude
+    principle: >
+      Indonesian news prose has two fixed frames in which a journalist is the
+      reporting instrument rather than the subject of the story: quote
+      attribution (a speaker says something TO journalists) and the byline or
+      credit line (the journalist authored the item). In both, the journalist
+      is structurally incapable of being the victim of the event described.
+      Exclude a post only when EVERY actor mention in it sits inside such a
+      frame; one mention outside is enough to keep the post, because that is
+      where a case would be stated.
+    match: all actor mentions fall inside one of the frames below
+    frames:
+      quote_attribution:
+        # verb of speech, or a closing quotation mark, within `window_chars`
+        # before `kepada|ke + actor`. The quotation-mark half matters: the verb
+        # is frequently mistyped or elided in fast-moving newsroom copy, and
+        # the closing quote is the structural signal that survives a typo.
+        speech_verbs: [kata, katanya, ujar, ujarnya, tutur, tuturnya, jelas,
+                       jelasnya, tegas, tegasnya, ungkap, ungkapnya, imbuh,
+                       imbuhnya, papar, paparnya, sebut, sebutnya, terang,
+                       terangnya, mengatakan, menuturkan, menjelaskan,
+                       menegaskan, mengungkapkan, menyampaikan]
+        close_quote_chars: ["\"", "”", "'", "’"]
+        window_chars: 60
+      source_attribution:
+        # "according to / via / by <actor>" -- the journalist is the conduit
+        markers: [menurut, melalui, dilansir, dikutip dari, diungkapkan oleh,
+                  disampaikan oleh, bersama]
+        window_chars: 30
+      byline_credit:
+        # credit lines: a role word immediately before the actor word, or the
+        # actor word used as a label followed by a colon
+        role_markers: [video, penulis, editor, produser, naskah, laporan,
+                       liputan, kontributor, foto, kamera, teks, admin]
+        label_suffixes: [":"]
+        standalone: [jurnalis warga]       # citizen-journalism credit line
+        window_chars: 25
+    known_false_positive_guard: >
+      A bare `kepada <actor>` is NOT an attribution frame: "pemberian uang
+      kepada wartawan" (money given to a journalist) is a case, not a quote.
+      A speech verb or a closing quote must be present in the window.
+
+  account_flood:
+    enabled: true
+    action: collapse_and_flag          # never a silent exclude
+    scope: corpus                      # a group rule, not a per-post predicate
+    principle: >
+      One account posting the same text many times in a short window is one
+      utterance, not many. Counting the copies lets a single account
+      manufacture the appearance of corroboration -- the thing an analyst
+      most relies on when deciding a lead is real -- and it inflates every
+      volume figure built on raw post counts. So the copies collapse to one
+      post, and the cluster is reported separately with its account count,
+      copy count and time span, because WHO repeated it matters: the same
+      text from twenty accounts is a campaign, from one account it is a
+      single claim.
+
+      Collapsing is not judging. A flooded text may be perfectly true. The
+      flag says "one source, repeated", and verification is a separate step:
+      until a first-hand report is found, a flagged cluster is recorded as
+      unverified and is not counted as a lead.
+    match: >
+      two or more posts share a normalised text (URLs, @handles, #tags,
+      punctuation and case stripped) and the same author
+    keep: the earliest post of the cluster, by published time
+    flag_when:
+      min_copies: 3
+      within_minutes: 60
+    threshold_basis: >
+      De-duplication by text already collapses repeats at any interval, so
+      these numbers only decide when a cluster is also FLAGGED as flooding
+      rather than quietly merged. Three copies inside an hour is below any
+      plausible editorial reason to repost and well under what was observed
+      (19 copies from one account in 6.5 minutes, 24% of that query's
+      returns), so the threshold is not set at the observed value -- it is
+      set where repetition stops being explicable and leaves room to catch
+      slower floods.
+    notes: >
+      Same text from DIFFERENT accounts is a separate phenomenon and must not
+      be folded in here: it may be syndication, a press release carried by
+      several outlets, or a coordinated campaign. Those still collapse to one
+      post for counting, but the cluster is reported with its account count
+      so the two cases stay distinguishable.

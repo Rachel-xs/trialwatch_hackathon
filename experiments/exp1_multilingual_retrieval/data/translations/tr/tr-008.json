@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-008",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Decision in Gülşen Tarhan case",
+  "paragraphs": [
+    "The verdict in the case of Ege Lencek correspondent Gülşen Tarhan on charges of defamation has been announced. The result is 10 months in prison.",
+    "According to the indictment, Gülşen Tarhan insulted a public official with reports of a leak in the garbage storage area published on July 12, 2025. The sentence was carried out by the Turkish Penal Code 125 (designation).",
+    "The verdict was announced at the hearing dated 21 May 2026 by Muğla 1st Criminal Court. The sentence has not yet been issued.",
+    "In the Gülşen Tarhan case, Attorney Derya Sönmez said the defence witnesses were not allowed to be heard.",
+    "Gülşen Tarhan works as a journalist at the Ege Lencek broadcaster. Journalists' organisations said the case could have a deterrent effect on freedom of the press.",
+    "There will be an appeal against the decision, and Gülsen Tarhan is free."
+  ],
+  "src_chars": 796,
+  "tgt_chars": 831,
+  "seconds": 1.541
+}

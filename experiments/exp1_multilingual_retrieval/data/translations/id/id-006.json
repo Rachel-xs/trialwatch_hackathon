@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-006",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The press's verdict is good.",
+  "paragraphs": [
+    "The verdict of defamation against the journalist Highlight Kalimantan, Good Faithful Minister, has been read: The defendant has been convicted of attempted crimes.",
+    "According to the indictment, the Good Faithful Witness published a story about the quality of the school building on March 14, 2026, which the prosecutor accused a certain act of damaging a person's good name, which was used: section 310 KUHP.",
+    "The Court of Justice Banjarmasin reads the verdict on June 30, 2026.",
+    "In the good case of the Faithful, the lawman Dedi Gunwan referred to it as being convicted without asking the expert opinion of the Press Council.",
+    "The Administrator works as a reporter at Banjarmasin, an alliance of journalists claiming to monitor the course of the trial.",
+    "The prosecutor and the defendant can still appeal."
+  ],
+  "src_chars": 870,
+  "tgt_chars": 795,
+  "seconds": 1.548
+}

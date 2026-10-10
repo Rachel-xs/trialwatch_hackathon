@@ -1,0 +1,105 @@
+# Events the operator's labels identify, and how to find them in the article
+# corpus. Read by scripts/x_vs_rss.py.
+#
+# The patterns live here rather than in the script so they can be argued with.
+# Each is an AND of lookaheads: a place (or institution) AND a word for
+# journalist AND, where the place word is ambiguous, a word for the event.
+# `serang` is both a place and the verb "to attack", so that one carries the
+# extra conjunct. No pattern names a person: the Serang matcher was tested
+# with and without the journalist's name and returns the same article either
+# way, so the name is not in this file.
+version: 1
+
+# How far before the earliest X post an article may be published and still
+# count as reporting of the same incident. Beyond this it is a different
+# story -- in practice an older case of the same kind, which rights groups
+# publish about constantly. Such matches are reported separately, never
+# silently dropped, and never counted as "RSS was first".
+window:
+  max_lead_hours: 168        # 7 days, the same window X recent search covers
+
+label_files:
+  - raw_label: baseline
+    sample_csv: out/x_label/20261010T153759Z_baseline_sample38.csv
+    labels_csv: out/x_label/baseline_labeled.csv
+  - raw_label: v2
+    sample_csv: out/x_label/20261010T165830Z_v2_q1-id-keywords_sample.csv
+    labels_csv: out/x_label/v2_q1_labeled.csv
+  - raw_label: v2
+    sample_csv: out/x_label/20261010T165830Z_v2_q2-id-institutions_sample.csv
+    labels_csv: out/x_label/v2_q2_labeled.csv
+  - raw_label: v2
+    sample_csv: out/x_label/20261010T165830Z_v2_q3-en-nolang_sample.csv
+    labels_csv: out/x_label/v2_q3_labeled.csv
+
+events:
+  - event_id: Baubau
+    require:
+      - '\bbaubau\b'
+      # a bare `pers` is too weak: the first local item about this incident
+      # was the police denying the liquor party, and it names no journalist
+      # at all. Reporting OF THIS EVENT has to name the profession.
+      - '\b(jurnalis|wartawan|kontributor)\b'
+    note: >
+      The X post naming a source names Liputan6, which the discovery layer
+      does not carry; anything found here comes from a different outlet.
+
+  - event_id: Serang
+    aliases: [E4-serang]
+    require:
+      - '\b(serang|banten)\b'
+      - '\b(jurnalis|wartawan)\b'
+      # the event words alone are sufficient here -- tested against the
+      # corpus, naming the journalist changes nothing -- so this file does
+      # not carry a victim's name
+      - '\b(pengeroyokan|pemukulan|dikeroyok|dipukul|kekerasan)\b'
+
+  - event_id: Bekasi
+    aliases: [E3-bekasi-dlh]
+    require:
+      - '\bbekasi\b'
+      - '\b(jurnalis|wartawan)\b'
+      - '\b(dlh|lingkungan hidup|dipolisikan|dilaporkan|mengusir|menghina)\b'
+
+  - event_id: Nias
+    aliases: [E5-nias]
+    require:
+      - '\bnias\b'
+      - '\b(jurnalis|wartawan)\b'
+
+  - event_id: Makassar-TNI
+    aliases: [E1-makassar-tni]
+    require:
+      - '\b(pomdam|hasanuddin|makassar)\b'
+      - '\b(jurnalis|wartawan)\b'
+      - '\b(melenyapkan|tni|oknum)\b'
+
+  - event_id: Lampung
+    require:
+      - '\blampung\b'
+      - '\b(jurnalis|wartawan)\b'
+      - '\b(intimidasi|peliputan|pelarangan|fjpi|aji)\b'
+
+  - event_id: Bogor
+    require:
+      - '\bbogor\b'
+      - '\b(jurnalis|wartawan)\b'
+      - '\b(intimidasi|perampasan|handphone|hendphone|akpersi|polsek)\b'
+
+  - event_id: Flores-Timur
+    aliases: [E2-flores-timur]
+    require:
+      - '\bflores\b'
+      - '\b(jurnalis|wartawan)\b'
+      - '\b(tersangka|ditahan|penganiayaan)\b'
+
+  - event_id: Papua-OPM
+    unverified: true
+    extra_post_match: 'OPM terhadap Jurnalis'
+    require:
+      - '\b(opm|papua)\b'
+      - '\b(jurnalis|wartawan)\b'
+      - '\bintimidasi\b'
+    note: >
+      Single account, 19 copies of one text in 6.5 minutes, no first-hand
+      report found. Reported as unverified and excluded from the counts.

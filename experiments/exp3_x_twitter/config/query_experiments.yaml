@@ -1,0 +1,62 @@
+# A/B matrix for diagnosing why the keyword queries return so little.
+# Each row is one recent-search call. Edit freely; the script hardcodes none
+# of this and prints the counts side by side.
+version: 1
+
+groups:
+  - name: "1. operator effects on one on-target query"
+    why: "does -is:retweet or lang:id suppress the volume?"
+    queries:
+      - id: op-baseline
+        q: "wartawan dipolisikan lang:id -is:retweet"
+      - id: op-keep-retweets
+        q: "wartawan dipolisikan lang:id"
+      - id: op-no-lang
+        q: "wartawan dipolisikan -is:retweet"
+      - id: op-bare
+        q: "wartawan dipolisikan"
+      - id: op-lang-in
+        q: "wartawan dipolisikan lang:in -is:retweet"
+
+  - name: "2. how much traffic does the event word carry on its own"
+    why: "is the actor+event conjunction the bottleneck?"
+    queries:
+      - id: ev-dipolisikan
+        q: "dipolisikan lang:id -is:retweet"
+      - id: ev-dilaporkan-polisi
+        q: '"dilaporkan ke polisi" lang:id -is:retweet'
+      - id: ev-kriminalisasi-pers
+        q: "kriminalisasi pers lang:id -is:retweet"
+
+  - name: "3. wider actor vocabulary, OR instead of one fixed word"
+    why: "Indonesian uses pers, awak media, pewarta, insan pers too"
+    queries:
+      - id: actor-or-dipolisikan
+        q: "(wartawan OR jurnalis OR pers OR pewarta OR \"awak media\") dipolisikan lang:id -is:retweet"
+      - id: actor-or-event-or
+        q: "(wartawan OR jurnalis OR pewarta OR \"awak media\") (dipolisikan OR \"dilaporkan ke polisi\" OR \"lapor polisi\" OR dikriminalisasi) lang:id -is:retweet"
+      - id: actor-or-event-or-rt
+        q: "(wartawan OR jurnalis OR pewarta OR \"awak media\") (dipolisikan OR \"dilaporkan ke polisi\" OR \"lapor polisi\" OR dikriminalisasi) lang:id"
+
+  - name: "4. event phrasings our config does not have"
+    why: "maybe the vocabulary is simply wrong, not the volume"
+    queries:
+      - id: ph-dilaporkan-ke-polisi
+        q: 'wartawan "dilaporkan ke polisi" lang:id -is:retweet'
+      - id: ph-diperiksa
+        q: "wartawan diperiksa polisi lang:id -is:retweet"
+      - id: ph-ditetapkan-tersangka
+        q: 'wartawan "ditetapkan tersangka" lang:id -is:retweet'
+      - id: ph-dikriminalisasi
+        q: "jurnalis dikriminalisasi lang:id -is:retweet"
+      - id: ph-somasi
+        q: "wartawan somasi lang:id -is:retweet"
+      - id: ph-intimidasi
+        q: "wartawan intimidasi lang:id -is:retweet"
+
+  - name: "5. is 25 results the binding cap"
+    why: "re-run the widest query at the endpoint maximum"
+    queries:
+      - id: cap-100
+        q: "(wartawan OR jurnalis OR pewarta) (dipolisikan OR dilaporkan OR dipanggil OR ditahan OR tersangka) lang:id -is:retweet"
+        max_results: 100

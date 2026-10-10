@@ -1,0 +1,16 @@
+{
+  "doc_id": "tr-002",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Heavy rain warning for the weekend.",
+  "paragraphs": [
+    "The meteorology announced strong rain on the Aegean coast this weekend.",
+    "Temperatures are estimated to drop five degrees.",
+    "Authorities have urged citizens to stay away from the creek beds.",
+    "The rain is expected to wear off on Monday."
+  ],
+  "src_chars": 255,
+  "tgt_chars": 227,
+  "seconds": 0.49
+}

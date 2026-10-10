@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-025",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Reporter Goddess Anggraini was charged with spreading false news",
+  "paragraphs": [
+    "News reporter Mining, Goddess Anggraini, was charged with exposure to a false rumor related to a nickel mining permit.",
+    "According to the charges, Goddess Anggraini published a report about the license of the nickel mines on October 5, 2025, which the prosecutor judged to broadcast a lie.",
+    "The indictment was read at the Hammer Court on December 10, 2025, the first hearing of the witness was scheduled on January 14, 2026.",
+    "In the matter of Goddess Anggraini, Rina Susanti's legal power said the plea for the defense to have the judge replaced was rejected by the council.",
+    "The Goddess of Agraini working as a reporter for the News of Mine at Hammer, a journalist's organization assessing that this case could have a lesson in press freedom.",
+    "The threat of punishment for this chapter is up to 10 years in prison, the Goddess Anggraini is not under arrest during the trial."
+  ],
+  "src_chars": 873,
+  "tgt_chars": 864,
+  "seconds": 1.33
+}

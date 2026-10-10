@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-002",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "3rd trial journalist Tohru Kusuma",
+  "paragraphs": [
+    "The 3rd trial for false news broadcasts against journalist Kiras Jambi, Tohru Kusuma, has been made.",
+    "According to the charges, Tohru Kusuma published a story about a wild logging in the forest on April 28, 2026 that the prosecutor judged to broadcast a lie.",
+    "The trial was held at the Jambi State Court on July 21, 2026, where the panel of judges delayed the trial until August 11, 2026.",
+    "In the matter of Tohru Kusuma, the legal authorities of Agus Santoso referred to it as being convicted without asking the expert opinion of the Press Council.",
+    "Tohru Kusuma works as a reporter at Jambi.",
+    "The prosecutor will read the charges to the next trial."
+  ],
+  "src_chars": 801,
+  "tgt_chars": 639,
+  "seconds": 0.984
+}

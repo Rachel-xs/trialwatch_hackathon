@@ -1,0 +1,12 @@
+# --- core ---
+numpy>=1.26
+pyyaml>=6.0
+
+# --- Pipeline A & B: BGE-M3 dense embedding ---
+torch>=2.2
+sentence-transformers>=3.0
+
+# --- Pipeline B: local MT (Marian). Skip if you supply translations yourself. ---
+transformers>=4.40
+sentencepiece>=0.2
+sacremoses>=0.1

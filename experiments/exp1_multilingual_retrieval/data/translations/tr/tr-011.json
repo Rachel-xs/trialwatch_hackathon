@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-011",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "2nd hearing in Selin Karaoğlu case",
+  "paragraphs": [
+    "The second hearing has been held on Bay News correspondent Selin Karaoglu on charges of spreading misleading information publicly.",
+    "According to the indictment, Selin Karaoglu has released information that would mislead the public with the news of the tender irregularity in the municipality published on September 14, 2025. The sentence is carried out: Turkish Penal Code 217/A (the public spread of misleading information publicly).",
+    "The trial was held in front of İzmir 5th Criminal Court of Asliye on March 12, 2026. The court postponed the trial until June 4, 2026.",
+    "In the Selin Karaoğlu case, Attorney Pelin Koç said they have been restricted access to some documents in the file and it undermines their defence rights.",
+    "Selin Karaoğlu works as a reporter for İzmir News, a broadcast agency called Bay News. Press occupational organisations have announced that they are closely monitoring the case.",
+    "The prosecutor's office will present its original debate at the next hearing. Selin Karaoğlu is being tried without arrest."
+  ],
+  "src_chars": 884,
+  "tgt_chars": 1020,
+  "seconds": 1.706
+}

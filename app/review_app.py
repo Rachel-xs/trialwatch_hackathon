@@ -367,7 +367,8 @@ st.markdown("## Journalists facing criminal cases in Indonesia")
 st.caption("Each card was flagged by the system. Read the highlighted evidence, open the original article "
            "if needed, then decide whether TrialWatch should follow the case.")
 
-tab_cases, tab_docs, tab_export = st.tabs(["Flagged cases", "Unclear articles", "Decisions and export"])
+tab_cases, tab_docs, tab_x, tab_export = st.tabs(["Flagged cases", "Unclear articles", "X signals",
+                                                  "Decisions and export"])
 
 # ================================================================== cases
 with tab_cases:
@@ -682,6 +683,39 @@ with tab_docs:
                         save_doc_decision(con, d["document_id"], dec, rsn or None, nt.strip(), reviewer.strip())
                         st.success(f"Saved: {DECISION_LABEL[dec]}.")
                         st.rerun()
+
+# ================================================================== X signals
+with tab_x:
+    st.caption("Posts on X that may point to a case. A weak trigger only: a post never creates a case, never "
+               "counts as evidence and is never quoted. Verified = an article in this database reports the same "
+               "place, a journalist and a criminal process or violence. Unverified = look, then search for "
+               "first-hand reporting.")
+    if not has_table(con, "x_leads"):
+        st.markdown('<div class="tw-empty">No X signals. Run the daily update with X=1 '
+                    '(or python -m fairtrial.x_trigger fetch --send).</div>', unsafe_allow_html=True)
+    else:
+        xl = q(con, "SELECT * FROM x_leads ORDER BY created_at DESC")
+        xs = st.selectbox("Show", ["Unverified", "Verified", "All", "Dismissed"], key="x_status")
+        pick = {"Unverified": {"unverified", "new"}, "Verified": {"verified"}, "Dismissed": {"dismissed"},
+                "All": {"new", "unverified", "verified", "dismissed"}}[xs]
+        xl = [r for r in xl if r["status"] in pick]
+        st.caption(f"{len(xl)} signal(s)")
+        for r in xl:
+            matched = json.loads(r["matched_documents"] or "[]")
+            cases_ = json.loads(r["matched_cases"] or "[]")
+            flood = f" · one account posted this {r['copies']} times" if r["flood"] else ""
+            with st.expander(f"{r['created_at'][:16].replace('T', ' ')} · {r['status']}"
+                             f" · {', '.join(json.loads(r['anchors'] or '[]')[:3]) or 'no place named'}{flood}"):
+                st.markdown(f"[Open the post on X]({r['url']})")
+                st.markdown(f'<div class="tw-para">{esc((r["text_local"] or "")[:600])}</div>', unsafe_allow_html=True)
+                st.caption("Signals: " + ", ".join(json.loads(r["event_classes"] or "[]")))
+                if matched:
+                    st.caption("Confirmed by article(s): " + ", ".join(matched)
+                               + (f" · case(s): {', '.join(cases_)}" if cases_ else ""))
+                if r["status"] != "dismissed" and st.button("Dismiss (not a case)", key=f"xdis_{r['lead_id']}"):
+                    con.execute("UPDATE x_leads SET status='dismissed' WHERE lead_id=?", (r["lead_id"],))
+                    con.commit()
+                    st.rerun()
 
 # ================================================================== export
 with tab_export:

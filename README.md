@@ -113,3 +113,15 @@ Add these to an existing database without re-running the model: `python scripts/
 Offline tests: `scripts/test_sprint_b.py` (27 checks), plus `test_coverage.py`, `test_agent_search.py`, `test_daily.py`.
 Open questions for the mentors are on slide 8 of the planner; the code leaves those choices visible rather than hard-coding them
 (e.g. which organisations count as partners is a list in `partners_ref.json`).
+
+## X weak trigger, CPJ list, experiments (October 2026)
+
+- **X as a weak trigger** (`fairtrial/x_trigger.py`): one Indonesian broad query a day (`X=1 bash run_daily.sh you@mail`,
+  needs `X_BEARER_TOKEN` in `.env`; `fetch` is a dry run unless `--send`). Kept posts become rows in `x_leads`, are checked
+  against first-hand articles in the database (place + journalist word + event word), and appear in the "X signals" tab and
+  the daily digest. A post never creates a case, never becomes evidence and is never quoted. Rules follow
+  `experiments/exp3_x_twitter` with its fixes (no length ceiling, morphological matching, police object for "dilaporkan",
+  `in`/`id` language codes, flood folding). Offline test: `scripts/test_x_trigger.py`.
+- **CPJ known-cases list**: `python ingest/import_known_international.py --cpj data/external/cpj/*.csv` rebuilds
+  `data/known_international.txt` (export names and dates in its header, hand-kept names preserved, spelling variants added).
+- **Experiments**: `experiments/` (multilingual A/B, Bluesky, X) with a summary in `experiments/README.md`.

@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-021",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "A lawsuit has been filed against Central Anadolu News correspondent Cem Özkaya",
+  "paragraphs": [
+    "Central Anadolu News correspondent Cem Özkaya has been indicted for violating the investigation's secrecy due to the details of the corruption investigation.",
+    "According to the indictment, Cem Özkaya violated the scope of the investigation with the details of the corruption investigation published on February 11, 2026. The sentence is carried out: the Turkish Penal Code 285 (infringement of the confidentiality of the investigation).",
+    "The indictment was approved on 7 April 2026 by Konya 4th Criminal Court. The first hearing will be held on 2 July 2026.",
+    "Attorney Tolga Erdem in the Cem Özkaya case has stated that the report is considered a criminal without an expert examination.",
+    "Cem Özkaya works as a reporter for the Central Anadolu News broadcaster. Journalists' organisations said the case could have a deterrent effect on freedom of the press.",
+    "The prosecutor's office is demanding a one-to-three-year sentence for Cem Özkaya. Cem Özkaya is on trial without arrest."
+  ],
+  "src_chars": 938,
+  "tgt_chars": 966,
+  "seconds": 1.468
+}

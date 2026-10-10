@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-015",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "2nd hearing in the Gülşen Tarhan case",
+  "paragraphs": [
+    "The second hearing has been held on charges of defamation against Ege Lensek correspondent Gülşen Tarhan.",
+    "According to the indictment, Gülşen Tarhan insulted a public official with reports of a leak in the garbage storage area published on July 12, 2025. The sentence was carried out by the Turkish Penal Code 125 (designation).",
+    "The trial was held on February 26, 2026 in front of the First Criminal Court of Emergency. The court adjourned the hearing until May 21, 2026.",
+    "In the Gülşen Tarhan case, Attorney Derya Sönmez said the case had not been concluded for two years, asking that the trial be concluded at a reasonable time.",
+    "Gülşen Tarhan works as a reporter for Mughla at the Ege Lencek broadcaster. Press occupational organisations have announced that they are closely monitoring the case.",
+    "The prosecution will present its original debate at the next hearing. Gülşen Tarhan is on trial without arrest."
+  ],
+  "src_chars": 811,
+  "tgt_chars": 903,
+  "seconds": 1.358
+}

@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-006",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "A lawsuit has been filed against Capital News correspondent Mehmet Yıldız",
+  "paragraphs": [
+    "Capital News correspondent Mehmet Yıldız has been indicted on charges of violation of the investigation's confidentiality due to a report of testimony in a murder investigation.",
+    "According to the indictment, Mehmet Yıldız violated the confidentiality of the investigation with the report of a murder investigation published on 3 November 2025. The sentence is carried out: the Turkish Penal Code 285 (infringement of the confidentiality of the investigation).",
+    "The indictment was approved by Ankara 12th Criminal Court of Asliye on 15 January 2026. The first hearing will be held on 2 April 2026.",
+    "In the Mehmet Yıldız case, Attorney Orhan Bilgin said they have been restricted access to some documents in the file and it undermines their defence rights.",
+    "Mehmet Yıldız works as an Ankara correspondent at a broadcast agency called D.C. News. Press occupational organisations have announced that they are closely monitoring the case.",
+    "The prosecutor's office is demanding a 1 to 3 year sentence for Mehmet Yıldız. Mehmet Yıldız is being tried without arrest."
+  ],
+  "src_chars": 934,
+  "tgt_chars": 1048,
+  "seconds": 1.456
+}

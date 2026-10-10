@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-016",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Decision in the Nilay Erturk case",
+  "paragraphs": [
+    "The verdict has been issued in the case of charges of terror organization propaganda against Thracya Bulten correspondent Nilay Erturk. The result is: acquittal.",
+    "According to the indictment, Nilay Erturk had been involved in organizational propaganda with the news of an interview with workers on the strike published on May 19, 2025. The sentence was carried out: Anti-Terror Law 7/2 (terror organization propaganda).",
+    "The verdict was issued by Edirne 2nd Heavy Penal Court on April 30, 2026, which has yet to be issued.",
+    "In the case of Nilay Erturk, Attorney Fulya Yaman said the report was considered a crime without an expert examination.",
+    "Nilay Erturk works as a reporter for Edirne at a broadcast agency called Thrace Bülten. Press occupational organisations have announced that they are closely monitoring the case.",
+    "There will be a recrimination of the decision."
+  ],
+  "src_chars": 793,
+  "tgt_chars": 861,
+  "seconds": 1.536
+}

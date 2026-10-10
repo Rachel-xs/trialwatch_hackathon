@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-005",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "2nd trial reporter Lestari Wulandari",
+  "paragraphs": [
+    "The second hearing of hate talks against the news reporter Sulut, Lestari Wulandari, has been held.",
+    "According to the charges, Lestari Wulandari published a report on the campaign speech of the mayor's candidate on April 1, 2026 the prosecutors judged to spread hatred against a particular group. Article 28 verse (2) ITE Act (The teaching of hatred based on SARA).",
+    "The trial was held at the Manado State Court on July 14, 2026, where the panel of judges delayed the trial until August 4, 2026.",
+    "In the matter of Wulandari Lestary, the attorney of Ratna Sari's law said the plea for the defense to have the judge replaced was rejected by the council.",
+    "Lestari Wulandari worked as a Sulut News reporter in Manado, where journalisty organizations rated this case could have a lesson in press freedom.",
+    "The D.A. will read the charges to the next trial."
+  ],
+  "src_chars": 861,
+  "tgt_chars": 840,
+  "seconds": 1.574
+}

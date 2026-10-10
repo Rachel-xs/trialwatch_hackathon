@@ -1,0 +1,2304 @@
+{
+  "pipeline": "A",
+  "summary": {
+    "hit@1": {
+      "mean": 0.8666666666666667,
+      "n": 30
+    },
+    "recall_doc@1": {
+      "mean": 0.4036111111111111,
+      "n": 30
+    },
+    "mrr@1": {
+      "mean": 0.8666666666666667,
+      "n": 30
+    },
+    "evidence_recall@1": {
+      "mean": 0.3286111111111111,
+      "n": 30
+    },
+    "hit@3": {
+      "mean": 0.9333333333333333,
+      "n": 30
+    },
+    "recall_doc@3": {
+      "mean": 0.6847222222222221,
+      "n": 30
+    },
+    "mrr@3": {
+      "mean": 0.8944444444444445,
+      "n": 30
+    },
+    "evidence_recall@3": {
+      "mean": 0.5763888888888888,
+      "n": 30
+    },
+    "hit@5": {
+      "mean": 0.9666666666666667,
+      "n": 30
+    },
+    "recall_doc@5": {
+      "mean": 0.7802777777777777,
+      "n": 30
+    },
+    "mrr@5": {
+      "mean": 0.9027777777777779,
+      "n": 30
+    },
+    "evidence_recall@5": {
+      "mean": 0.7302777777777777,
+      "n": 30
+    },
+    "hit@10": {
+      "mean": 0.9666666666666667,
+      "n": 30
+    },
+    "recall_doc@10": {
+      "mean": 0.8725,
+      "n": 30
+    },
+    "mrr@10": {
+      "mean": 0.9027777777777779,
+      "n": 30
+    },
+    "evidence_recall@10": {
+      "mean": 0.8419444444444444,
+      "n": 30
+    }
+  },
+  "queries": [
+    {
+      "qid": "q01",
+      "query": "Which court is hearing the case against Selin Karaoglu from Kıyı Haber?",
+      "gold_docs": [
+        "tr-007",
+        "tr-011"
+      ],
+      "gold_evidence": [
+        "tr-007#p003",
+        "tr-011#p003"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.5,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.5,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-007#c001",
+          "doc_id": "tr-007",
+          "lang": "tr",
+          "score": 0.6273,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-007#c002",
+          "doc_id": "tr-007",
+          "lang": "tr",
+          "score": 0.6263,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-011#c001",
+          "doc_id": "tr-011",
+          "lang": "tr",
+          "score": 0.6221,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-011#c003",
+          "doc_id": "tr-011",
+          "lang": "tr",
+          "score": 0.6209,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-007#c003",
+          "doc_id": "tr-007",
+          "lang": "tr",
+          "score": 0.6196,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q02",
+      "query": "Who is the defense lawyer of the journalist Zeynep Aydemir?",
+      "gold_docs": [
+        "tr-010",
+        "tr-019"
+      ],
+      "gold_evidence": [
+        "tr-019#p004",
+        "tr-010#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.5,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.5,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-010#c003",
+          "doc_id": "tr-010",
+          "lang": "tr",
+          "score": 0.5865,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-019#c003",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.5673,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-019#c001",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.528,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-019#c002",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.5037,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-010#c001",
+          "doc_id": "tr-010",
+          "lang": "tr",
+          "score": 0.496,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q03",
+      "query": "Which news outlet does the journalist Dewi Anggraini work for, and in which city?",
+      "gold_docs": [
+        "id-020",
+        "id-025"
+      ],
+      "gold_evidence": [
+        "id-025#p005",
+        "id-020#p005"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.5,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-020#c002",
+          "doc_id": "id-020",
+          "lang": "id",
+          "score": 0.605,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-025#c003",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.6026,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-020#c001",
+          "doc_id": "id-020",
+          "lang": "id",
+          "score": 0.562,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-025#c001",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.5613,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-025#c002",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.5546,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q04",
+      "query": "What did the lawyer of Mehmet Yıldız from the newspaper Doğu Postası complain about?",
+      "gold_docs": [
+        "tr-004",
+        "tr-012"
+      ],
+      "gold_evidence": [
+        "tr-012#p004",
+        "tr-004#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 0.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-012#c001",
+          "doc_id": "tr-012",
+          "lang": "tr",
+          "score": 0.6187,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-004#c001",
+          "doc_id": "tr-004",
+          "lang": "tr",
+          "score": 0.6134,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-004#c003",
+          "doc_id": "tr-004",
+          "lang": "tr",
+          "score": 0.6011,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-012#c003",
+          "doc_id": "tr-012",
+          "lang": "tr",
+          "score": 0.5841,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-014#c001",
+          "doc_id": "tr-014",
+          "lang": "tr",
+          "score": 0.5726,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q05",
+      "query": "How many days has Ahmad Fauzi of Harian Borneo Raya been held in pretrial detention?",
+      "gold_docs": [
+        "id-017"
+      ],
+      "gold_evidence": [
+        "id-017#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 1.0,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-017#c003",
+          "doc_id": "id-017",
+          "lang": "id",
+          "score": 0.6448,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-019#c004",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.6446,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-019#c001",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.6326,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-017#c002",
+          "doc_id": "id-017",
+          "lang": "id",
+          "score": 0.605,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-017#c001",
+          "doc_id": "id-017",
+          "lang": "id",
+          "score": 0.5666,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q06",
+      "query": "Which journalists are prosecuted under Article 217/A of the Turkish Penal Code on spreading misleading information?",
+      "gold_docs": [
+        "tr-001",
+        "tr-005",
+        "tr-007",
+        "tr-010",
+        "tr-011",
+        "tr-013",
+        "tr-019",
+        "tr-020"
+      ],
+      "gold_evidence": [
+        "tr-001#p002",
+        "tr-005#p002",
+        "tr-007#p002",
+        "tr-010#p002",
+        "tr-011#p002",
+        "tr-013#p002",
+        "tr-019#p002",
+        "tr-020#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.125,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.125,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.375,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.375,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.375,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.375,
+        "hit@10": 1.0,
+        "recall_doc@10": 0.625,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 0.625
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-019#c001",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.5384,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-020#c001",
+          "doc_id": "tr-020",
+          "lang": "tr",
+          "score": 0.5342,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.5214,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-023#c001",
+          "doc_id": "id-023",
+          "lang": "id",
+          "score": 0.5197,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.513,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q07",
+      "query": "Who is on trial under Article 7/2 of the Anti-Terror Law because of a news report?",
+      "gold_docs": [
+        "tr-004",
+        "tr-012",
+        "tr-016",
+        "tr-025"
+      ],
+      "gold_evidence": [
+        "tr-004#p002",
+        "tr-012#p002",
+        "tr-016#p002",
+        "tr-025#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.25,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.25,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.5,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.5,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.75,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.75,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-025#c001",
+          "doc_id": "tr-025",
+          "lang": "tr",
+          "score": 0.5875,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-020#c001",
+          "doc_id": "tr-020",
+          "lang": "tr",
+          "score": 0.5762,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-004#c001",
+          "doc_id": "tr-004",
+          "lang": "tr",
+          "score": 0.5728,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-012#c001",
+          "doc_id": "tr-012",
+          "lang": "tr",
+          "score": 0.5674,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-008#c001",
+          "doc_id": "id-008",
+          "lang": "id",
+          "score": 0.5597,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q08",
+      "query": "Which reporters are charged under Article 28(3) of Indonesia's ITE Law for false information that causes unrest?",
+      "gold_docs": [
+        "id-001",
+        "id-008",
+        "id-017",
+        "id-019"
+      ],
+      "gold_evidence": [
+        "id-001#p002",
+        "id-008#p002",
+        "id-017#p002",
+        "id-019#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.25,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.25,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.75,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.75,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-017#c001",
+          "doc_id": "id-017",
+          "lang": "id",
+          "score": 0.6168,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-001#c002",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.6157,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-008#c001",
+          "doc_id": "id-008",
+          "lang": "id",
+          "score": 0.5931,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-019#c002",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.589,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-014#c001",
+          "doc_id": "id-014",
+          "lang": "id",
+          "score": 0.5884,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q09",
+      "query": "Which journalist faces a defamation charge under Article 310 of the Indonesian Criminal Code?",
+      "gold_docs": [
+        "id-006",
+        "id-009",
+        "id-021",
+        "id-024"
+      ],
+      "gold_evidence": [
+        "id-006#p002",
+        "id-009#p002",
+        "id-021#p002",
+        "id-024#p002"
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "recall_doc@1": 0.0,
+        "mrr@1": 0.0,
+        "evidence_recall@1": 0.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.25,
+        "mrr@3": 0.5,
+        "evidence_recall@3": 0.25,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.5,
+        "mrr@5": 0.5,
+        "evidence_recall@5": 0.5,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 0.5,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-023#c001",
+          "doc_id": "id-023",
+          "lang": "id",
+          "score": 0.5642,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-021#c001",
+          "doc_id": "id-021",
+          "lang": "id",
+          "score": 0.5534,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.5445,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-023#c003",
+          "doc_id": "id-023",
+          "lang": "id",
+          "score": 0.5217,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-009#c001",
+          "doc_id": "id-009",
+          "lang": "id",
+          "score": 0.5186,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q10",
+      "query": "Is any journalist accused of breaching the confidentiality of an investigation?",
+      "gold_docs": [
+        "tr-006",
+        "tr-014",
+        "tr-021",
+        "tr-024"
+      ],
+      "gold_evidence": [
+        "tr-006#p002",
+        "tr-014#p002",
+        "tr-021#p002",
+        "tr-024#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.25,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.25,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.75,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.75,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-006#c001",
+          "doc_id": "tr-006",
+          "lang": "tr",
+          "score": 0.6528,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-014#c001",
+          "doc_id": "tr-014",
+          "lang": "tr",
+          "score": 0.6425,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-024#c001",
+          "doc_id": "tr-024",
+          "lang": "tr",
+          "score": 0.6318,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-021#c002",
+          "doc_id": "tr-021",
+          "lang": "tr",
+          "score": 0.6228,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-023#c001",
+          "doc_id": "id-023",
+          "lang": "id",
+          "score": 0.6022,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q11",
+      "query": "When is the next hearing in the case of Gülşen Tarhan?",
+      "gold_docs": [
+        "tr-015"
+      ],
+      "gold_evidence": [
+        "tr-015#p003"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 1.0,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 1.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-015#c002",
+          "doc_id": "tr-015",
+          "lang": "tr",
+          "score": 0.6525,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-008#c002",
+          "doc_id": "tr-008",
+          "lang": "tr",
+          "score": 0.6294,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-015#c001",
+          "doc_id": "tr-015",
+          "lang": "tr",
+          "score": 0.6135,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-015#c003",
+          "doc_id": "tr-015",
+          "lang": "tr",
+          "score": 0.5939,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-008#c001",
+          "doc_id": "tr-008",
+          "lang": "tr",
+          "score": 0.5814,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q12",
+      "query": "What was the outcome of the trial of Nilay Ertürk?",
+      "gold_docs": [
+        "tr-016"
+      ],
+      "gold_evidence": [
+        "tr-016#p001"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 1.0,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 1.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-016#c001",
+          "doc_id": "tr-016",
+          "lang": "tr",
+          "score": 0.5945,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-016#c002",
+          "doc_id": "tr-016",
+          "lang": "tr",
+          "score": 0.5608,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-025#c002",
+          "doc_id": "tr-025",
+          "lang": "tr",
+          "score": 0.5467,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-025#c001",
+          "doc_id": "tr-025",
+          "lang": "tr",
+          "score": 0.5377,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-025#c003",
+          "doc_id": "tr-025",
+          "lang": "tr",
+          "score": 0.5374,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q13",
+      "query": "Which journalists had the announcement of their judgment deferred (HAGB)?",
+      "gold_docs": [
+        "tr-005",
+        "tr-010"
+      ],
+      "gold_evidence": [
+        "tr-005#p001",
+        "tr-010#p001"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.5,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-010#c001",
+          "doc_id": "tr-010",
+          "lang": "tr",
+          "score": 0.5508,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-005#c001",
+          "doc_id": "tr-005",
+          "lang": "tr",
+          "score": 0.5285,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-020#c002",
+          "doc_id": "id-020",
+          "lang": "id",
+          "score": 0.5214,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-012#c002",
+          "doc_id": "id-012",
+          "lang": "id",
+          "score": 0.4921,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-002#c002",
+          "doc_id": "id-002",
+          "lang": "id",
+          "score": 0.4866,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q14",
+      "query": "On what date did the court accept the indictment against Burak Sezer?",
+      "gold_docs": [
+        "tr-013"
+      ],
+      "gold_evidence": [
+        "tr-013#p003"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 1.0,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 1.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-013#c002",
+          "doc_id": "tr-013",
+          "lang": "tr",
+          "score": 0.6262,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.5781,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-001#c002",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.5753,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-013#c001",
+          "doc_id": "tr-013",
+          "lang": "tr",
+          "score": 0.5591,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-013#c003",
+          "doc_id": "tr-013",
+          "lang": "tr",
+          "score": 0.5574,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q15",
+      "query": "Which journalist was found not guilty by the Medan District Court?",
+      "gold_docs": [
+        "id-018"
+      ],
+      "gold_evidence": [
+        "id-018#p001",
+        "id-018#p003"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 1.0,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.5,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-018#c002",
+          "doc_id": "id-018",
+          "lang": "id",
+          "score": 0.5069,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-004#c003",
+          "doc_id": "id-004",
+          "lang": "id",
+          "score": 0.4879,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-018#c001",
+          "doc_id": "id-018",
+          "lang": "id",
+          "score": 0.4709,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-006#c003",
+          "doc_id": "id-006",
+          "lang": "id",
+          "score": 0.462,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-020#c002",
+          "doc_id": "id-020",
+          "lang": "id",
+          "score": 0.4603,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q16",
+      "query": "Whose lawyer said the defense was denied access to documents in the case file?",
+      "gold_docs": [
+        "id-003",
+        "id-010",
+        "id-021",
+        "tr-006",
+        "tr-011",
+        "tr-013"
+      ],
+      "gold_evidence": [
+        "tr-006#p004",
+        "tr-011#p004",
+        "tr-013#p004",
+        "id-003#p004",
+        "id-010#p004",
+        "id-021#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.16666666666666666,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.16666666666666666,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.3333333333333333,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.3333333333333333,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.3333333333333333,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall_doc@10": 0.6666666666666666,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 0.6666666666666666
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-011#c002",
+          "doc_id": "tr-011",
+          "lang": "tr",
+          "score": 0.46,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-014#c002",
+          "doc_id": "tr-014",
+          "lang": "tr",
+          "score": 0.4379,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-021#c002",
+          "doc_id": "id-021",
+          "lang": "id",
+          "score": 0.4373,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-020#c002",
+          "doc_id": "tr-020",
+          "lang": "tr",
+          "score": 0.4329,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-019#c002",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.4306,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q17",
+      "query": "In which trials were observers kept out because the hearing was closed?",
+      "gold_docs": [
+        "id-011",
+        "id-012",
+        "tr-004",
+        "tr-025"
+      ],
+      "gold_evidence": [
+        "tr-004#p004",
+        "tr-025#p004",
+        "id-011#p004",
+        "id-012#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.25,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.25,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.5,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.5,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.5,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.5,
+        "hit@10": 1.0,
+        "recall_doc@10": 0.75,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 0.75
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-012#c002",
+          "doc_id": "id-012",
+          "lang": "id",
+          "score": 0.481,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-025#c002",
+          "doc_id": "tr-025",
+          "lang": "tr",
+          "score": 0.4592,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-019#c002",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.4475,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-003#c002",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.445,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-014#c002",
+          "doc_id": "tr-014",
+          "lang": "tr",
+          "score": 0.4445,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q18",
+      "query": "Which journalists were held in pretrial detention for longer than is reasonable?",
+      "gold_docs": [
+        "id-008",
+        "id-017",
+        "tr-001",
+        "tr-012"
+      ],
+      "gold_evidence": [
+        "tr-001#p004",
+        "tr-012#p004",
+        "id-008#p004",
+        "id-017#p004"
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "recall_doc@1": 0.0,
+        "mrr@1": 0.0,
+        "evidence_recall@1": 0.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.25,
+        "mrr@3": 0.3333333333333333,
+        "evidence_recall@3": 0.25,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.5,
+        "mrr@5": 0.3333333333333333,
+        "evidence_recall@5": 0.5,
+        "hit@10": 1.0,
+        "recall_doc@10": 0.5,
+        "mrr@10": 0.3333333333333333,
+        "evidence_recall@10": 0.5
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-021#c003",
+          "doc_id": "id-021",
+          "lang": "id",
+          "score": 0.5299,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-025#c003",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.5292,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-008#c002",
+          "doc_id": "id-008",
+          "lang": "id",
+          "score": 0.5202,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-023#c003",
+          "doc_id": "id-023",
+          "lang": "id",
+          "score": 0.5004,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-017#c002",
+          "doc_id": "id-017",
+          "lang": "id",
+          "score": 0.4962,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q19",
+      "query": "Whose lawyer objected that defense witnesses were not allowed to testify?",
+      "gold_docs": [
+        "id-009",
+        "id-019",
+        "tr-008",
+        "tr-014",
+        "tr-020"
+      ],
+      "gold_evidence": [
+        "tr-008#p004",
+        "tr-014#p004",
+        "tr-020#p004",
+        "id-009#p004",
+        "id-019#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.2,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.2,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.4,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.4,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.6,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.6,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-014#c002",
+          "doc_id": "tr-014",
+          "lang": "tr",
+          "score": 0.4855,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-009#c002",
+          "doc_id": "id-009",
+          "lang": "id",
+          "score": 0.4574,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-011#c002",
+          "doc_id": "id-011",
+          "lang": "id",
+          "score": 0.4541,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-019#c003",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.4535,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-004#c002",
+          "doc_id": "tr-004",
+          "lang": "tr",
+          "score": 0.4496,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q20",
+      "query": "In which cases did the defense say a request to replace the judge was rejected?",
+      "gold_docs": [
+        "id-005",
+        "id-018",
+        "id-025",
+        "tr-009",
+        "tr-024"
+      ],
+      "gold_evidence": [
+        "tr-009#p004",
+        "tr-024#p004",
+        "id-005#p004",
+        "id-018#p004",
+        "id-025#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.2,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.2,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.6,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.6,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.6,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.6,
+        "hit@10": 1.0,
+        "recall_doc@10": 0.8,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 0.8
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-018#c002",
+          "doc_id": "id-018",
+          "lang": "id",
+          "score": 0.4571,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-025#c002",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.4533,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-005#c002",
+          "doc_id": "id-005",
+          "lang": "id",
+          "score": 0.4532,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-019#c003",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.3988,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-014#c002",
+          "doc_id": "tr-014",
+          "lang": "tr",
+          "score": 0.3981,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q21",
+      "query": "A reporter is accused of misleading the public after writing about deaths in a hospital's critical care unit.",
+      "gold_docs": [
+        "tr-010",
+        "tr-019"
+      ],
+      "gold_evidence": [
+        "tr-010#p002",
+        "tr-019#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.5,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.5,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.5,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-019#c001",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.6304,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-019#c002",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.5928,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-017#c001",
+          "doc_id": "id-017",
+          "lang": "id",
+          "score": 0.5827,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-013#c001",
+          "doc_id": "tr-013",
+          "lang": "tr",
+          "score": 0.5583,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-010#c002",
+          "doc_id": "tr-010",
+          "lang": "tr",
+          "score": 0.5563,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q22",
+      "query": "A journalist was charged after investigating licences for nickel extraction.",
+      "gold_docs": [
+        "id-020",
+        "id-025"
+      ],
+      "gold_evidence": [
+        "id-020#p002",
+        "id-025#p001",
+        "id-025#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.6666666666666666,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-025#c001",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.6127,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-020#c001",
+          "doc_id": "id-020",
+          "lang": "id",
+          "score": 0.5817,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "tr-006#c001",
+          "doc_id": "tr-006",
+          "lang": "tr",
+          "score": 0.5562,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-014#c001",
+          "doc_id": "tr-014",
+          "lang": "tr",
+          "score": 0.5328,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-025#c003",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.5309,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q23",
+      "query": "A newsroom employee is being prosecuted over reporting on how well school buildings were constructed.",
+      "gold_docs": [
+        "id-006",
+        "id-021"
+      ],
+      "gold_evidence": [
+        "id-006#p002",
+        "id-021#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.5,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-021#c001",
+          "doc_id": "id-021",
+          "lang": "id",
+          "score": 0.621,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-023#c001",
+          "doc_id": "id-023",
+          "lang": "id",
+          "score": 0.5953,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-006#c002",
+          "doc_id": "id-006",
+          "lang": "id",
+          "score": 0.5911,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-007#c001",
+          "doc_id": "tr-007",
+          "lang": "tr",
+          "score": 0.5646,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.5543,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q24",
+      "query": "A reporter faces trial for coverage of people who lost their lives in a town near the frontier.",
+      "gold_docs": [
+        "tr-001",
+        "tr-013"
+      ],
+      "gold_evidence": [
+        "tr-001#p002",
+        "tr-013#p001",
+        "tr-013#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.6666666666666666,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-013#c001",
+          "doc_id": "tr-013",
+          "lang": "tr",
+          "score": 0.6168,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.5844,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-021#c003",
+          "doc_id": "id-021",
+          "lang": "id",
+          "score": 0.5489,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-025#c003",
+          "doc_id": "tr-025",
+          "lang": "tr",
+          "score": 0.5346,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-009#c001",
+          "doc_id": "tr-009",
+          "lang": "tr",
+          "score": 0.534,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q25",
+      "query": "Which journalists were acquitted?",
+      "gold_docs": [
+        "id-018",
+        "id-020",
+        "tr-016",
+        "tr-018"
+      ],
+      "gold_evidence": [
+        "tr-018#p001",
+        "tr-016#p001",
+        "id-020#p001",
+        "id-018#p001"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.25,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.25,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.75,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.5,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-016#c001",
+          "doc_id": "tr-016",
+          "lang": "tr",
+          "score": 0.4781,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-018#c002",
+          "doc_id": "tr-018",
+          "lang": "tr",
+          "score": 0.4775,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-018#c001",
+          "doc_id": "id-018",
+          "lang": "id",
+          "score": 0.4749,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-020#c001",
+          "doc_id": "id-020",
+          "lang": "id",
+          "score": 0.4707,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-018#c001",
+          "doc_id": "tr-018",
+          "lang": "tr",
+          "score": 0.4704,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q26",
+      "query": "Which journalists were sentenced to prison?",
+      "gold_docs": [
+        "id-019",
+        "id-022",
+        "tr-008"
+      ],
+      "gold_evidence": [
+        "tr-008#p001",
+        "id-019#p001",
+        "id-022#p001"
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "recall_doc@1": 0.0,
+        "mrr@1": 0.0,
+        "evidence_recall@1": 0.0,
+        "hit@3": 0.0,
+        "recall_doc@3": 0.0,
+        "mrr@3": 0.0,
+        "evidence_recall@3": 0.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.6666666666666666,
+        "mrr@5": 0.25,
+        "evidence_recall@5": 0.6666666666666666,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 0.25,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-010#c004",
+          "doc_id": "id-010",
+          "lang": "id",
+          "score": 0.5348,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-025#c003",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.5316,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-001#c004",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.5239,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-019#c001",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.5176,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-022#c001",
+          "doc_id": "id-022",
+          "lang": "id",
+          "score": 0.5172,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "qid": "q27",
+      "query": "Which Indonesian journalists received a suspended sentence?",
+      "gold_docs": [
+        "id-006",
+        "id-024"
+      ],
+      "gold_evidence": [
+        "id-024#p001",
+        "id-006#p001"
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "recall_doc@1": 0.0,
+        "mrr@1": 0.0,
+        "evidence_recall@1": 0.0,
+        "hit@3": 0.0,
+        "recall_doc@3": 0.0,
+        "mrr@3": 0.0,
+        "evidence_recall@3": 0.0,
+        "hit@5": 0.0,
+        "recall_doc@5": 0.0,
+        "mrr@5": 0.0,
+        "evidence_recall@5": 0.0,
+        "hit@10": 0.0,
+        "recall_doc@10": 0.0,
+        "mrr@10": 0.0,
+        "evidence_recall@10": 0.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-023#c003",
+          "doc_id": "id-023",
+          "lang": "id",
+          "score": 0.5505,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-010#c004",
+          "doc_id": "id-010",
+          "lang": "id",
+          "score": 0.5456,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-025#c003",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.5394,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-001#c004",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.5337,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-019#c001",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.5294,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q28",
+      "query": "Reporters charged after covering patient deaths in public hospitals, in Turkey and in Indonesia.",
+      "gold_docs": [
+        "id-017",
+        "id-019",
+        "tr-010",
+        "tr-019"
+      ],
+      "gold_evidence": [
+        "tr-010#p002",
+        "tr-019#p002",
+        "id-017#p002",
+        "id-019#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.25,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.25,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.75,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.75,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.75,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.75,
+        "hit@10": 1.0,
+        "recall_doc@10": 0.75,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 0.75
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-019#c001",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.5704,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-019#c002",
+          "doc_id": "id-019",
+          "lang": "id",
+          "score": 0.5454,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-017#c001",
+          "doc_id": "id-017",
+          "lang": "id",
+          "score": 0.5344,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-025#c003",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.5255,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-013#c001",
+          "doc_id": "tr-013",
+          "lang": "tr",
+          "score": 0.5234,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q29",
+      "query": "Journalists on trial for reporting on the distribution of disaster relief aid.",
+      "gold_docs": [
+        "id-001",
+        "id-008",
+        "tr-009",
+        "tr-018"
+      ],
+      "gold_evidence": [
+        "tr-009#p001",
+        "tr-009#p002",
+        "tr-018#p002",
+        "id-001#p001",
+        "id-001#p002",
+        "id-008#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.25,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.16666666666666666,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.5,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.5,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.5,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.5,
+        "hit@10": 1.0,
+        "recall_doc@10": 0.75,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 0.8333333333333334
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-001#c002",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.5968,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-008#c001",
+          "doc_id": "id-008",
+          "lang": "id",
+          "score": 0.5906,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-001#c001",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.5905,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-025#c003",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.5677,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-019#c001",
+          "doc_id": "tr-019",
+          "lang": "tr",
+          "score": 0.5634,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "q30",
+      "query": "Journalists prosecuted over environmental reporting such as waste leaks, palm oil effluent or illegal logging.",
+      "gold_docs": [
+        "id-002",
+        "id-004",
+        "id-018",
+        "id-022",
+        "tr-008",
+        "tr-015"
+      ],
+      "gold_evidence": [
+        "tr-008#p002",
+        "tr-015#p002",
+        "id-004#p002",
+        "id-018#p002",
+        "id-002#p002",
+        "id-022#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.16666666666666666,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.16666666666666666,
+        "hit@3": 1.0,
+        "recall_doc@3": 0.3333333333333333,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 0.3333333333333333,
+        "hit@5": 1.0,
+        "recall_doc@5": 0.3333333333333333,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall_doc@10": 0.3333333333333333,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 0.3333333333333333
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-004#c001",
+          "doc_id": "id-004",
+          "lang": "id",
+          "score": 0.5731,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-018#c001",
+          "doc_id": "id-018",
+          "lang": "id",
+          "score": 0.5631,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-025#c003",
+          "doc_id": "id-025",
+          "lang": "id",
+          "score": 0.561,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-023#c001",
+          "doc_id": "id-023",
+          "lang": "id",
+          "score": 0.5609,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-021#c003",
+          "doc_id": "id-021",
+          "lang": "id",
+          "score": 0.5463,
+          "relevant": false
+        }
+      ]
+    }
+  ]
+}

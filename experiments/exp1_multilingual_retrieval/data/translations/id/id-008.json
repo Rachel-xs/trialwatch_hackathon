@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-008",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "2nd trial reporter Nur Aisyah",
+  "paragraphs": [
+    "The 2nd trial for spreading false news against reporter Warta Malumku, Nur Aisyah, has been published.",
+    "According to the charges, Nur Aisyah published a report about the relief of the flood disaster on February 3, 2026, which the prosecutor judged to spread false information that caused havoc. The chapter used: section 28 verses (3) ITE Act (false information that caused havoc).",
+    "The trial was held at the Ambon State Court on May 26, 2026, where the panel of judges delayed the trial until June 16, 2026.",
+    "In the matter of Nur Aisyah, the power of the Phytri Handayni law stated that his client had been arrested 63 days and that the period of detention exceeded normal limits.",
+    "Nur Aisyah works as a reporter for Warta Malumku in Ambon.",
+    "The D.A. will read the charges to the next trial."
+  ],
+  "src_chars": 854,
+  "tgt_chars": 782,
+  "seconds": 1.549
+}

@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-020",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "2nd hearing in the Ayten Korkmaz case",
+  "paragraphs": [
+    "A second hearing has been held on South Daily correspondent Ayten Korkmaz on charges of spreading misleading information publicly.",
+    "According to the indictment, Ayten Korkmaz has released information that will mislead the public with the news of torpedoed appointments at the public institution published on 8 December 2025. The sentence is carried out: Turkish Penal Code 217/A (the public publicly spreading misleading information).",
+    "The trial was held in front of Mersin's 6th Criminal Court on May 8, 2026. The court adjourned the hearing until August 13, 2026.",
+    "In Ayten Korkmaz's case, Attorney Nesrin Güler said the defence witnesses were not allowed to be heard.",
+    "Ayten Korkmaz works as a reporter for Mersin at the South Newspaper, where media trade agencies have announced that they are closely monitoring the case.",
+    "The D.A.'s office will present its original debate at the next hearing, and Ayten Korkmaz is on trial without arrest."
+  ],
+  "src_chars": 854,
+  "tgt_chars": 934,
+  "seconds": 1.706
+}

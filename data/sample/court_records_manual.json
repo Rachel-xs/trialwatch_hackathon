@@ -1,0 +1,27 @@
+[
+  {
+    "person_name": "Bayu Pratama",
+    "court_name": "Pengadilan Negeri Kota Contoh",
+    "sipp_url": "https://sipp.example.org/detil_perkara/45",
+    "case_number": "45/Pid.Sus/2026/PN Cth",
+    "parties_as_listed": [
+      "BAYU PRATAMA"
+    ],
+    "legal_provisions_original": "Pasal 27A jo Pasal 45 ayat (4) UU Nomor 1 Tahun 2024",
+    "procedural_status": "trial",
+    "hearing_schedule": [
+      {
+        "date": "2026-04-20",
+        "agenda": "Pembacaan dakwaan"
+      },
+      {
+        "date": "2026-04-28",
+        "agenda": "Eksepsi"
+      }
+    ],
+    "verdict": null,
+    "access_method": "manual",
+    "screenshot_path": "screenshots/sipp_45_2026.png",
+    "retrieved_at": "2026-04-22"
+  }
+]

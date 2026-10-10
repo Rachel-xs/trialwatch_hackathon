@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-011",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Reporter Lestari Wulandari is accused of speaking hate",
+  "paragraphs": [
+    "Sulut News Reporter Lestari Wulandari was charged with hate speech related to the campaign speech candidate mayor.",
+    "According to the charges, Lestari Wulandari published a report on the campaign speech of the mayor's candidate on April 1, 2026 the prosecutors judged to spread hatred against a particular group. Article 28 verse (2) ITE Act (The teaching of hatred based on SARA).",
+    "The indictment was read at the Manado State Court on June 2, 2026, the first hearing of the witness hearing was scheduled on June 23, 2026.",
+    "In the matter of the Wulandari Lestary, the legal power of Ratna Sari protested the decision of a panel of judges who closed the hearing to observers.",
+    "Lestari Wulandari works as a Sulut news reporter in Manado, an alliance of journalists claiming to monitor the course of the trial.",
+    "The threat of punishment for this chapter is up to 6 years in prison."
+  ],
+  "src_chars": 899,
+  "tgt_chars": 867,
+  "seconds": 1.536
+}

@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-018",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Decision in the case of Emre Akbulut",
+  "paragraphs": [
+    "The verdict has been announced in the trial of Anadolu Line correspondent Emre Akbulut on charges of defamation. The result is: acquittal.",
+    "According to the indictment, Emre Akbulut insulted a public official with the news of the relief distribution of earthquake container cities published on 21 October 2025. The sentence was carried out by the Turkish Penal Code 125 (designation).",
+    "The verdict was issued by Hatay 2nd Prime Criminal Court on March 19, 2026, which has not yet been issued.",
+    "In the case of Emre Akbulut, Attorney Murat Aksoy said the report was considered a crime without an expert examination.",
+    "Emre Akbulut works as Hatay correspondent at the Anadolu Line. Press occupational organisations have announced that they are closely monitoring the case.",
+    "There will be an appeal against the decision."
+  ],
+  "src_chars": 768,
+  "tgt_chars": 805,
+  "seconds": 1.472
+}

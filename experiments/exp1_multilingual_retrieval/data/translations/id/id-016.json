@@ -1,0 +1,16 @@
+{
+  "doc_id": "id-016",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Heavy rains are forecasted in the western region",
+  "paragraphs": [
+    "Weather forecasters estimate heavy rains in the western region for three days.",
+    "Citizens of flood prone areas are requested alert.",
+    "Temperatures are expected to drop a few degrees at night.",
+    "Weather is expected to improve on weekends."
+  ],
+  "src_chars": 234,
+  "tgt_chars": 228,
+  "seconds": 0.596
+}

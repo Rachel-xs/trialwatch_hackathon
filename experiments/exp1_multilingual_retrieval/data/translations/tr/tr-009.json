@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-009",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "A lawsuit has been filed against Anadolu Line correspondent Emre Akbulut",
+  "paragraphs": [
+    "Anadolu Line correspondent Emre Akbulut has been indicted for defaming the news of the relief distribution in earthquake container cities.",
+    "According to the indictment, Emre Akbulut insulted a public official with the news of the relief distribution of earthquake container cities published on 21 October 2025. The sentence was carried out by the Turkish Penal Code 125 (designation).",
+    "The indictment was passed by Hatay II Criminal Court of Prime Affairs on December 4, 2025. The first hearing will be held on March 19, 2026.",
+    "In the case of Emre Akbulut, Attorney Murat Aksoy said the court's motion to dismiss was denied.",
+    "Emre Akbulut is a reporter for Hatay at the Anadolu Line. Journalists' organisations said the case could have a deterrent effect on freedom of the press.",
+    "The prosecutor's office requests three months to two years in prison for Emre Akbulut. Emre Akbulut is on trial without arrest."
+  ],
+  "src_chars": 871,
+  "tgt_chars": 898,
+  "seconds": 1.457
+}

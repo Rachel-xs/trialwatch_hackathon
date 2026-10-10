@@ -1,0 +1,81 @@
+# Round-2 X queries, written out literally rather than built from
+# keywords.yaml. Read by scripts/x_fetch_broad.py --query-file.
+#
+# Why literal: round 1 showed the generated conjunction is one axis among
+# several, and the three queries below are deliberately different in kind --
+# one improves the known axis, one opens an institutional axis, one drops the
+# language filter entirely. Expressing that as flags on a generator would hide
+# what is actually being sent. keywords.yaml is untouched.
+#
+# Length: X enforces a per-tier cap on `query` (512 characters on the smaller
+# access tiers, higher on Pro/Enterprise; the published range is 1..4096). The
+# tier on this token is not known from the outside, and a 400 for an
+# over-length query still costs a request, so every query here is kept under
+# 512 characters and scripts/x_fetch_broad.py refuses to send one that is not.
+#
+# No query names a person or a place taken from the round-1 posts. `Indonesia`
+# in Q3 is a country limiter, not an incident location.
+version: 2
+
+queries:
+
+  - query_id: q1-id-keywords
+    language: id
+    why: >
+      The round-1 axis, conservatively tightened. Four changes: the violence
+      vocabulary is added (round 1 carried none of dianiaya / dikeroyok /
+      penganiayaan / pengeroyokan, yet two of the five events found were
+      assaults); colloquial and harassment terms are added (diciduk, dicokok,
+      dibui, digelandang, intimidasi, teror); bare `dipanggil` is narrowed to
+      `dipanggil polisi`, the highest-noise term in the round-1 vocabulary;
+      and credit-line noise plus the automated account are excluded at the
+      query. Phrase-only variants were rejected: simulated on the round-1
+      corpus they missed 5 of 8 labelled posts, including 2 of 3 relevant,
+      because Indonesian headlines put the actor word after the event word.
+
+      Revised 2026-10-10 on the operator's instruction: the byline exclusions
+      (-"video jurnalis" / -"jurnalis warga" / -"jurnalis bola") and -is:reply
+      are OFF. Rationale for keeping them off: an exclusion at the query is
+      irreversible -- the post never arrives, so it can be neither labelled
+      nor counted -- whereas the same noise is removable locally by the
+      attribution_frame rule, which keeps a post when any actor mention sits
+      outside a credit line. Byline noise therefore comes back into the raw
+      data on purpose. -is:retweet and -from:grok stay: a retweet is an echo
+      of a post we would get anyway, and the automated account adds no event.
+    query: >-
+      (wartawan OR jurnalis OR pewarta) (dilaporkan OR dipolisikan OR
+      tersangka OR ditahan OR dijerat OR "dipanggil polisi" OR "pencemaran
+      nama baik" OR "UU ITE" OR kriminalisasi OR dianiaya OR dikeroyok OR
+      penganiayaan OR pengeroyokan OR "kekerasan terhadap" OR diciduk OR
+      dicokok OR dibui OR digelandang OR intimidasi OR teror) lang:id
+      -is:retweet -from:grok
+
+  - query_id: q2-id-institutions
+    language: id
+    why: >
+      A different axis: press-freedom institutions rather than the word for
+      journalist. Institutional statements routinely describe a case before
+      the general news accounts do, and they often write "anggota kami" rather
+      than naming the profession, so the Q1 axis cannot see them at all. This
+      request buys possible net increment, not precision.
+    query: >-
+      (AJI OR "Dewan Pers" OR "LBH Pers" OR IJTI OR PWI OR "awak media" OR
+      "kuli tinta") (dilaporkan OR dipolisikan OR tersangka OR ditahan OR
+      dianiaya OR dikeroyok OR kriminalisasi OR "pencemaran nama baik" OR "UU
+      ITE" OR somasi OR mengecam OR intimidasi) lang:id -is:retweet
+
+  - query_id: q3-en-nolang
+    language: mixed
+    why: >
+      English and whatever else answers, with no lang: filter at all, limited
+      to the country by the word Indonesia. Round 1's `lang:en` query returned
+      zero three times running; this tests whether that was the English
+      vocabulary or the language operator itself. Because nothing is filtered
+      by language, the result also shows which codes X actually assigns to
+      posts about Indonesia -- including posts written in a regional language
+      that X labels `in` or `und`.
+    query: >-
+      Indonesia (journalist OR journalists OR reporter OR "press freedom")
+      (arrested OR detained OR charged OR summoned OR prosecuted OR jailed OR
+      assaulted OR "criminal defamation" OR "ITE law" OR "police report")
+      -is:retweet

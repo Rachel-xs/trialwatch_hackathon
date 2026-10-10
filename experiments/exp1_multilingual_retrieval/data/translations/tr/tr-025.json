@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-025",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "5th hearing in the Nilay Erturk case",
+  "paragraphs": [
+    "The 5th hearing has been held on Thracya Bulten correspondent Nilay Erturk on charges of terror organization propaganda.",
+    "According to the indictment, Nilay Erturk had been involved in organizational propaganda with the news of an interview with workers on the strike published on May 19, 2025. The sentence was carried out: Anti-Terror Law 7/2 (terror organization propaganda).",
+    "The trial was held in front of Edirne 2nd Heavy Penal Court on 29 January 2026. The court adjourned the trial until April 30, 2026.",
+    "In the case of Nilay Erturk, Attorney Fulya Yaman said they object to the hearing being closed to observers.",
+    "Nilay Erturk works as a reporter for Edirne at a broadcast agency called Thrace Bulleten. Journalists' organisations said the case could have a deterrent effect on freedom of the press.",
+    "The prosecution will present its original debate at the next hearing, and Nilay Erturk is on trial without arrest."
+  ],
+  "src_chars": 852,
+  "tgt_chars": 914,
+  "seconds": 1.538
+}

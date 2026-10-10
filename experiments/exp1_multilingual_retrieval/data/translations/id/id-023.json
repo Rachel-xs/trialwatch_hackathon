@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-023",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Mercy Reporter Hidayat is accused of defamation",
+  "paragraphs": [
+    "Coastal Voice Reporter, Grace Hidayat, was charged with defamation related to news of alleged corruption on county street projects.",
+    "According to the charges, Grace Hidayat published the alleged corruption of district road projects on September 2, 2025, which the prosecutor judged attacked the honor of an official, which was used: section 27A ITE Act.",
+    "The indictment was read at Makassar State Court on November 20, 2025, the first hearing of the witness hearing was scheduled on February 4, 2026.",
+    "In matters of Grace Hidayat, Andi Pratiwi law called the news in prison without asking an expert opinion from the Press Council.",
+    "Grace Hidayat works as a Coastal Voice reporter in Makassar, a journalist's organization assessing that this case can have a lesson in press freedom.",
+    "The threat of punishment for this chapter is a two-year prison sentence."
+  ],
+  "src_chars": 929,
+  "tgt_chars": 845,
+  "seconds": 1.166
+}

@@ -1,0 +1,16 @@
+{
+  "doc_id": "id-015",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Entrepreneurs reported on charges of defamation",
+  "paragraphs": [
+    "A businessman in Bandung reported to the police on charges of defamation against his former business partner.",
+    "Reporter uses section 310 KUHP.",
+    "Reported not to press, he was referred to as spreading the charges by means of a serial message.",
+    "The police have already checked two witnesses and will call in a report next week."
+  ],
+  "src_chars": 328,
+  "tgt_chars": 318,
+  "seconds": 0.812
+}

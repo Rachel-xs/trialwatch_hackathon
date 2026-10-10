@@ -1,0 +1,252 @@
+{
+ "tr-001": {
+  "case": "T7",
+  "stage": "hearing",
+  "title": "Burak Sezer davasında 1. duruşma"
+ },
+ "tr-002": {
+  "case": null,
+  "stage": null,
+  "title": "Hafta sonu için kuvvetli yağış uyarısı"
+ },
+ "tr-003": {
+  "case": null,
+  "stage": null,
+  "title": "Esnaf odası kira artışlarından şikayetçi"
+ },
+ "tr-004": {
+  "case": "T2",
+  "stage": "hearing",
+  "title": "Mehmet Yıldız davasında 4. duruşma"
+ },
+ "tr-005": {
+  "case": "T10",
+  "stage": "verdict",
+  "title": "Ayten Korkmaz davasında karar"
+ },
+ "tr-006": {
+  "case": "T5",
+  "stage": "indictment",
+  "title": "Başkent Haber muhabiri Mehmet Yıldız hakkında dava açıldı"
+ },
+ "tr-007": {
+  "case": "T1",
+  "stage": "indictment",
+  "title": "Kıyı Haber muhabiri Selin Karaoğlu hakkında dava açıldı"
+ },
+ "tr-008": {
+  "case": "T6",
+  "stage": "verdict",
+  "title": "Gülşen Tarhan davasında karar"
+ },
+ "tr-009": {
+  "case": "T3",
+  "stage": "indictment",
+  "title": "Anadolu Çizgi muhabiri Emre Akbulut hakkında dava açıldı"
+ },
+ "tr-010": {
+  "case": "T4",
+  "stage": "verdict",
+  "title": "Zeynep Aydemir davasında karar"
+ },
+ "tr-011": {
+  "case": "T1",
+  "stage": "hearing",
+  "title": "Selin Karaoğlu davasında 2. duruşma"
+ },
+ "tr-012": {
+  "case": "T2",
+  "stage": "hearing",
+  "title": "Mehmet Yıldız davasında 3. duruşma"
+ },
+ "tr-013": {
+  "case": "T7",
+  "stage": "indictment",
+  "title": "Kent Sesi muhabiri Burak Sezer hakkında dava açıldı"
+ },
+ "tr-014": {
+  "case": "T5",
+  "stage": "hearing",
+  "title": "Mehmet Yıldız davasında 1. duruşma"
+ },
+ "tr-015": {
+  "case": "T6",
+  "stage": "hearing",
+  "title": "Gülşen Tarhan davasında 2. duruşma"
+ },
+ "tr-016": {
+  "case": "T8",
+  "stage": "verdict",
+  "title": "Nilay Ertürk davasında karar"
+ },
+ "tr-017": {
+  "case": null,
+  "stage": null,
+  "title": "Kıyıspor evinde farklı kazandı"
+ },
+ "tr-018": {
+  "case": "T3",
+  "stage": "verdict",
+  "title": "Emre Akbulut davasında karar"
+ },
+ "tr-019": {
+  "case": "T4",
+  "stage": "hearing",
+  "title": "Zeynep Aydemir davasında 1. duruşma"
+ },
+ "tr-020": {
+  "case": "T10",
+  "stage": "hearing",
+  "title": "Ayten Korkmaz davasında 2. duruşma"
+ },
+ "tr-021": {
+  "case": "T9",
+  "stage": "indictment",
+  "title": "Orta Anadolu Haber muhabiri Cem Özkaya hakkında dava açıldı"
+ },
+ "tr-022": {
+  "case": null,
+  "stage": null,
+  "title": "Sosyal medya paylaşımı nedeniyle iş insanına dava"
+ },
+ "tr-023": {
+  "case": null,
+  "stage": null,
+  "title": "Meclis üyesine hakaret davası"
+ },
+ "tr-024": {
+  "case": "T9",
+  "stage": "hearing",
+  "title": "Cem Özkaya davasında 1. duruşma"
+ },
+ "tr-025": {
+  "case": "T8",
+  "stage": "hearing",
+  "title": "Nilay Ertürk davasında 5. duruşma"
+ },
+ "id-001": {
+  "case": "I7",
+  "stage": "indictment",
+  "title": "Wartawan Nur Aisyah didakwa penyebaran berita bohong"
+ },
+ "id-002": {
+  "case": "I10",
+  "stage": "hearing",
+  "title": "Sidang ke-3 wartawan Hendra Kusuma"
+ },
+ "id-003": {
+  "case": "I1",
+  "stage": "hearing",
+  "title": "Sidang ke-2 wartawan Rahmat Hidayat"
+ },
+ "id-004": {
+  "case": "I6",
+  "stage": "hearing",
+  "title": "Sidang ke-4 wartawan Yoga Pratama"
+ },
+ "id-005": {
+  "case": "I9",
+  "stage": "hearing",
+  "title": "Sidang ke-2 wartawan Lestari Wulandari"
+ },
+ "id-006": {
+  "case": "I8",
+  "stage": "verdict",
+  "title": "Putusan perkara wartawan Bagus Setiawan"
+ },
+ "id-007": {
+  "case": null,
+  "stage": null,
+  "title": "Bintang Selatan FC menang telak"
+ },
+ "id-008": {
+  "case": "I7",
+  "stage": "hearing",
+  "title": "Sidang ke-2 wartawan Nur Aisyah"
+ },
+ "id-009": {
+  "case": "I4",
+  "stage": "hearing",
+  "title": "Sidang ke-1 wartawan Ahmad Fauzi"
+ },
+ "id-010": {
+  "case": "I5",
+  "stage": "indictment",
+  "title": "Wartawan Siti Marlina didakwa ujaran kebencian"
+ },
+ "id-011": {
+  "case": "I9",
+  "stage": "indictment",
+  "title": "Wartawan Lestari Wulandari didakwa ujaran kebencian"
+ },
+ "id-012": {
+  "case": "I5",
+  "stage": "hearing",
+  "title": "Sidang ke-2 wartawan Siti Marlina"
+ },
+ "id-013": {
+  "case": null,
+  "stage": null,
+  "title": "Pedagang keluhkan harga beras"
+ },
+ "id-014": {
+  "case": null,
+  "stage": null,
+  "title": "Pengguna media sosial didakwa sebarkan informasi bohong"
+ },
+ "id-015": {
+  "case": null,
+  "stage": null,
+  "title": "Pengusaha dilaporkan atas tuduhan pencemaran nama baik"
+ },
+ "id-016": {
+  "case": null,
+  "stage": null,
+  "title": "Hujan lebat diprakirakan di wilayah barat"
+ },
+ "id-017": {
+  "case": "I2",
+  "stage": "hearing",
+  "title": "Sidang ke-3 wartawan Ahmad Fauzi"
+ },
+ "id-018": {
+  "case": "I6",
+  "stage": "verdict",
+  "title": "Putusan perkara wartawan Yoga Pratama"
+ },
+ "id-019": {
+  "case": "I2",
+  "stage": "verdict",
+  "title": "Putusan perkara wartawan Ahmad Fauzi"
+ },
+ "id-020": {
+  "case": "I3",
+  "stage": "verdict",
+  "title": "Putusan perkara wartawan Dewi Anggraini"
+ },
+ "id-021": {
+  "case": "I8",
+  "stage": "hearing",
+  "title": "Sidang ke-1 wartawan Bagus Setiawan"
+ },
+ "id-022": {
+  "case": "I10",
+  "stage": "verdict",
+  "title": "Putusan perkara wartawan Hendra Kusuma"
+ },
+ "id-023": {
+  "case": "I1",
+  "stage": "indictment",
+  "title": "Wartawan Rahmat Hidayat didakwa pencemaran nama baik"
+ },
+ "id-024": {
+  "case": "I4",
+  "stage": "verdict",
+  "title": "Putusan perkara wartawan Ahmad Fauzi"
+ },
+ "id-025": {
+  "case": "I3",
+  "stage": "indictment",
+  "title": "Wartawan Dewi Anggraini didakwa penyiaran kabar bohong"
+ }
+}

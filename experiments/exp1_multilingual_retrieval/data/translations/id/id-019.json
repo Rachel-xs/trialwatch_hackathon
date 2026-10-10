@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-019",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The verdict of journalist Ahmad Fauzi",
+  "paragraphs": [
+    "The verdict has been made against the newspaper reporter Borneo Raya, Ahmad Fauzi, as a result: The defendant was sentenced to 8 months in prison.",
+    "According to the charges, Ahmad Fauzi published a report about the death of a patient in a local hospital on August 11, 2025, a prosecutor's assessment of false information that caused havoc. The chapter used: section 28 verse (3) ITE Act (fail information).",
+    "The Court of Justice Pontinak reads the verdict on February 25th, 2026, a complete copy of the verdict has not been published.",
+    "In the matter of Ahmad Fauzi, the law attorney Joseph Maulana says the witnesses filed the defense are not permitted to give a statement.",
+    "Ahmad Fauzi worked as a newspaper reporter for Borneo Raya at Pontinak, a journalist's organization assessing that the case could have a lesson in the freedom of the press.",
+    "The prosecutor and the defendant can still appeal, Ahmad Fauzi is still being held in custody."
+  ],
+  "src_chars": 949,
+  "tgt_chars": 933,
+  "seconds": 1.577
+}

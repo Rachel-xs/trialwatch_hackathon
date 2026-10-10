@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-005",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The decision on the Ayten Korkmaz case",
+  "paragraphs": [
+    "In the case of South Daily correspondent Ayten Korkmaz on charge of spreading false information publicly, the verdict was announced. The result is that the verdict should be dropped (HAGB).",
+    "According to the indictment, Ayten Korkmaz has released information that will mislead the public with the news of torpedoed appointments at the public institution published on 8 December 2025. The sentence is carried out: Turkish Penal Code 217/A (the public publicly spreading misleading information).",
+    "The verdict was issued by Mersin 6th Criminal Court on August 13, 2026, which has not yet been issued.",
+    "In Ayten Korkmaz's case, Attorney Nesrin Guler demanded that the trial be concluded in a reasonable time, saying the case had not been concluded for two years.",
+    "Ayten Korkmaz is working as a journalist for Mersin at the South Newspaper, and journalism organisations said the case could have a deterrent effect on freedom of the press.",
+    "There will be a recrimination of the decision."
+  ],
+  "src_chars": 935,
+  "tgt_chars": 971,
+  "seconds": 1.802
+}

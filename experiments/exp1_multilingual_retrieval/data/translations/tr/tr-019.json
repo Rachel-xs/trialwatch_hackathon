@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-019",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Court 1 in Zeynep Aydemir's case",
+  "paragraphs": [
+    "The trial of Black Sea Agenda correspondent Zeynep Aydemir on charge of spreading false information publicly has been held in the first hearing.",
+    "According to the indictment, Zeynep Aydemir released information that would mislead the public with the news of the deaths of intensive care in the state hospital published on August 30, 2025. The sentence is carried out: Turkish Penal Code 217/A (the public spread of misleading information publicly).",
+    "The trial was held in front of Zonguldak 3rd Criminal Court on February 5, 2026, and the court adjourned the hearing until May 14, 2026.",
+    "In the case of Zeynep Aydemir, Attorney Selma Çakır has stated that the report is considered a crime without an expert investigation.",
+    "Zeynep Aydemir works as a journalist at the Black Sea Agenda broadcaster Zonguldak, who said the trial could have a deterrent effect on freedom of the press.",
+    "The D.A.'s office will present its original debate at the next hearing, and Zeynep Aydemir is on trial without arrest."
+  ],
+  "src_chars": 915,
+  "tgt_chars": 990,
+  "seconds": 1.668
+}

@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-009",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "1st trial journalist Ahmad Fauzi",
+  "paragraphs": [
+    "The 1st trial for defamation against Central Javanist journalists has now been made, Ahmad Fauzi.",
+    "According to the charges, Ahmad Fauzi published a story about a wild pick-up at the port on November 17, 2025, which the prosecutor judged to accuse someone of doing something to ruin the good name of someone.",
+    "The trial was held at the Semarang State Court on February 9, 2026, where the panel of judges delayed the trial until March 2, 2026.",
+    "In the matter of Ahmad Fauzi, the attorneys of the Wicaksono Mining Law say the witnesses filed by the defense are not permitted to give a statement.",
+    "Ahmad Fauzi worked as a Central Javanese journalist now in Semarang, an alliance of journalists claiming to monitor the course of the trial.",
+    "The prosecution will read the charges to the next trial Ahmad Fauzi was not arrested during the trial."
+  ],
+  "src_chars": 839,
+  "tgt_chars": 829,
+  "seconds": 1.299
+}

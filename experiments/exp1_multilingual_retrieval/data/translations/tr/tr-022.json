@@ -1,0 +1,17 @@
+{
+  "doc_id": "tr-022",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "A case against a business person due to social media sharing",
+  "paragraphs": [
+    "A business person has been indicted on charges of public spread of misleading information due to his sharing of social media accounts in Bursa.",
+    "It was suggested that the products of a food producer were toxic.",
+    "The indictment has been passed by the 3rd Criminal Court of Asliye. The sentence is carried out by the Turkish Penal Code 217/A (publicly spreading misleading information).",
+    "The defendant runs a textile company on his behalf, not a journalist.",
+    "The first hearing will take place in May, and the defendant's attorney denies the allegations."
+  ],
+  "src_chars": 503,
+  "tgt_chars": 543,
+  "seconds": 1.267
+}

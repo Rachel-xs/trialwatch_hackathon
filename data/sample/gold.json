@@ -1,0 +1,68 @@
+{
+  "screening": {
+    "doc1": "relevant",
+    "doc2": "relevant",
+    "doc3": "relevant",
+    "doc4": "irrelevant",
+    "doc5": "uncertain"
+  },
+  "fields": {
+    "Bayu Pratama": {
+      "procedural_status": "trial",
+      "complainant_type": "public_official",
+      "dewan_pers_status": "assessed_as_journalistic_work",
+      "province": "Sumatera Barat",
+      "legal_provisions_original": "Pasal 27A jo Pasal 45 ayat (4) UU Nomor 1 Tahun 2024",
+      "case_number": "45/Pid.Sus/2026/PN Cth",
+      "fair_trial_concerns": [
+        "bypassed_press_council",
+        "denied_or_delayed_counsel",
+        "pretrial_detention"
+      ]
+    }
+  },
+  "retrieval": [
+    {
+      "query": "ditahan penahanan tahanan detained custody",
+      "relevant_chunk_ids": [
+        "doc3:p1"
+      ],
+      "doc_filter": [
+        "doc2",
+        "doc3"
+      ]
+    },
+    {
+      "query": "Dewan Pers sengketa pers karya jurnalistik press council",
+      "relevant_chunk_ids": [
+        "doc2:p3"
+      ],
+      "doc_filter": [
+        "doc2",
+        "doc3"
+      ]
+    },
+    {
+      "query": "dilaporkan oleh pelapor melaporkan reported by",
+      "relevant_chunk_ids": [
+        "doc2:p1",
+        "doc1:p0"
+      ],
+      "doc_filter": [
+        "doc1",
+        "doc2",
+        "doc3"
+      ]
+    },
+    {
+      "query": "Pasal ayat UU ITE KUHP dijerat",
+      "relevant_chunk_ids": [
+        "doc2:p2"
+      ],
+      "doc_filter": [
+        "doc2",
+        "doc3"
+      ]
+    }
+  ]
+}

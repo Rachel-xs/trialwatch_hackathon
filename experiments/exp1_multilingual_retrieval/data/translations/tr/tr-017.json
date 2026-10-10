@@ -1,0 +1,16 @@
+{
+  "doc_id": "tr-017",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "He won differently at the beach house.",
+  "paragraphs": [
+    "He defeated his opponent 3-1 in a field match.",
+    "The first half ended without goal, and the guest team took the lead in the 52nd minute, but the host scored three goals in the last half hour.",
+    "The coach said he was happy with his players' fight at the end of the game.",
+    "The team will meet the last team in the league at the away game next week."
+  ],
+  "src_chars": 330,
+  "tgt_chars": 337,
+  "seconds": 0.879
+}

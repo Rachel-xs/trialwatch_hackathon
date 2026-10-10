@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-024",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The verdict of journalist Ahmad Fauzi",
+  "paragraphs": [
+    "The verdict of defamation against Central Javanist journalists has now been read, the defendant is sentenced to trial.",
+    "According to the charges, Ahmad Fauzi published a story about a wild pick-up at the port on November 17, 2025, which the prosecutor judged to accuse someone of doing something to ruin the good name of someone.",
+    "The Court of Justice of Semarang reads the verdict on March 30th, 2026, a complete copy of the verdict has not been published yet.",
+    "In the matter of Ahmad Fauzi, the legal power of Zit Wicaksono says this matter has already gone on for two years and requests that the justice be completed at a reasonable time.",
+    "Ahmad Fauzi worked as a Central Javanese journalist now in Semarang, a journalist's organization assessing that this case could have a lesson in press freedom.",
+    "The prosecutor and the defendant can still appeal, Ahmad Fauzi is not under arrest."
+  ],
+  "src_chars": 915,
+  "tgt_chars": 877,
+  "seconds": 1.184
+}

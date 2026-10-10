@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-017",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "3rd trial journalist Ahmad Fauzi",
+  "paragraphs": [
+    "The 3rd trial for spreading lies against newspaper reporter Borneo Raya, Ahmad Fauzi, has been published.",
+    "According to the charges, Ahmad Fauzi published a report about the death of a patient in a local hospital on August 11, 2025, a prosecutor's assessment of false information that caused havoc. The chapter used: section 28 verse (3) ITE Act (fail information).",
+    "The trial was held at the Pontinak State Court on January 28, 2026, where the panel of judges delayed the hearing to February 25, 2026.",
+    "In the matter of Ahmad Fauzi, legal power of Joseph Maulana states that his client had been arrested 120 days and that period exceeded normal limits.",
+    "Ahmad Fauzi worked as a newspaper reporter for Borneo Raya at Pontianak, an alliance of journalists claiming to monitor the course of the trial.",
+    "The D.A. will read the charges to the next trial, Ahmad Fauzi is still in custody."
+  ],
+  "src_chars": 890,
+  "tgt_chars": 873,
+  "seconds": 1.619
+}

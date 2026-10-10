@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-024",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "First hearing in the Cem Özkaya case",
+  "paragraphs": [
+    "The trial of Central Anadolu News correspondent Cem Özkaya on charge of violating the secrecy of the investigation has been held in the first hearing.",
+    "According to the indictment, Cem Özkaya violated the scope of the investigation with the details of the corruption investigation published on February 11, 2026. The sentence is carried out: the Turkish Penal Code 285 (infringement of the confidentiality of the investigation).",
+    "The trial was held on July 2, 2026 in front of the İstanbul 4th Criminal Court. The court postponed the trial until October 22, 2026.",
+    "In the case of Cem Özkaya, Attorney Tolga Erdem said the judge's motion to dismiss was denied.",
+    "Cem Özkaya works as a reporter for the Central Anadolu News broadcaster. Press occupational organisations have announced that they are closely monitoring the case.",
+    "The prosecution will present its original debate at the next hearing, and Cem Özkaya is on trial without arrest."
+  ],
+  "src_chars": 831,
+  "tgt_chars": 928,
+  "seconds": 1.555
+}

@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-007",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Bay News correspondent Selin Karaoğlu has been indicted",
+  "paragraphs": [
+    "Bay News correspondent Selin Karaoglu has been indicted on charges of public spread of misleading information due to news of the tender irregularity in the municipality.",
+    "According to the indictment, Selin Karaoglu has released information that would mislead the public with the news of the tender irregularity in the municipality published on September 14, 2025. The sentence is carried out: Turkish Penal Code 217/A (the public spread of misleading information publicly).",
+    "The indictment was approved by İzmir 5th Criminal Court of Asliye on 18 November 2025. The first hearing will be held on 12 February 2026.",
+    "In the case of Selin Karaoğlu, Attorney Pelin Koç said the report was considered a crime without an expert examination.",
+    "Selin Karaoglu works as a journalist at a publishing agency called Bay News. Journalists' organisations said the case could have a deterrent effect on freedom of the press.",
+    "The prosecution demands a 1-to-3-year prison sentence for Selin Karaoğlu. Selin Karaoğlu is on trial without arrest."
+  ],
+  "src_chars": 929,
+  "tgt_chars": 1016,
+  "seconds": 1.643
+}

@@ -1,0 +1,498 @@
+{
+  "pipeline": "A",
+  "summary": {
+    "hit@1": {
+      "mean": 0.8333333333333334,
+      "n": 6
+    },
+    "recall_doc@1": {
+      "mean": 0.6666666666666666,
+      "n": 6
+    },
+    "mrr@1": {
+      "mean": 0.8333333333333334,
+      "n": 6
+    },
+    "evidence_recall@1": {
+      "mean": 0.6944444444444443,
+      "n": 6
+    },
+    "hit@3": {
+      "mean": 1.0,
+      "n": 6
+    },
+    "recall_doc@3": {
+      "mean": 1.0,
+      "n": 6
+    },
+    "mrr@3": {
+      "mean": 0.8888888888888888,
+      "n": 6
+    },
+    "evidence_recall@3": {
+      "mean": 1.0,
+      "n": 6
+    },
+    "hit@5": {
+      "mean": 1.0,
+      "n": 6
+    },
+    "recall_doc@5": {
+      "mean": 1.0,
+      "n": 6
+    },
+    "mrr@5": {
+      "mean": 0.8888888888888888,
+      "n": 6
+    },
+    "evidence_recall@5": {
+      "mean": 1.0,
+      "n": 6
+    },
+    "hit@10": {
+      "mean": 1.0,
+      "n": 6
+    },
+    "recall_doc@10": {
+      "mean": 1.0,
+      "n": 6
+    },
+    "mrr@10": {
+      "mean": 0.8888888888888888,
+      "n": 6
+    },
+    "evidence_recall@10": {
+      "mean": 1.0,
+      "n": 6
+    }
+  },
+  "queries": [
+    {
+      "qid": "s01",
+      "query": "Which journalist was charged with defamation over an investigative report on provincial procurement?",
+      "gold_docs": [
+        "id-001"
+      ],
+      "gold_evidence": [
+        "id-001#p001",
+        "id-001#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 1.0,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 1.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-001#c001",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.5287,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.392,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.3826,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-003#c001",
+          "doc_id": "tr-003",
+          "lang": "tr",
+          "score": 0.3735,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-002#c001",
+          "doc_id": "id-002",
+          "lang": "id",
+          "score": 0.3437,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "s02",
+      "query": "Cases where a detained journalist was restricted from meeting their lawyer",
+      "gold_docs": [
+        "id-002",
+        "tr-002"
+      ],
+      "gold_evidence": [
+        "id-002#p003",
+        "tr-002#p001",
+        "tr-002#p003"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.6666666666666666,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-002#c001",
+          "doc_id": "tr-002",
+          "lang": "tr",
+          "score": 0.6213,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-002#c001",
+          "doc_id": "id-002",
+          "lang": "id",
+          "score": 0.5929,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.4714,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.4703,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-003#c001",
+          "doc_id": "tr-003",
+          "lang": "tr",
+          "score": 0.4287,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "s03",
+      "query": "Appeal court overturned a journalist's conviction because the lower court ignored evidence",
+      "gold_docs": [
+        "id-003",
+        "tr-003"
+      ],
+      "gold_evidence": [
+        "id-003#p003",
+        "tr-003#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 0.5,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 0.5,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.5545,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-003#c001",
+          "doc_id": "tr-003",
+          "lang": "tr",
+          "score": 0.468,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-002#c001",
+          "doc_id": "id-002",
+          "lang": "id",
+          "score": 0.4512,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-001#c001",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.4218,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.4066,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "s04",
+      "query": "Anti-terror legislation used to prosecute a reporter for social media posts",
+      "gold_docs": [
+        "tr-001"
+      ],
+      "gold_evidence": [
+        "tr-001#p002"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 1.0,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 1.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.5658,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-001#c001",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.5431,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-002#c001",
+          "doc_id": "id-002",
+          "lang": "id",
+          "score": 0.4935,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.4857,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-003#c001",
+          "doc_id": "tr-003",
+          "lang": "tr",
+          "score": 0.4428,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "s05",
+      "query": "How long was the pre-trial detention extended and on what grounds?",
+      "gold_docs": [
+        "id-002"
+      ],
+      "gold_evidence": [
+        "id-002#p001",
+        "id-002#p004"
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "recall_doc@1": 1.0,
+        "mrr@1": 1.0,
+        "evidence_recall@1": 1.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 1.0,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 1.0,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 1.0,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "id-002#c001",
+          "doc_id": "id-002",
+          "lang": "id",
+          "score": 0.6001,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "tr-002#c001",
+          "doc_id": "tr-002",
+          "lang": "tr",
+          "score": 0.4356,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.4341,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.4164,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "tr-003#c001",
+          "doc_id": "tr-003",
+          "lang": "tr",
+          "score": 0.3988,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "qid": "s06",
+      "query": "A trial held behind closed doors without a stated reason",
+      "gold_docs": [
+        "id-003"
+      ],
+      "gold_evidence": [
+        "id-003#p004"
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "recall_doc@1": 0.0,
+        "mrr@1": 0.0,
+        "evidence_recall@1": 0.0,
+        "hit@3": 1.0,
+        "recall_doc@3": 1.0,
+        "mrr@3": 0.3333333333333333,
+        "evidence_recall@3": 1.0,
+        "hit@5": 1.0,
+        "recall_doc@5": 1.0,
+        "mrr@5": 0.3333333333333333,
+        "evidence_recall@5": 1.0,
+        "hit@10": 1.0,
+        "recall_doc@10": 1.0,
+        "mrr@10": 0.3333333333333333,
+        "evidence_recall@10": 1.0
+      },
+      "top_hits": [
+        {
+          "rank": 1,
+          "chunk_id": "tr-002#c001",
+          "doc_id": "tr-002",
+          "lang": "tr",
+          "score": 0.5146,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "chunk_id": "id-002#c001",
+          "doc_id": "id-002",
+          "lang": "id",
+          "score": 0.4865,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "chunk_id": "id-003#c001",
+          "doc_id": "id-003",
+          "lang": "id",
+          "score": 0.481,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "tr-001#c001",
+          "doc_id": "tr-001",
+          "lang": "tr",
+          "score": 0.4394,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "id-001#c001",
+          "doc_id": "id-001",
+          "lang": "id",
+          "score": 0.4247,
+          "relevant": false
+        }
+      ]
+    }
+  ]
+}

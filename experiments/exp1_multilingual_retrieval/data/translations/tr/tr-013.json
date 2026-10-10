@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-013",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Cases filed against Kent Voice correspondent Burak Sezer",
+  "paragraphs": [
+    "Kent Voyeur Burak Sezer has been indicted on charges of spreading misleading information publicly over news of immigration deaths in the border town.",
+    "According to the indictment, Burak Sezer released information that would mislead the public with the news of immigration deaths in the border town on January 9, 2026. The sentence is carried out: Turkish Penal Code 217/A (publicly spreading misleading information).",
+    "The indictment was approved on March 3rd, 2026 by the First Criminal Court of Bursa 7th. The first hearing will be held on 11 June 2026.",
+    "In the Burak Sezer case, Attorney Kemal Arslan said they were restricted access to some documents in the case and that it undermined their right to plead.",
+    "Burak Sezer works as a reporter for the City Voice, and the press trade agencies have announced that they are closely monitoring the case.",
+    "Prosecutor's Office requests a 1 to 3 year sentence for Burak Sezer. Burak Sezer is under arrest."
+  ],
+  "src_chars": 920,
+  "tgt_chars": 939,
+  "seconds": 1.512
+}

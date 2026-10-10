@@ -1,0 +1,16 @@
+{
+  "doc_id": "id-007",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "South Star FC wins!",
+  "paragraphs": [
+    "South Star FC won 3-1 on his opponent at a cage fight last weekend.",
+    "The first round ends without a goal, and the guest team wins by the 52nd minute before the host returns three times.",
+    "The coach claims to be satisfied with the spirit of the players.",
+    "Next week the team will be on their way to the keyman's headquarters."
+  ],
+  "src_chars": 300,
+  "tgt_chars": 316,
+  "seconds": 1.728
+}

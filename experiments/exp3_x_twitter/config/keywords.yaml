@@ -1,0 +1,66 @@
+# Keywords for the Indonesia journalist-case social probe.
+# Teammates edit this file; the script reads it and hardcodes nothing.
+#
+# Queries are built as: one actor term AND one event term.
+# English queries additionally carry `query_suffix` so they stay on Indonesia.
+version: 1
+
+languages:
+  id:
+    bcp47: id
+    label: Indonesian
+    actor_terms:
+      - wartawan
+      - jurnalis
+    event_terms:
+      - dilaporkan
+      - dipolisikan
+      - tersangka
+      - dipanggil
+      - ditahan
+      - dijerat
+      - pencemaran nama baik
+      - UU ITE
+      - kriminalisasi
+      # Added 2026-10-09 after the A/B diagnostic: each of these surfaced a
+      # case-relevant post that the original pairs missed.
+      - dilaporkan ke polisi
+      - ditetapkan tersangka
+    query_suffix: ""
+
+  en:
+    bcp47: en
+    label: English
+    actor_terms:
+      - journalist
+      - reporter
+    event_terms:
+      - charged
+      - detained
+      - reported to police
+      - criminalization
+      - defamation
+      - ITE law
+    # English is global, so every English query is pinned to Indonesia.
+    query_suffix: Indonesia
+
+search:
+  sort: latest          # Bluesky lexicon allows: top | latest
+  limit_per_query: 25   # Bluesky lexicon allows 1..100
+
+# X query strategy. The A/B matrix in config/query_experiments.yaml showed the
+# narrow strategy wastes the platform: 30 requests of one-actor-AND-one-event
+# at 25 results found about as many relevant posts as a single broad OR query
+# at 100. X bills per request, so broad is both cheaper and wider.
+#
+#   narrow  one request per (actor, event) pair          -> 30 requests
+#   broad   actors OR'd AND events OR'd, per language    -> 1-2 requests
+#
+# Operators, measured not assumed: -is:retweet and lang:id suppress nothing
+# (identical counts with and without), so they stay on. lang:in returns zero
+# as an operator even though X reports Indonesian as "in" in the response.
+x_strategy:
+  default: broad
+  broad_max_results: 100      # endpoint maximum
+  narrow_max_results: 25
+  exclude_retweets: true

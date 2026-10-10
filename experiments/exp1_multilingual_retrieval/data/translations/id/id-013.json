@@ -1,0 +1,16 @@
+{
+  "doc_id": "id-013",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "Traders are complaining about the price of rice",
+  "paragraphs": [
+    "A number of traditional market merchants have complained about increasing the price of rice in the last two weeks.",
+    "The head of the merchant association asked the local government to hold a market operation.",
+    "The buyer claims to be reducing the amount of daily shopping.",
+    "Trade services promised to check the supply in the warehouse."
+  ],
+  "src_chars": 272,
+  "tgt_chars": 327,
+  "seconds": 0.934
+}

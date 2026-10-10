@@ -1,0 +1,27 @@
+# Candidate hashtags. Every one of these is a guess until the probe checks it.
+# The script rewrites nothing here: verification results go to
+# data/social_test.json, so this file stays a human-owned input.
+version: 1
+
+seeds:
+  - tag: kebebasanpers
+    verified: false
+    note: guessed, Indonesian for press freedom
+  - tag: jurnalis
+    verified: false
+    note: guessed, Indonesian for journalist
+  - tag: wartawan
+    verified: false
+    note: guessed, Indonesian for reporter
+  - tag: kriminalisasijurnalis
+    verified: false
+    note: guessed, criminalisation of journalists
+  - tag: uuite
+    verified: false
+    note: guessed, the ITE law
+  - tag: dewanpers
+    verified: false
+    note: guessed, the Press Council
+  - tag: pressfreedom
+    verified: false
+    note: guessed, English

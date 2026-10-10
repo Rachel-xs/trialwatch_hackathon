@@ -1,0 +1,18 @@
+{
+  "doc_id": "tr-001",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "First hearing in Burak Sezer's case",
+  "paragraphs": [
+    "The trial of Burak Sezer, the reporter of Kent's Voice, has been held in the first hearing on the charge of spreading misleading information publicly.",
+    "According to the indictment, Burak Sezer released information that would mislead the public with the news of immigration deaths in the border town on January 9, 2026. The sentence is carried out: Turkish Penal Code 217/A (publicly spreading misleading information).",
+    "The trial was held on 11 June 2026 in front of the Criminal Court. The court adjourned the trial until September 17, 2026.",
+    "In the Burak Sezer case, Attorney Kemal Arslan said his client has been under arrest for 87 days and that detention has exceeded reasonable time.",
+    "Burak Sezer works as a journalist for the City Voice, a journalist who said the trial could have a deterrent effect on freedom of the press.",
+    "The prosecutor's office will present its original debate at the next hearing, and Burak Sezer is under arrest."
+  ],
+  "src_chars": 889,
+  "tgt_chars": 932,
+  "seconds": 3.584
+}

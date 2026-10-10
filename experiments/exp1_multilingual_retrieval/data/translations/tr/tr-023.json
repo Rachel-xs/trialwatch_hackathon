@@ -1,0 +1,16 @@
+{
+  "doc_id": "tr-023",
+  "src_lang": "tr",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "A case of defamation against the councilman",
+  "paragraphs": [
+    "A city councilman was indicted in Antalya for defaming a public official.",
+    "The sentence has been carried out: Turkish Penal Code 125 (required). Antalya 4th Criminal Court of Asliye has approved the case.",
+    "The incident stemming from a debate at a parliamentary meeting.",
+    "The defendant is not a journalist, but his lawyer argues that his words remain in the line of criticism."
+  ],
+  "src_chars": 358,
+  "tgt_chars": 369,
+  "seconds": 0.907
+}

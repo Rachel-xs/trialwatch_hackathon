@@ -1,0 +1,5 @@
+[
+  {"person_name": "Bayu Pratama", "organization": "LBH Contoh", "role": "legal_aid",
+   "evidence_url": "https://example.org/fictional/lbh-contoh-bayu", "last_verified": "2026-10-10",
+   "note": "FICTIONAL sample entry so the offline test exercises the Confirmed path."}
+]

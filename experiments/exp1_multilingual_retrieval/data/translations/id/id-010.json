@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-010",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The journalist Siti Marlina was accused of speaking hate",
+  "paragraphs": [
+    "Our Lombok journalist, Siti Marlina, was charged with hate talks related to a land conflict between two groups of citizens.",
+    "According to the charges, Siti Marlina published news of a land conflict between two groups of citizens on December 22, 2025, judged by prosecutors, spreading hatred against a particular group.",
+    "The prosecution was read at the Mataram State Court on January 26, 2026, the first hearing of the witness hearing was scheduled on February 16, 2026.",
+    "In the matter of Siti Marlina, Hasan Basri's legal power was denied access to a number of case files so that the defense rights were compromised.",
+    "Siti Marlina works as our Lombok journalist in Mataram, a journalist's organization assessing that this case can have a lesson in the freedom of the press.",
+    "The threat of punishment for this chapter is up to six years in prison."
+  ],
+  "src_chars": 937,
+  "tgt_chars": 836,
+  "seconds": 1.282
+}

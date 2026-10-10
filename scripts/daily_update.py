@@ -23,7 +23,7 @@ import json
 import shutil
 import sqlite3
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -161,8 +161,19 @@ def finish(a) -> None:
                 tok_in += u.get("input_tokens", 0)
                 tok_out += u.get("output_tokens", 0)
 
+    x = {}
+    con = sqlite3.connect(a.db)
+    if _has_table(con, "x_leads"):
+        rows = _q(con, "SELECT status, url, created_at, flood, matched_cases FROM x_leads WHERE fetched_at >= ?",
+                  (datetime.fromtimestamp(since, timezone.utc).isoformat(timespec="seconds"),))
+        x = {"new_leads": len(rows), "verified": sum(r["status"] == "verified" for r in rows),
+             "unverified": [r["url"] for r in rows if r["status"] == "unverified"],
+             "floods": sum(bool(r["flood"]) for r in rows)}
+    con.close()
+
     digest = {
-        "date": d.name, "finished_at": datetime.now().isoformat(timespec="seconds"),
+        "date": d.name,
+        "x_trigger": x, "finished_at": datetime.now().isoformat(timespec="seconds"),
         "n_cases": len(new_cards), "new_cases": new_cases, "updated_cases": updated,
         "reviews": {"restored": restored, "kept_on_unmapped_old_case": sorted(orphans), "stale_rows_removed": len(stale)},
         "model_usage_today": {"calls": calls, "input_tokens": tok_in, "output_tokens": tok_out},
@@ -183,6 +194,14 @@ def finish(a) -> None:
             f"- **{c['person']}** - " + "; ".join(c["changes"]) + f" - `{c['case_id']}`" for c in updated] + [""]
     if not new_cases and not updated:
         md += ["Nothing new today.", ""]
+    if x:
+        md += ["## X signals (weak trigger - not evidence)", "",
+               f"- {x['new_leads']} new lead(s); {x['verified']} confirmed by an article in the database",
+               f"- {len(x['unverified'])} unverified - a person should look, then search first-hand reporting:"]
+        md += [f"  - {u}" for u in x["unverified"][:15]]
+        if x["floods"]:
+            md += [f"- {x['floods']} lead(s) were one account repeating the same text (counted once)"]
+        md += [""]
     md += ["## Housekeeping", "",
            f"- review decisions restored: {restored}",
            f"- decisions kept on an old case that no longer matches anything: {len(orphans)}"

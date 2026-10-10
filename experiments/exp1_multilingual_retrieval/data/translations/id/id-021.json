@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-021",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "The 1st trial is good journalist.",
+  "paragraphs": [
+    "The 1st trial for defamation against reporters. Highlights of Kalimantan. Nice.",
+    "According to the indictment, the Good Faithful Witness published a story about the quality of the school building on March 14, 2026, which the prosecutor accused a certain act of damaging a person's good name, which was used: section 310 KUHP.",
+    "The trial was held at the Banjarmasin State Court on May 12, 2026, where the panel of judges delayed the trial until June 2, 2026.",
+    "In either case, the legal power of Dedi Gunawan was denied access to a number of case files so that the defense rights were compromised.",
+    "The journalist's work as a reporter of Kalimantan in Banjarmasin, a journalist's organization assessing the case can have a lesson in the freedom of the press.",
+    "The D.A. will read the charges to the next trial."
+  ],
+  "src_chars": 865,
+  "tgt_chars": 796,
+  "seconds": 1.435
+}

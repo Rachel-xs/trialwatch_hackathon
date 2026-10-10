@@ -1,0 +1,8 @@
+{
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "cached": 0,
+  "translated": 50,
+  "src_chars": 38140,
+  "tgt_chars": 38023,
+  "seconds": 76.48
+}

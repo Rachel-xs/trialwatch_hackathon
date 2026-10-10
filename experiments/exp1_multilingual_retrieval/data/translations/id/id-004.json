@@ -1,0 +1,18 @@
+{
+  "doc_id": "id-004",
+  "src_lang": "id",
+  "tgt_lang": "en",
+  "translator": "marian:id=Helsinki-NLP/opus-mt-id-en,tr=Helsinki-NLP/opus-mt-tr-en",
+  "title": "4th trial reporter Yoga Pratama",
+  "paragraphs": [
+    "The 4th trial for defamation against reporters Info Sumatra, Yoga Pratama, has been held.",
+    "According to the charges, Yoga Pratama published a report about the waste of the palm oil plant on July 25th, 2025 which the prosecutor judged attacked the honor of an official.",
+    "The trial was held at the Field Court on March 5, 2026, where the panel of judges delayed the trial until March 26, 2026.",
+    "In the case of Yoga Pratama, Maya Kartika's legal power says this matter has already gone on for two years and requests that the trial be settled in a reasonable amount of time.",
+    "Yoga Pratama works as an Info reporter in Sumatera in the Medan, a journalist's organization assessing that this case can have a lesson in the freedom of the press.",
+    "The prosecutor will read the charges to the next trial."
+  ],
+  "src_chars": 853,
+  "tgt_chars": 783,
+  "seconds": 1.199
+}

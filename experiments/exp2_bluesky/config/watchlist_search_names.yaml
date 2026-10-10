@@ -1,0 +1,15 @@
+# Organisations to look up with the actor-search endpoint.
+# The probe only SEARCHES these names. It does not read their posts and it
+# does not write anything into a watchlist: candidates land in
+# data/watchlist_candidates.json and wait for a human to confirm them.
+version: 1
+
+names:
+  - AJI Indonesia
+  - LBH Pers
+  - SAFEnet
+  - Dewan Pers
+  - Komite Keselamatan Jurnalis
+  - Tempo
+  - Tirto
+  - Project Multatuli
