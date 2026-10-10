@@ -159,7 +159,7 @@ def match_article(case: CandidateCase, doc: SourceDocument, llm: LLM, found_via:
             + wrap_untrusted(doc.source_url, text[:8000]))
     out = llm.call_tool(model=COVERAGE_MODEL, system=COVERAGE_SYSTEM, user=user,
                         tool_name=COVERAGE_TOOL["name"], tool_description=COVERAGE_TOOL["description"],
-                        input_schema=COVERAGE_TOOL["input_schema"], max_tokens=300)
+                        input_schema=COVERAGE_TOOL["input_schema"], max_tokens=1000)  # 300 truncated on haiku
     verdict = out.get("same_case", "uncertain")
     verdict = verdict if verdict in ("yes", "no", "uncertain") else "uncertain"
     quote = (out.get("quote_original") or "").strip() or None

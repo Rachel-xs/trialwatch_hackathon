@@ -40,7 +40,8 @@ def numbered_source(doc: SourceDocument) -> str:
 
 
 # Press Council statement / recommendation numbers look like case numbers but are not
-NOT_A_CASE_NUMBER = re.compile(r"PPR[-\s]?DP|/DP/|dewan pers|risalah|pernyataan|surat edaran", re.I)
+# any "/"-separated part that is a Press Council series: DP, P-DP, PPR-DP, PPR DP ...
+NOT_A_CASE_NUMBER = re.compile(r"(?:^|/)\s*[A-Z]{0,4}[-\s]?DP\s*(?:/|$)|dewan pers|risalah|pernyataan|surat edaran", re.I)
 
 MONTHS = {m: i for i, names in enumerate([
     ("januari", "january", "jan"), ("februari", "february", "feb", "pebruari"), ("maret", "march", "mar"),

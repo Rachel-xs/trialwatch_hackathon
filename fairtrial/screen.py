@@ -23,7 +23,7 @@ def screen_document(doc: SourceDocument, llm: LLM, use_full_text: bool = False) 
         tool_name=SCREEN_TOOL["name"],
         tool_description=SCREEN_TOOL["description"],
         input_schema=SCREEN_TOOL["input_schema"],
-        max_tokens=300,
+        max_tokens=1000,  # 300 truncated on claude-sonnet-5 (Tuning run, Oct 2026)
     )
     label = out.get("label", "uncertain")
     if label not in ScreenLabel.__members__:

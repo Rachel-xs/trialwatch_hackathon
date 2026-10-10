@@ -86,7 +86,7 @@ def entailment(c: EvidenceClaim, passage: str, llm: LLM) -> tuple[str, str]:
         tool_name=VERIFY_TOOL["name"],
         tool_description=VERIFY_TOOL["description"],
         input_schema=VERIFY_TOOL["input_schema"],
-        max_tokens=300,
+        max_tokens=1000,  # 300 truncated on claude-sonnet-5 (Tuning run, Oct 2026)
     )
     return out.get("verdict", "insufficient"), out.get("rationale", "")
 
