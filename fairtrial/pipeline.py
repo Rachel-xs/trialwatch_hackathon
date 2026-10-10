@@ -76,11 +76,14 @@ def _same_person(case, other) -> bool:
 
 
 def run(docs: list[SourceDocument], llm: LLM, court_store: CourtRecordStore, known_international: set[str] | None = None,
-        search_factory=None):
-    """search_factory(case, log_list) -> search_fn(query) -> list[SourceDocument]; None = agent cannot search."""
+        search_factory=None, coverage: bool = False, partner_records: list[dict] | None = None,
+        partner_reference: list[dict] | None = None):
+    """search_factory(case, log_list, max_docs) -> search_fn(query) -> list[SourceDocument]; None = no network search.
+    coverage=True adds the media-coverage step (fairtrial/coverage.py) to every card; it searches only if
+    search_factory is set, otherwise it matches against this run's own documents."""
     log = {"screening": [], "agent": [], "duplicate_candidates": [], "field_conflicts": [],
            "failed_documents": [], "failed_cases": [], "court_records": [],
-           "agent_search": [], "agent_documents": []}
+           "agent_search": [], "agent_documents": [], "coverage_search": [], "coverage": []}
     by_id = {d.document_id: d for d in docs}
     extracted = []
 
@@ -172,10 +175,13 @@ def run(docs: list[SourceDocument], llm: LLM, court_store: CourtRecordStore, kno
         entry["result"] = f"{len(added)} claims, {sum(c.support_status == SupportStatus.supported for c in added)} supported"
         return added
 
+    from collections import Counter
+    doc_case_count = Counter(sid for c, _ in merged for sid in c.source_ids)   # >1 = a round-up article
+
     cards = []
     for case, claims in merged:
         try:
-            search_fn = search_factory(case, log["agent_search"]) if search_factory else None
+            search_fn = search_factory(case, log["agent_search"], 3) if search_factory else None
             case, new_evidence, trace = follow_up(case, claims, llm, court_store, search_fn=search_fn)
             log["agent"].append({"case_id": case.case_id, "steps": trace.steps})
         except Exception as e:
@@ -218,9 +224,42 @@ def run(docs: list[SourceDocument], llm: LLM, court_store: CourtRecordStore, kno
         except Exception as e:
             _failed_case(case.case_id, "precedent_reason", e)
 
+        # freedom-of-expression sign, case description, partner involvement: rules only, no model call
+        foe = ctx = partners = None
+        try:
+            from .context import build_context
+            from .foe import assess_foe
+            from .partners import assess_partners
+            from .schemas import EmblematicReason
+            foe = assess_foe(case, claims)
+            if foe.value in ("Yes", "Possible"):
+                refs = sorted({f"{e['source_id']}#{e['paragraph_id']}" for s in foe.signals for e in s.evidence
+                               if s.signal in ("link", "speech_law", "press")})
+                reasons.append(EmblematicReason(code="freedom_of_expression", method="rule", evidence_refs=refs,
+                                                explanation=f"{foe.value}: {foe.rationale}"))
+            ctx = build_context(case, claims, foe)
+            partners = assess_partners(case, by_id, doc_case_count, partner_records or [], partner_reference)
+        except Exception as e:
+            _failed_case(case.case_id, "foe_context_partners", e)
+
+        cov = None
+        if coverage:
+            try:
+                from .coverage import build_coverage
+                cov_search = search_factory(case, log["coverage_search"], 10) if search_factory else None
+                cov = build_coverage(case, by_id, llm, search_fn=cov_search)
+                log["coverage"].append({"case_id": case.case_id, "n_articles": cov.n_articles,
+                                        "n_outlets": cov.n_outlets, "n_independent": cov.n_independent,
+                                        "n_uncertain": cov.n_uncertain})
+            except Exception as e:
+                _failed_case(case.case_id, "coverage", e)
         try:
             cards.append(CaseCard(case=case, claims=claims, emblematic_reasons=reasons,
-                                  evidence_strength=evidence_strength(claims)))
+                                  evidence_strength=evidence_strength(claims),
+                                  coverage=cov.model_dump() if cov else None,
+                                  foe=foe.model_dump() if foe else None,
+                                  context=ctx.model_dump() if ctx else None,
+                                  partners=partners.model_dump() if partners else None))
         except Exception as e:
             _failed_case(case.case_id, "card", e)
     return cards, log
@@ -236,12 +275,22 @@ def main():
     ap.add_argument("--prompt-version", default="v1")
     ap.add_argument("--search", action="store_true",
                     help="let the follow-up agent search the six RSS sources (network; off by default)")
+    ap.add_argument("--partners", default="data/partner_records_manual.json",
+                    help="hand-checked partner involvement records (JSON list); the only source of 'Confirmed'")
+    ap.add_argument("--partner-reference", default="fairtrial/partners_ref.json",
+                    help="organisations to look for in articles. The shipped file is a DEMO list; in production "
+                         "point this at TrialWatch's internal partner directory (same JSON format)")
+    ap.add_argument("--coverage", action="store_true",
+                    help="add media coverage (other reports of the same case) to every card; searches only with --search")
     ap.add_argument("--contact", default="", help="real e-mail for the User-Agent, required with --search")
+    ap.add_argument("--exclude-workbook", default="data/workbooks/TrialWatch_Indonesia_Annotation_Workbook.xlsx",
+                    help="with --search: never return an article listed in this workbook (any split)")
     args = ap.parse_args()
     if args.search and not args.contact:
         raise SystemExit("--search needs --contact you@example.com")
 
-    llm = LLM()
+    from .cache import make_llm
+    llm = make_llm()          # FAIRTRIAL_LLM_CACHE=<path> -> identical calls are not paid twice
     if llm.mock:
         from .mock import register_all
         register_all(llm)
@@ -260,10 +309,25 @@ def main():
         docs = load_docs(args.docs)
     search_factory = None
     if args.search:
-        from .search import make_rss_search
-        search_factory = lambda case, lg: make_rss_search(
-            args.contact, [case.person_name_original, *case.person_aliases], log=lg)
-    cards, log = run(docs, llm, CourtRecordStore(args.court), known, search_factory=search_factory)
+        from .search import CachingFetcher, make_rss_search, norm_url
+        fetcher = CachingFetcher(args.contact)
+        exclude = set()
+        if Path(args.exclude_workbook).exists():
+            from openpyxl import load_workbook
+            ws = load_workbook(args.exclude_workbook, read_only=True, data_only=True)["Articles"]
+            rows = ws.iter_rows(values_only=True)
+            col = list(next(rows)).index("URL")
+            exclude = {norm_url(r[col]) for r in rows if r[col]}
+            print(f"agent search: excluding {len(exclude)} labelled article URLs")
+        else:
+            print(f"!! {args.exclude_workbook} not found: agent search may return labelled articles")
+        search_factory = lambda case, lg, max_docs=3: make_rss_search(
+            args.contact, [case.person_name_original, *case.person_aliases], exclude_urls=exclude, log=lg,
+            max_docs=max_docs, fetcher=fetcher)
+    from .partners import load_manual, load_reference
+    cards, log = run(docs, llm, CourtRecordStore(args.court), known, search_factory=search_factory,
+                     coverage=args.coverage, partner_records=load_manual(args.partners),
+                     partner_reference=load_reference(args.partner_reference))
 
     if args.db:
         from .db_io import write_court_record, write_results
@@ -272,6 +336,12 @@ def main():
                                prompt_version=args.prompt_version)
         for cr in log["court_records"]:
             write_court_record(args.db, cr["case_id"], cr["record"])
+        from .card_db import write_case_context
+        print(f"wrote {write_case_context(args.db, cards)} rows to case_context (FOE, description, partners, coverage)")
+        if args.coverage:
+            from .coverage import Coverage, write_coverage
+            n_cov = sum(write_coverage(args.db, c.case.case_id, Coverage(**c.coverage)) for c in cards if c.coverage)
+            print(f"wrote {n_cov} coverage rows to case_coverage")
         print(f"wrote to {args.db}: {counts}, court_records={len(log['court_records'])}")
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps([c.model_dump(mode="json") for c in cards], ensure_ascii=False, indent=2), encoding="utf-8")
@@ -283,8 +353,14 @@ def main():
         print(f"{c.case.person_name_original:<20} stage={c.case.procedural_status.value:<12} "
               f"strength={c.evidence_strength:<11} claims={len(c.claims):>2} supported={n_ok:>2} "
               f"quote_not_found={n_bad} court={c.case.court_record_status.value} "
-              f"emblematic={[r.code for r in c.emblematic_reasons]}")
+              f"emblematic={[r.code for r in c.emblematic_reasons]}"
+              + (f" foe={c.foe['value']}" if c.foe else "")
+              + (f" partners={c.partners['status']}" if c.partners else "")
+              + (f" coverage={c.coverage['n_articles']} articles/{c.coverage['n_outlets']} outlets/"
+                 f"{c.coverage['n_independent']} independent" if c.coverage else ""))
     print(f"wrote {args.out}")
+    if hasattr(llm, "hits"):
+        print(f"model cache: {llm.hits} hits (free), {llm.misses} new calls")
 
 
 if __name__ == "__main__":

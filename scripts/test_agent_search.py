@@ -87,7 +87,7 @@ def main() -> int:
 
     docs = load_docs("data/sample/sample_docs.jsonl")
     cards, log = run(docs, llm, CourtRecordStore("data/sample/court_records_manual.json"), set(),
-                     search_factory=lambda case, lg: fake_search)
+                     search_factory=lambda case, lg, max_docs=3: fake_search)
 
     card = next(c for c in cards if c.case.person_name_original == "Bayu Pratama")
     case, claims = card.case, card.claims

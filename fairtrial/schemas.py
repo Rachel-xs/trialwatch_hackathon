@@ -200,4 +200,8 @@ class CaseCard(BaseModel):
     claims: list[EvidenceClaim]
     emblematic_reasons: list[EmblematicReason] = Field(default_factory=list)
     evidence_strength: str = "unknown"  # supported / partial / conflicting / unknown
+    coverage: Optional[dict] = None     # fairtrial.coverage.Coverage as a dict; None = step not run
+    foe: Optional[dict] = None          # fairtrial.foe.FoeFlag: freedom-of-expression warning sign
+    context: Optional[dict] = None      # fairtrial.context.CaseContext: summary, offence context, completeness
+    partners: Optional[dict] = None     # fairtrial.partners.PartnerInvolvement
     generated_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat(timespec="seconds"))

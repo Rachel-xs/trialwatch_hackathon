@@ -24,6 +24,7 @@ run(sys.executable, "scripts/make_sample_data.py")
 run(sys.executable, "scripts/make_test_db.py", "--out", str(DB))
 run(sys.executable, "-m", "fairtrial.pipeline", "--db", str(DB), "--out", "out/demo/cards.json",
     "--court", "data/sample/court_records_manual.json", "--known", "data/sample/known_international.txt",
+    "--coverage", "--partners", "data/sample/partner_records_manual.json",
     env={"FAIRTRIAL_MOCK": "1", "FAIRTRIAL_EMBED_MODEL": "none", "FAIRTRIAL_USAGE_LOG": os.devnull})
 
 con = sqlite3.connect(DB)
@@ -117,3 +118,8 @@ for ex in EXTRA:
                     (c["case_id"], code, expl, "[]", "rule"))
 con.commit()
 print(f"built {DB}: {con.execute('SELECT COUNT(*) FROM candidate_cases').fetchone()[0]} fictional cases")
+con.close()
+
+# FOE sign, case description and partner involvement for every demo case (the three extra cases above
+# were written directly, so the pipeline never saw them). Rules only, no model call.
+run(sys.executable, "scripts/enrich_db.py", "--db", str(DB), "--partners", "data/sample/partner_records_manual.json")

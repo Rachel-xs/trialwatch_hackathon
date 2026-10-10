@@ -95,3 +95,21 @@ Where decisions go:
 - `models.py`: quotes of 15 words or more fail validation. Samples are now Indonesian and fictional.
 - `fetch_articles.py`: `language_detected` is now written to meta.
 - `eval/eval_gold.py`: new, scores against `db/gold.db`.
+
+## Sprint additions (October 2026 planner)
+
+All rule-based on quoted evidence; none adds a model call except media coverage's same-case check.
+
+| Planner item | Where | Notes |
+|---|---|---|
+| Media coverage (not "popularity") | `fairtrial/coverage.py`, `--coverage` | Distinct articles, outlets, independent reports vs copies/translations, first/last seen, confidence and source gaps. Sort most/least covered in the UI. Never used for ranking. |
+| Freedom of expression warning sign | `fairtrial/foe.py` | Yes / Possible / No / Unknown, each signal with quotes. "Targeted for journalistic activity" kept separate (a tweet case is expression, not journalism). Disputed evidence -> Possible + human review. |
+| Case description panel | `fairtrial/context.py` | One-sentence summary from verified facts only; reported activity kept apart from the charge; completeness Detailed / Partial / Sparse; untraced fields listed. |
+| Partner involvement | `fairtrial/partners.py`, `fairtrial/partners_ref.json` (DEMO list), `data/partner_records_manual.json` | Confirmed only from hand-checked records (URL + date). Article mentions with a role cue are Possible; bare mentions and international monitors (CPJ, RSF, IFJ, CFJ) are listed apart. The shipped organisation list is for the demo only: production plugs in TrialWatch's internal data via `--partner-reference` and `--partners` (formats in the `partners.py` docstring). |
+| Streamlit object dump | `app/review_app.py` | Inline `st.x() if ... else st.y()` replaced by explicit if/else. |
+| Review checklist | `scripts/check_cards.py --db ...` | Runs the slide-6 checklist on any database. |
+
+Add these to an existing database without re-running the model: `python scripts/enrich_db.py --db db/replay.db`.
+Offline tests: `scripts/test_sprint_b.py` (27 checks), plus `test_coverage.py`, `test_agent_search.py`, `test_daily.py`.
+Open questions for the mentors are on slide 8 of the planner; the code leaves those choices visible rather than hard-coding them
+(e.g. which organisations count as partners is a list in `partners_ref.json`).

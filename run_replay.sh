@@ -10,6 +10,8 @@ TAG=$(echo "$SPLIT" | tr ' ' '_' | tr 'A-Z' 'a-z')
 # Output goes to a separate folder so it can be compared with the run without search.
 SEARCH_FLAGS=()
 if [ "${SEARCH:-0}" = "1" ]; then SEARCH_FLAGS=(--search --contact "$CONTACT"); TAG="${TAG}_search"; fi
+# COVERAGE=1 adds the media-coverage step (combine with SEARCH=1 to also search the six sources).
+if [ "${COVERAGE:-0}" = "1" ]; then SEARCH_FLAGS+=(--coverage); TAG="${TAG}_coverage"; fi
 
 # ANTHROPIC_API_KEY and FAIRTRIAL_STRONG_MODEL live in .env (never committed).
 if [ -f .env ]; then
@@ -38,3 +40,7 @@ env -u ANTHROPIC_BASE_URL python -m fairtrial.pipeline --db db/replay.db --court
 python eval/eval_gold.py --gold db/gold.db --split "$SPLIT" --db db/replay.db \
        --cards "out/replay_$TAG/cards.json" --log "out/replay_$TAG/run_log.json" \
        --out "out/replay_$TAG/eval_gold_report.json" --skip "$SKIP_IDS"
+if [ "${COVERAGE:-0}" = "1" ]; then
+  python scripts/eval_coverage.py --gold db/gold.db --split "$SPLIT" --cards "out/replay_$TAG/cards.json" \
+         --skip "$SKIP_IDS" --out "out/replay_$TAG/eval_coverage_report.json"
+fi

@@ -41,6 +41,20 @@ DEFAULT_SOURCES = [
 NGO_PUBLISHERS = {"lbhpers.org"}
 
 
+class CachingFetcher(Fetcher):
+    """Same polite Fetcher, but each URL is requested at most once per run. The agent and the
+    coverage step often search the same person; the sites should not see that twice."""
+
+    def __init__(self, contact: str, delay: float = 4.0):
+        super().__init__(contact, delay)
+        self._pages: dict[str, object] = {}
+
+    def get(self, url, tries=2):
+        if url not in self._pages:
+            self._pages[url] = super().get(url, tries)
+        return self._pages[url]
+
+
 def search_url(kind: str, feed_url: str, query: str) -> str:
     q = quote_plus(query)
     if kind == "wordpress":
@@ -76,10 +90,17 @@ def _mentions(text: str, names: list[str]) -> bool:
     return False
 
 
+def norm_url(u: str) -> str:
+    """Compare URLs without scheme, www., query string or trailing slash."""
+    p = urlparse((u or "").strip())
+    return (p.netloc.lower().removeprefix("www.") + p.path.rstrip("/")).lower()
+
+
 def make_rss_search(
     contact: str,
     person_names: list[str],
     sources: Optional[list[tuple[str, str, str]]] = None,
+    exclude_urls: Optional[set[str]] = None,
     max_docs: int = 3,
     delay: float = 4.0,
     fetcher: Optional[Fetcher] = None,
@@ -88,18 +109,21 @@ def make_rss_search(
     """Build a search_fn(query) -> list[SourceDocument] for ONE case.
 
     person_names: the case's main name + aliases. Only documents that mention one of them are returned.
+    exclude_urls: normalised URLs (norm_url) never to return, e.g. every article in the annotation
+                  workbook, so a replay run cannot pull in a Final-test article through the agent.
     log: optional list; one dict per URL considered is appended (for run_log.json).
     """
     sources = sources or DEFAULT_SOURCES
     f = fetcher or Fetcher(contact, delay)
     log = log if log is not None else []
     names = [n for n in person_names if n and n != "unknown"]
+    excluded = exclude_urls or set()
 
     def search_fn(query: str) -> list[SourceDocument]:
         query = (query or "").strip() or (names[0] if names else "")
         if not query or not names:
             return []
-        candidates: list[tuple[str, str, str, str]] = []   # (publisher, url, title, published)
+        per_source: list[list[tuple[str, str, str, str]]] = []   # (publisher, url, title, published)
         seen: set[str] = set()
         for publisher, kind, feed_url in sources:
             # the site search gets the person's name; extra words from the model shrink recall to zero
@@ -114,17 +138,26 @@ def make_rss_search(
             except (requests.RequestException, ET.ParseError, ValueError) as e:
                 log.append({"source": publisher, "url": url, "result": f"error: {type(e).__name__}"})
                 continue
-            n = 0
+            n, mine = 0, []
             for link, title, published in entries:
                 if not link or link in seen:
+                    continue
+                if norm_url(link) in excluded:
+                    seen.add(link)
+                    log.append({"source": publisher, "url": link, "result": "excluded: article is in the labelled workbook"})
                     continue
                 # site search already filtered by name; plain feeds need a title/slug hit
                 if kind == "feed" and not any(_slug_or_title_hit(nm, title, link) for nm in names):
                     continue
                 seen.add(link)
-                candidates.append((publisher, link, title, published))
+                mine.append((publisher, link, title, published))
                 n += 1
+            per_source.append(mine)
             log.append({"source": publisher, "url": url, "result": f"{n} candidate links"})
+
+        # round-robin across sources, so the first source with many hits cannot fill every slot
+        candidates = [c for tier in range(max(map(len, per_source), default=0))
+                      for src in per_source if tier < len(src) for c in [src[tier]]]
 
         docs: list[SourceDocument] = []
         for publisher, link, title, published in candidates:

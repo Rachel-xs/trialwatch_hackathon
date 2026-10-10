@@ -47,9 +47,34 @@ REASON_LABEL = {
     "fair_trial_concerns": "Fair trial concerns",
     "new_or_rare_provision": "New or rare law",
     "higher_court": "Higher court",
-    "not_on_international_radar": "Not yet covered by CPJ or TrialWatch",
+    "not_on_international_radar": "Not in our CPJ / RSF reference list",
     "part_of_trend": "Part of a regional trend",
     "precedent_potential": "Could set a precedent",
+    "freedom_of_expression": "Freedom of expression concern",
+}
+REASON_HELP = {
+    "not_on_international_radar": "No match in the local copy of the CPJ / Our Trials / RSF lists. That list is short, "
+                                  "so this does not prove nobody covers the case.",
+    "freedom_of_expression": "Yes or Possible only. Built from quoted evidence; never set just because a journalist "
+                             "is involved.",
+}
+FOE_LABEL = {"Yes": "Yes", "Possible": "Possible", "No": "No", "Unknown": "Unknown"}
+FOE_CLASS = {"Yes": "foe-yes", "Possible": "foe-possible", "No": "foe-no", "Unknown": "foe-unknown"}
+SIGNAL_LABEL = {"link": "Linked to something published", "speech_law": "Speech-related law",
+                "press": "Press Council finding", "detention": "Detention", "other_law": "Non-speech charge",
+                "press_against": "Press Council: not journalistic work"}
+TARGET_LABEL = {"yes": "Yes - the case arises from their reporting",
+                "possible": "Possibly - the sources disagree on details",
+                "no": "No - it arises from a personal post or other expression, not news reporting "
+                      "(still in TrialWatch's scope)",
+                "unknown": "Not stated in the sources"}
+PARTNER_ROLE = {"legal_aid": "Legal aid", "advocacy": "Advocacy", "monitoring": "Monitoring",
+                "reporting": "Reporting / documentation", "unknown": "Role not stated"}
+PARTNER_STATUS_HELP = {
+    "Confirmed": "A person checked this and recorded it, with a link and a date.",
+    "Possible": "The articles name an organisation acting on the case. Not confirmed yet.",
+    "None found": "No organisation acting on the case in the texts read. That is not proof that none is involved.",
+    "Not checked": "No full text was available to check.",
 }
 FIELD_LABEL = {
     "person_name_original": "Journalist", "outlet_name": "Outlet", "outlet_type": "Outlet type",
@@ -132,6 +157,17 @@ mark.tw { background: linear-gradient(transparent 12%, var(--marker) 12%, var(--
 .tw-reason { margin: .25rem 0; font-size: .92rem; }
 .tw-reason b { color: var(--ink); }
 .tw-empty { color: var(--muted); padding: 1.5rem 0; }
+.tw-para, .tw-src-head, .tw-fields td, .tw-reason, .tw-panel { overflow-wrap: anywhere; word-break: break-word; }
+.tw-panel { background: var(--panel); border: 1px solid var(--line); padding: .8rem 1rem; margin: .4rem 0 .8rem; }
+.tw-summary { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem; line-height: 1.6; color: var(--ink); }
+.tw-note { color: var(--muted); font-size: .8rem; }
+.tw-badge { display: inline-block; font-size: .78rem; font-weight: 600; padding: .1rem .5rem; border-radius: 3px;
+  border: 1px solid var(--line); margin-right: .35rem; }
+.foe-yes { background: #fbe9e9; color: var(--bad); border-color: #e9b9bb; }
+.foe-possible { background: #fdf3e4; color: var(--check); border-color: #ecd2a6; }
+.foe-no, .foe-unknown { background: #f1f3f6; color: var(--muted); }
+.tw-q { font-family: 'Source Serif 4', Georgia, serif; font-style: italic; }
+details.tw-long summary { cursor: pointer; color: var(--deep); font-size: .85rem; }
 </style>
 """
 
@@ -170,7 +206,31 @@ def load_cases(con) -> pd.DataFrame:
     df["latest_source"] = df["case_id"].map(
         lambda c: max([l["published_at"] or "" for l in links if l["case_id"] == c] or [""]))
     df["stage_rank"] = df["procedural_status"].map(lambda s: STAGE_ORDER.index(s) if s in STAGE_ORDER else 99)
+    ctx = {r["case_id"]: r for r in q(con, "SELECT * FROM case_context")} if has_table(con, "case_context") else {}
+    df["foe_value"] = df["case_id"].map(lambda c: (ctx.get(c) or {}).get("foe_value") or "Not computed")
+    df["completeness"] = df["case_id"].map(lambda c: (ctx.get(c) or {}).get("completeness"))
+    df["partners_status"] = df["case_id"].map(lambda c: (ctx.get(c) or {}).get("partners_status"))
+    df["coverage_articles"] = df["case_id"].map(lambda c: (ctx.get(c) or {}).get("coverage_articles"))
+    df["coverage_outlets"] = df["case_id"].map(lambda c: (ctx.get(c) or {}).get("coverage_outlets"))
+    df["cov_sort"] = df["coverage_articles"].map(lambda v: -1 if v is None or pd.isna(v) else int(v))
     return df
+
+
+def has_table(con, name) -> bool:
+    return bool(con.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (name,)).fetchone())
+
+
+def case_extras(con, case_id) -> dict:
+    """FOE sign, description, partners and coverage for one case; empty when the pipeline did not compute them."""
+    out = {}
+    if has_table(con, "case_context"):
+        r = q(con, "SELECT * FROM case_context WHERE case_id=?", (case_id,))
+        if r:
+            for k in ("foe", "context", "partners", "coverage"):
+                out[k] = json.loads(r[0][f"{k}_json"]) if r[0][f"{k}_json"] else None
+    out["coverage_articles"] = (q(con, "SELECT * FROM case_coverage WHERE case_id=? ORDER BY same_case, published_at",
+                                  (case_id,)) if has_table(con, "case_coverage") else [])
+    return out
 
 
 def last_decision(con, case_id) -> dict | None:
@@ -245,6 +305,38 @@ def field_status(claims: list[dict], field: str) -> tuple[str, str]:
     return "s-check", "Quote found, needs a human check"
 
 
+def quote_html(ev: list[dict], limit: int = 3) -> str:
+    """Quoted evidence lines (under 15 words each) with their source id."""
+    seen, out = set(), []
+    for e in ev:
+        qt = e.get("quote")
+        if not qt or qt in seen:
+            continue
+        seen.add(qt)
+        mark = "" if e.get("status") == "supported" else " (needs a check)"
+        out.append(f'<div class="tw-note">“<span class="tw-q">{esc(qt)}</span>” - {esc(e.get("source_id") or "")}'
+                   f'{esc(mark)}</div>')
+        if len(out) >= limit:
+            break
+    return "".join(out)
+
+
+def fact_text(f: dict | None, labels: dict | None = None) -> str:
+    if not f or not f.get("value"):
+        return "Not stated"
+    v = (labels or {}).get(f["value"], f["value"])
+    return v + (" (sources disagree or not fully confirmed - check)" if f.get("status") == "disputed" else "")
+
+
+def para_html(text: str, quotes) -> str:
+    """Long excerpts fold away so the evidence list stays readable."""
+    body = highlight(text, quotes)
+    if len(text) <= 1400:
+        return body
+    return (f'{highlight(text[:900], quotes)}… <details class="tw-long"><summary>Show the whole paragraph '
+            f'({len(text):,} characters)</summary>{body}</details>')
+
+
 def stage_text(row) -> str:
     base = STAGE_LABEL.get(row.get("procedural_status"), row.get("procedural_status") or "")
     detail = DETAIL_LABEL.get(row.get("procedural_status_detail") or "")
@@ -288,12 +380,16 @@ with tab_cases:
         with left:
             f1, f2 = st.columns(2)
             sort = f1.selectbox("Sort by", ["Earliest stage", "Most warning signs", "Newest report",
-                                            "Most to check"])
+                                            "Most to check", "Most media coverage", "Least media coverage"],
+                                help="Media coverage = distinct articles found about the case. It is shown for "
+                                     "context; sort by least coverage to find overlooked cases.")
             status_filter = f2.selectbox("Show", ["Not reviewed", "All", "Relevant", "Not relevant", "Not sure yet"])
             stages = [s for s in STAGE_ORDER if s in set(cases["procedural_status"])]
             stage_pick = st.multiselect("Stage", stages, format_func=lambda s: STAGE_LABEL.get(s, s))
             all_reasons = sorted({r for rs in cases["reasons"] for r in rs})
             reason_pick = st.multiselect("Warning sign", all_reasons, format_func=lambda r: REASON_LABEL.get(r, r))
+            foe_opts = [v for v in ["Yes", "Possible", "No", "Unknown", "Not computed"] if v in set(cases["foe_value"])]
+            foe_pick = st.multiselect("Freedom of expression concern", foe_opts)
 
             view = cases.copy()
             smap = {"Not reviewed": ["pending"], "Relevant": ["accepted"], "Not relevant": ["rejected"],
@@ -304,11 +400,19 @@ with tab_cases:
                 view = view[view["procedural_status"].isin(stage_pick)]
             if reason_pick:
                 view = view[view["reasons"].map(lambda rs: bool(set(rs) & set(reason_pick)))]
+            if foe_pick:
+                view = view[view["foe_value"].isin(foe_pick)]
             key = {"Earliest stage": (["stage_rank", "n_flags"], [True, False]),
                    "Most warning signs": (["n_flags", "stage_rank"], [False, True]),
                    "Newest report": (["latest_source"], [False]),
-                   "Most to check": (["n_problems"], [False])}[sort]
-            view = view.sort_values(key[0], ascending=key[1])
+                   "Most to check": (["n_problems"], [False]),
+                   "Most media coverage": (["cov_sort", "stage_rank"], [False, True]),
+                   "Least media coverage": (["cov_sort", "stage_rank"], [True, True])}[sort]
+            if sort == "Least media coverage":       # cases with no coverage data go last, not first
+                view = pd.concat([view[view["cov_sort"] >= 0].sort_values(key[0], ascending=key[1]),
+                                  view[view["cov_sort"] < 0]])
+            else:
+                view = view.sort_values(key[0], ascending=key[1])
 
             st.caption(f"{len(view)} of {len(cases)} cases")
             if view.empty:
@@ -319,14 +423,20 @@ with tab_cases:
             for _, r in view.iterrows():
                 sel = " sel" if r["case_id"] == st.session_state.get("case") else ""
                 done = f" done-{r['review_status']}" if r["review_status"] != "pending" else ""
-                tags = "".join(f'<span class="tw-tag">{esc(REASON_LABEL.get(x, x))}</span>' for x in r["reasons"])
-                flag = (f'<span class="tw-flag">{r["n_problems"]} item(s) to check</span>'
+                tags = "".join(f'<span class="tw-tag">{esc(REASON_LABEL.get(x, x))}</span>' for x in r["reasons"]
+                               if x != "freedom_of_expression")      # shown as its own badge
+                flag = (f'<span class="tw-flag">{r["n_problems"]} fact(s) need a human check</span>'
                         if r["n_problems"] else "")
+                foe_tag = (f'<span class="tw-badge {FOE_CLASS[r["foe_value"]]}">Free expression: {esc(r["foe_value"])}</span>'
+                           if r["foe_value"] in ("Yes", "Possible") else "")
+                cov_tag = (f'<span class="tw-tag">Media coverage: {int(r["coverage_articles"])} article(s), '
+                           f'{int(r["coverage_outlets"] or 0)} outlet(s)</span>'
+                           if r["coverage_articles"] is not None and not pd.isna(r["coverage_articles"]) else "")
                 where = ", ".join(x for x in [r.get("province"), r.get("court")] if x and x != "unknown")
                 st.markdown(
                     f'<div class="tw-card{sel}{done}"><div class="tw-name">{esc(r["person_name_original"])}</div>'
                     f'<div class="tw-sub"><span class="tw-stage">{esc(STAGE_LABEL.get(r["procedural_status"], r["procedural_status"]))}</span>'
-                    f'{esc(where or "Location not stated")}</div>{tags}<div>{flag}</div></div>',
+                    f'{esc(where or "Location not stated")}</div>{foe_tag}{cov_tag}{tags}<div>{flag}</div></div>',
                     unsafe_allow_html=True)
                 if st.button("Open", key=f"open_{r['case_id']}", width="stretch"):
                     st.session_state["case"] = r["case_id"]
@@ -349,11 +459,55 @@ with tab_cases:
                             f'<span class="tw-sub">Evidence strength: {esc(row.get("evidence_strength") or "unknown")}'
                             f' · {len(docs)} source(s)</span>', unsafe_allow_html=True)
 
+                extras = case_extras(con, cid)
+                ctx, foe, partners, cov = (extras.get(k) for k in ("context", "foe", "partners", "coverage"))
+
+                # ---- case description
+                st.markdown("#### Case description")
+                if ctx:
+                    rows_ = [("Reported activity", fact_text(ctx["reporting_topic"]), ctx["reporting_topic"]),
+                             ("Allegation against the journalist", fact_text(ctx["alleged_offense"]), ctx["alleged_offense"]),
+                             ("Law cited", fact_text(ctx["law_cited"]), ctx["law_cited"]),
+                             ("Link between reporting and charge", ctx["connection"], None),
+                             ("Stage", fact_text(ctx["stage"], {k: v.capitalize() for k, v in DETAIL_LABEL.items()}),
+                              ctx["stage"]),
+                             ("Key dates", "; ".join(f'{d["date"]} {d["event"]}' for d in ctx["key_dates"]) or "Not stated", None)]
+                    trs = "".join(f'<tr><td class="k">{esc(k)}</td><td>{esc(v)}'
+                                  f'{quote_html((f or {}).get("evidence", []), 1) if f else ""}</td></tr>' for k, v, f in rows_)
+                    st.markdown(f'<div class="tw-panel"><div class="tw-summary">{esc(ctx["summary"])}</div>'
+                                f'<div class="tw-note">{esc(ctx["summary_note"])}</div></div>'
+                                f'<table class="tw-fields">{trs}</table>', unsafe_allow_html=True)
+                    st.caption(f'Information completeness: **{ctx["completeness"]}** - {ctx["completeness_detail"]}. '
+                               "The reported activity is what the journalist published; it is not the charge.")
+                else:
+                    st.caption("Not computed for this case. Re-run the pipeline to add it.")
+
+                # ---- freedom of expression
+                st.markdown("#### Freedom of expression concern")
+                if foe:
+                    st.markdown(f'<span class="tw-badge {FOE_CLASS.get(foe["value"], "foe-unknown")}">'
+                                f'{esc(foe["value"])}</span> {esc(foe["rationale"])}'
+                                + (' <b>Needs a human check.</b>' if foe.get("needs_human_review") else ""),
+                                unsafe_allow_html=True)
+                    st.markdown(f'<div class="tw-reason">Journalist involved: <b>yes</b>. Targeted for journalistic '
+                                f'activity: <b>{esc(TARGET_LABEL.get(foe["targeted_for_journalism"], foe["targeted_for_journalism"]))}</b></div>',
+                                unsafe_allow_html=True)
+                    for sg in foe["signals"]:
+                        st.markdown(f'<div class="tw-reason"><b>{esc(SIGNAL_LABEL.get(sg["signal"], sg["signal"]))}.</b> '
+                                    f'{esc(sg["explanation"])}{quote_html(sg["evidence"], 2)}</div>', unsafe_allow_html=True)
+                    st.caption("Yes / Possible / No / Unknown. Every signal is backed by a quote. A journalist "
+                               "facing a criminal case is not by itself a freedom-of-expression case.")
+                else:
+                    st.caption("Not computed for this case.")
+
                 if reasons:
                     st.markdown("#### Why the system flagged it")
-                    for r in reasons:
+                    st.caption("Reasons, not a score: there are no weights, and the order means nothing.")
+                    for r in [x for x in reasons if x["code"] != "freedom_of_expression"]:   # has its own section
+                        hlp = REASON_HELP.get(r["code"], "")
                         st.markdown(f'<div class="tw-reason"><b>{esc(REASON_LABEL.get(r["code"], r["code"]))}.</b> '
-                                    f'{esc(r["explanation"])}</div>', unsafe_allow_html=True)
+                                    f'{esc(r["explanation"])}' + (f'<div class="tw-note">{esc(hlp)}</div>' if hlp else "")
+                                    + '</div>', unsafe_allow_html=True)
 
                 st.markdown("#### What the sources say")
                 trs = []
@@ -368,6 +522,62 @@ with tab_cases:
                 st.markdown(f'<table class="tw-fields">{"".join(trs)}</table>', unsafe_allow_html=True)
                 st.caption("Green: quote found and supports the value. Amber: needs a human check. "
                            "Red: quote not found or contradicted. Grey: the sources do not say.")
+
+                # ---- media coverage
+                st.markdown("#### Media coverage")
+                if cov:
+                    span = f' over {cov["span_days"]} days' if cov.get("span_days") is not None else ""
+                    st.markdown(
+                        f'<div class="tw-panel"><b>Coverage: {cov["n_articles"]} article(s)</b> from '
+                        f'{cov["n_outlets"]} outlet(s); {cov["n_independent"]} independent report(s), '
+                        f'{cov.get("n_copies", 0)} copied or translated. '
+                        f'First seen {esc(cov.get("first_seen") or "unknown")}, latest {esc(cov.get("last_seen") or "unknown")}{span}.'
+                        + (f' {cov["n_uncertain"]} more article(s) need a human check.' if cov.get("n_uncertain") else "")
+                        + f'<div class="tw-note">Coverage confidence: {esc(cov.get("confidence", "limited"))}. '
+                          f'{esc(cov.get("source_gaps", ""))} {esc(cov.get("note", ""))}</div></div>',
+                        unsafe_allow_html=True)
+                    arts = [a for a in extras["coverage_articles"] if a["same_case"] in ("yes", "uncertain")]
+                    if arts:
+                        lines = []
+                        for a in arts:
+                            tag = "" if a["same_case"] == "yes" else " - <b>needs a check</b>"
+                            copy = f' · group {a["origin_group"]}' if a.get("origin_group") else ""
+                            lines.append(f'<div class="tw-reason"><a href="{esc(a["url"])}" target="_blank" rel="noopener">'
+                                         f'{esc(a["publisher"] or a["outlet"])}</a> · {esc(a["published_at"] or "date unknown")}'
+                                         f'{esc(copy)}{tag}'
+                                         + (f'<div class="tw-note">“<span class="tw-q">{esc(a["match_quote"])}</span>”</div>'
+                                            if a.get("match_quote") else "") + '</div>')
+                        st.markdown("".join(lines), unsafe_allow_html=True)
+                        st.caption("Articles in the same group repeat one original (a copy, rewrite or translation) "
+                                   "and count once as an independent report.")
+                else:
+                    st.caption("Not computed. Run the pipeline with --coverage (COVERAGE=1 for run_replay.sh).")
+
+                # ---- partner involvement
+                st.markdown("#### Partner involvement")
+                if partners:
+                    st.markdown(f'<span class="tw-badge">{esc(partners["status"])}</span> '
+                                f'<span class="tw-note">{esc(PARTNER_STATUS_HELP.get(partners["status"], ""))}</span>',
+                                unsafe_allow_html=True)
+                    for pe in partners["partners"]:
+                        when = "verified" if pe["status"] == "confirmed" else "article dated"
+                        st.markdown(
+                            f'<div class="tw-reason"><b>{esc(pe["organization"])}</b> - {esc(PARTNER_ROLE.get(pe["role"], pe["role"]))}'
+                            f' · {esc(pe["status"])}'
+                            + (f' · <a href="{esc(pe["evidence_url"])}" target="_blank" rel="noopener">evidence</a>' if pe.get("evidence_url") else "")
+                            + (f' · {when} {esc(pe["last_verified"])}' if pe.get("last_verified") else "")
+                            + (f'<div class="tw-note">“<span class="tw-q">{esc(pe["quote"])}</span>”</div>' if pe.get("quote") else "")
+                            + '</div>', unsafe_allow_html=True)
+                    if partners.get("mentioned_only"):
+                        st.caption("Named in the articles without a role (not counted as involvement): "
+                                   + ", ".join(sorted({x["organization"] for x in partners["mentioned_only"]})))
+                    st.caption("Prototype: organisations are matched against a demo reference list. The production "
+                               "version reads TrialWatch's internal partner data.")
+                    if partners.get("international_monitoring"):
+                        st.caption("International monitors named in the articles (kept apart from collaboration): "
+                                   + ", ".join(x["organization"] for x in partners["international_monitoring"]))
+                else:
+                    st.caption("Not computed for this case.")
 
                 st.markdown("#### Evidence in the original text")
                 st.caption("Only the paragraphs the system quoted are shown. Open the article for the full text.")
@@ -384,7 +594,7 @@ with tab_cases:
                         qs = [(c["exact_quote_original"], c["field"]) for c in dclaims
                               if c["paragraph_id"] == pid and c["quote_match"] != "not_found"]
                         body.append(f'<div class="tw-para"><span class="tw-pid">{esc(pid)}</span><br>'
-                                    f'{highlight(paras[pid], qs)}</div>')
+                                    f'{para_html(paras[pid], qs)}</div>')
                     missing = [c for c in dclaims if c["quote_match"] == "not_found"]
                     for c in missing:
                         body.append(f'<div class="tw-missing"><b>{esc(FIELD_LABEL.get(c["field"], c["field"]))}:</b> '
@@ -480,6 +690,9 @@ with tab_export:
         extra = json.loads(r.pop("reason") or "{}")
         r["reason"] = extra.get("reason")
         r["note"] = extra.get("note")
+        cx = q(con, "SELECT foe_value, targeted_for_journalism, completeness, partners_status, coverage_articles, "
+                    "coverage_outlets FROM case_context WHERE case_id=?", (r["case_id"],)) if has_table(con, "case_context") else []
+        r.update(cx[0] if cx else {})
         r["source_urls"] = " | ".join(x["source_url"] for x in q(
             con, """SELECT d.source_url FROM case_source_links l JOIN source_documents d
                     ON d.document_id = l.document_id WHERE l.case_id=?""", (r["case_id"],)))
@@ -495,9 +708,15 @@ with tab_export:
     b.metric("Still to review", pending)
     c.metric("Decisions saved", len(cdf) + len(ddf))
     st.markdown("#### Case decisions")
-    st.dataframe(cdf, width="stretch", hide_index=True) if not cdf.empty else st.caption("None yet.")
+    if cdf.empty:
+        st.caption("None yet.")
+    else:
+        st.dataframe(cdf, width="stretch", hide_index=True)
     st.markdown("#### Article decisions")
-    st.dataframe(ddf, width="stretch", hide_index=True) if not ddf.empty else st.caption("None yet.")
+    if ddf.empty:
+        st.caption("None yet.")
+    else:
+        st.dataframe(ddf, width="stretch", hide_index=True)
 
     stamp = datetime.now().strftime("%Y%m%d_%H%M")
     e1, e2 = st.columns(2)

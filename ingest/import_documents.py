@@ -46,6 +46,10 @@ def main():
     ap.add_argument("--workbook", required=True)
     ap.add_argument("--origin", default="replay", choices=["replay", "live"])
     ap.add_argument("--skip", default="", help="comma-separated Article IDs to leave out of the database")
+    ap.add_argument("--keep-existing", action="store_true",
+                    help="leave documents already in the database untouched and only add new ones. Needed for "
+                         "repeated live runs: re-importing a document that evidence already points to fails the "
+                         "foreign key, and re-importing would also drop its screening result")
     a = ap.parse_args()
 
     ws = load_workbook(a.workbook, data_only=True)["Articles"]
@@ -61,12 +65,16 @@ def main():
     data = Path(a.data)
     drop = {x.strip() for x in a.skip.split(",") if x.strip()}
     skipped = []
-    n_docs = n_chunks = 0
+    existing = {r[0] for r in con.execute("SELECT document_id FROM source_documents")} if a.keep_existing else set()
+    n_docs = n_chunks = n_kept = 0
     for meta_file in sorted((data / "meta").glob("*.json")):
         meta = json.loads(meta_file.read_text(encoding="utf-8"))
         aid = meta["article_id"]
         if aid in drop:
             skipped.append(aid)
+            continue
+        if aid in existing:
+            n_kept += 1
             continue
         text_file = data / "text" / f"{aid}.txt"
         text = text_file.read_text(encoding="utf-8") if text_file.exists() else ""
@@ -103,7 +111,8 @@ def main():
     con.commit()
     if skipped:
         print(f"skipping {', '.join(sorted(skipped))} (--skip): not imported, so the pipeline never sees it")
-    print(f"Imported {n_docs} documents and {n_chunks} paragraphs into {a.db}")
+    print(f"Imported {n_docs} documents and {n_chunks} paragraphs into {a.db}"
+          + (f" ({n_kept} already there, left untouched)" if a.keep_existing else ""))
 
 
 if __name__ == "__main__":

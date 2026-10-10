@@ -125,9 +125,22 @@ def mock_precedent(system: str, user: str) -> dict:
     return {"has_precedent_potential": False, "explanation": "mock: not assessed", "evidence_paragraph_ids": []}
 
 
+def mock_coverage(system: str, user: str) -> dict:
+    """Says yes when the case's journalist name appears; quotes the 8 words starting at the name."""
+    profile = json.loads(user.split("Case profile:\n", 1)[1].split("\n\nArticle:", 1)[0])
+    article = re.sub(r"<[^>]+>", " ", user.split("\n\nArticle:", 1)[1])
+    name = profile.get("journalist", "")
+    line = next((l for l in article.splitlines() if name and name in l), None)
+    if line is None:
+        return {"same_case": "no", "mention": "passing", "quote_original": "", "rationale": "mock: name absent"}
+    quote = " ".join(line[line.find(name):].split()[:8])     # stays inside one line/paragraph
+    return {"same_case": "yes", "mention": "main", "quote_original": quote, "rationale": "mock: name found"}
+
+
 def register_all(llm: LLM) -> None:
     llm.register_mock("screen_result", mock_screen)
     llm.register_mock("extract_cases", mock_extract)
     llm.register_mock("verify_claim", mock_verify)
     llm.register_mock("next_action", mock_agent)
     llm.register_mock("precedent_assessment", mock_precedent)
+    llm.register_mock("coverage_match", mock_coverage)

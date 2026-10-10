@@ -1,0 +1,140 @@
+{
+  "_note": "DEMO REFERENCE LIST - for display in the prototype only, compiled from public knowledge of Indonesian press-freedom organisations. It does NOT say who works with TrialWatch. In production, TrialWatch replaces it with its internal partner data via --partner-reference (same format) and supplies hand-checked involvement records via --partners. 'kind' describes what an organisation is, not a partnership.",
+  "organizations": [
+    {
+      "name": "LBH Pers",
+      "aliases": [
+        "LBH Pers",
+        "Lembaga Bantuan Hukum Pers"
+      ],
+      "kind": "legal_aid"
+    },
+    {
+      "name": "AJI",
+      "aliases": [
+        "AJI",
+        "Aliansi Jurnalis Independen",
+        "Alliance of Independent Journalists"
+      ],
+      "kind": "press_union"
+    },
+    {
+      "name": "SAFEnet",
+      "aliases": [
+        "SAFEnet",
+        "Southeast Asia Freedom of Expression Network"
+      ],
+      "kind": "advocacy"
+    },
+    {
+      "name": "YLBHI",
+      "aliases": [
+        "YLBHI",
+        "Yayasan Lembaga Bantuan Hukum Indonesia"
+      ],
+      "kind": "legal_aid"
+    },
+    {
+      "name": "KontraS",
+      "aliases": [
+        "KontraS"
+      ],
+      "kind": "advocacy"
+    },
+    {
+      "name": "Amnesty International Indonesia",
+      "aliases": [
+        "Amnesty International Indonesia",
+        "Amnesty International",
+        "Amnesty"
+      ],
+      "kind": "advocacy"
+    },
+    {
+      "name": "PWI",
+      "aliases": [
+        "PWI",
+        "Persatuan Wartawan Indonesia"
+      ],
+      "kind": "press_union"
+    },
+    {
+      "name": "IJTI",
+      "aliases": [
+        "IJTI",
+        "Ikatan Jurnalis Televisi Indonesia"
+      ],
+      "kind": "press_union"
+    },
+    {
+      "name": "AMSI",
+      "aliases": [
+        "AMSI",
+        "Asosiasi Media Siber Indonesia"
+      ],
+      "kind": "press_union"
+    },
+    {
+      "name": "PPMI",
+      "aliases": [
+        "PPMI",
+        "Perhimpunan Pers Mahasiswa Indonesia"
+      ],
+      "kind": "press_union"
+    },
+    {
+      "name": "Koalisi Advokasi",
+      "aliases": [
+        "Koalisi Masyarakat Sipil",
+        "Koalisi Advokasi"
+      ],
+      "kind": "advocacy"
+    },
+    {
+      "name": "CPJ",
+      "aliases": [
+        "CPJ",
+        "Committee to Protect Journalists"
+      ],
+      "kind": "international_monitor"
+    },
+    {
+      "name": "RSF",
+      "aliases": [
+        "RSF",
+        "Reporters Without Borders",
+        "Reporters sans frontières",
+        "Reporters sans frontieres"
+      ],
+      "kind": "international_monitor"
+    },
+    {
+      "name": "IFJ",
+      "aliases": [
+        "IFJ",
+        "International Federation of Journalists"
+      ],
+      "kind": "international_monitor"
+    },
+    {
+      "name": "Clooney Foundation for Justice (TrialWatch)",
+      "aliases": [
+        "Clooney Foundation for Justice",
+        "CFJ",
+        "TrialWatch"
+      ],
+      "kind": "international_monitor"
+    }
+  ],
+  "_format": {
+    "organizations": [
+      {
+        "name": "display name",
+        "aliases": [
+          "spellings to look for in articles"
+        ],
+        "kind": "legal_aid | press_union | advocacy | international_monitor"
+      }
+    ]
+  }
+}
