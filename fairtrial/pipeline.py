@@ -13,7 +13,7 @@ from .agent import CourtRecordStore, follow_up
 from .emblematic import precedent_reason, rule_reasons
 from .extract import extract_cases
 from .llm import LLM
-from .resolve import matches_known, resolve
+from .resolve import _compatible, matches_known, names_match, resolve, same_province
 from .schemas import (
     CaseCard,
     CourtRecordStatus,
@@ -26,6 +26,11 @@ from .schemas import (
 )
 from .screen import screen_with_fallback
 from .verify import apply_verified_concerns, evidence_strength, verify_claims
+
+# case fields an agent-found document may fill, only when still unknown and only from a supported claim
+FILLABLE = ("province", "court", "case_number", "outlet_name", "charges_original", "charges_en",
+            "legal_provisions_original", "detention_status", "work_link",
+            "complainant_type", "dewan_pers_status", "outlet_type", "procedural_status")
 
 
 def load_docs(path: str | Path) -> list[SourceDocument]:
@@ -61,9 +66,21 @@ def court_claims(case_id: str, rec: dict) -> list[EvidenceClaim]:
     return out
 
 
-def run(docs: list[SourceDocument], llm: LLM, court_store: CourtRecordStore, known_international: set[str] | None = None):
+def _same_person(case, other) -> bool:
+    """Same rules as resolve(): a variant/short name match also needs the same province."""
+    for name in [case.person_name_original, *case.person_aliases]:
+        ok, rule = names_match(name, other.person_name_original)
+        if ok and _compatible(case, other) and (rule == "exact" or same_province(case.province, other.province)):
+            return True
+    return False
+
+
+def run(docs: list[SourceDocument], llm: LLM, court_store: CourtRecordStore, known_international: set[str] | None = None,
+        search_factory=None):
+    """search_factory(case, log_list) -> search_fn(query) -> list[SourceDocument]; None = agent cannot search."""
     log = {"screening": [], "agent": [], "duplicate_candidates": [], "field_conflicts": [],
-           "failed_documents": [], "failed_cases": [], "court_records": []}
+           "failed_documents": [], "failed_cases": [], "court_records": [],
+           "agent_search": [], "agent_documents": []}
     by_id = {d.document_id: d for d in docs}
     extracted = []
 
@@ -106,10 +123,60 @@ def run(docs: list[SourceDocument], llm: LLM, court_store: CourtRecordStore, kno
                                     "error": f"{type(exc).__name__}: {exc}"})
         print(f"!! {case_id} failed at {step}: {type(exc).__name__}: {exc}")
 
+    def _absorb_document(case, doc: SourceDocument) -> list[EvidenceClaim]:
+        """Agent-found document -> screen -> extract -> verify -> claims for THIS case only.
+        Nothing reaches the card without going through verify_claims, so an unverified claim
+        can never show up as supported."""
+        doc.ensure_paragraphs()
+        entry = {"case_id": case.case_id, "document_id": doc.document_id, "url": doc.source_url}
+        log["agent_documents"].append(entry)
+        if doc.document_id in case.source_ids or any(d.source_url == doc.source_url for d in by_id.values()):
+            entry["result"] = "already a source in this run"
+            return []
+        s = screen_with_fallback(doc, llm)
+        entry["screen"] = s.label.value
+        if s.label == ScreenLabel.irrelevant:
+            entry["result"] = "screened irrelevant"
+            return []
+        found = extract_cases(doc, llm)
+        mine = [(c, cl) for c, cl in found if _same_person(case, c)]
+        entry["other_people_ignored"] = [c.person_name_original for c, _ in found if not _same_person(case, c)]
+        if not mine:
+            entry["result"] = "person not extracted from document"
+            return []
+        by_id[doc.document_id] = doc          # so precedent_reason can see its paragraphs
+        case.source_ids = sorted(set(case.source_ids) | {doc.document_id})
+        added: list[EvidenceClaim] = []
+        for other, cl in mine:
+            verify_claims(cl, doc, llm)
+            for c in cl:
+                c.case_id = case.case_id
+                if c.support_status != SupportStatus.supported:
+                    continue
+                if c.field in FILLABLE:
+                    cur = getattr(case, c.field)
+                    cur = cur.value if hasattr(cur, "value") else cur
+                    new = getattr(other, c.field)
+                    new = new.value if hasattr(new, "value") else new
+                    if cur == "unknown":
+                        setattr(case, c.field, new)
+                    elif str(cur).lower() != str(new).lower():
+                        # disagreement goes to a human, same policy as resolve()
+                        c.support_status = SupportStatus.needs_review
+                        log["field_conflicts"].append({"case_id": case.case_id, "field": c.field, "kept": cur,
+                                                       "values": [{"value": cur, "source_ids": [s for s in case.source_ids if s != doc.document_id]},
+                                                                  {"value": new, "source_ids": [doc.document_id]}]})
+                elif c.field.startswith("date_"):
+                    case.event_dates.setdefault(c.field.removeprefix("date_"), other.event_dates.get(c.field.removeprefix("date_"), c.value))
+            added += cl
+        entry["result"] = f"{len(added)} claims, {sum(c.support_status == SupportStatus.supported for c in added)} supported"
+        return added
+
     cards = []
     for case, claims in merged:
         try:
-            case, new_evidence, trace = follow_up(case, claims, llm, court_store)
+            search_fn = search_factory(case, log["agent_search"]) if search_factory else None
+            case, new_evidence, trace = follow_up(case, claims, llm, court_store, search_fn=search_fn)
             log["agent"].append({"case_id": case.case_id, "steps": trace.steps})
         except Exception as e:
             _failed_case(case.case_id, "follow_up", e)
@@ -125,9 +192,15 @@ def run(docs: list[SourceDocument], llm: LLM, court_store: CourtRecordStore, kno
                             setattr(case, f, rec.get(f if f != "court" else "court_name"))
                     if rec.get("hearing_schedule"):
                         case.event_dates.setdefault("next_hearing", rec["hearing_schedule"][-1]["date"])
-                # kind == "document": run screen/extract/verify on ev["doc"] and append (left for the team)
         except Exception as e:
             _failed_case(case.case_id, "court_record", e)
+        for ev in new_evidence:
+            if ev["kind"] != "document":
+                continue
+            try:
+                claims += _absorb_document(case, ev["doc"])
+            except Exception as e:
+                _failed_case(case.case_id, "agent_document", e)
 
         try:
             apply_verified_concerns(case, claims)
@@ -161,7 +234,12 @@ def main():
     ap.add_argument("--out", default="out/cards.json")
     ap.add_argument("--db", help="read from / write to A's trialwatch.db instead of --docs (never pass gold.db)")
     ap.add_argument("--prompt-version", default="v1")
+    ap.add_argument("--search", action="store_true",
+                    help="let the follow-up agent search the six RSS sources (network; off by default)")
+    ap.add_argument("--contact", default="", help="real e-mail for the User-Agent, required with --search")
     args = ap.parse_args()
+    if args.search and not args.contact:
+        raise SystemExit("--search needs --contact you@example.com")
 
     llm = LLM()
     if llm.mock:
@@ -180,7 +258,12 @@ def main():
         docs = load_docs_from_db(args.db)
     else:
         docs = load_docs(args.docs)
-    cards, log = run(docs, llm, CourtRecordStore(args.court), known)
+    search_factory = None
+    if args.search:
+        from .search import make_rss_search
+        search_factory = lambda case, lg: make_rss_search(
+            args.contact, [case.person_name_original, *case.person_aliases], log=lg)
+    cards, log = run(docs, llm, CourtRecordStore(args.court), known, search_factory=search_factory)
 
     if args.db:
         from .db_io import write_court_record, write_results

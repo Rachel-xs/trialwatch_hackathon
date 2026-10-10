@@ -6,6 +6,10 @@ set -euo pipefail
 SPLIT="${1:-Tuning}"; CONTACT="${2:-team@example.com}"
 WB=data/workbooks/TrialWatch_Indonesia_Annotation_Workbook.xlsx
 TAG=$(echo "$SPLIT" | tr ' ' '_' | tr 'A-Z' 'a-z')
+# SEARCH=1 bash run_replay.sh Tuning you@mail  -> the follow-up agent may search the six RSS sources.
+# Output goes to a separate folder so it can be compared with the run without search.
+SEARCH_FLAGS=()
+if [ "${SEARCH:-0}" = "1" ]; then SEARCH_FLAGS=(--search --contact "$CONTACT"); TAG="${TAG}_search"; fi
 
 # ANTHROPIC_API_KEY and FAIRTRIAL_STRONG_MODEL live in .env (never committed).
 if [ -f .env ]; then
@@ -30,7 +34,7 @@ python ingest/import_gold.py --workbook "$WB" --db db/gold.db       # answers li
 
 # ANTHROPIC_BASE_URL is dropped so the run always goes to the default API endpoint.
 env -u ANTHROPIC_BASE_URL python -m fairtrial.pipeline --db db/replay.db --court data/court_records_manual.json \
-       --known data/known_international.txt --out "out/replay_$TAG/cards.json"
+       --known data/known_international.txt --out "out/replay_$TAG/cards.json" ${SEARCH_FLAGS[@]+"${SEARCH_FLAGS[@]}"}
 python eval/eval_gold.py --gold db/gold.db --split "$SPLIT" --db db/replay.db \
        --cards "out/replay_$TAG/cards.json" --log "out/replay_$TAG/run_log.json" \
        --out "out/replay_$TAG/eval_gold_report.json" --skip "$SKIP_IDS"
