@@ -39,6 +39,9 @@ def numbered_source(doc: SourceDocument) -> str:
     return meta + "\n" + wrap_untrusted(doc.source_url, "\n\n".join(lines))
 
 
+# Press Council statement / recommendation numbers look like case numbers but are not
+NOT_A_CASE_NUMBER = re.compile(r"PPR[-\s]?DP|/DP/|dewan pers|risalah|pernyataan|surat edaran", re.I)
+
 MONTHS = {m: i for i, names in enumerate([
     ("januari", "january", "jan"), ("februari", "february", "feb", "pebruari"), ("maret", "march", "mar"),
     ("april", "apr"), ("mei", "may"), ("juni", "june", "jun"), ("juli", "july", "jul"),
@@ -125,6 +128,8 @@ def extract_cases(doc: SourceDocument, llm: LLM) -> list[tuple[CandidateCase, li
             if not item:
                 continue
             value = _coerce_enum(field, str(item.get("value", "unknown")))
+            if field == "case_number" and NOT_A_CASE_NUMBER.search(value):
+                value = "unknown"      # e.g. "4/PPR-DP/11/2020" is a Press Council statement, not a court/police number
             if field in DATE_FIELDS:
                 if value != "unknown":
                     # the case keeps ISO dates (timeline, scoring, digest); the claim keeps the source wording

@@ -111,8 +111,8 @@ def main() -> int:
     cov2 = build_coverage(card.case, run_docs, llm2, doc_case_count={"doc2": 2})
     d2 = next(a for a in cov2.articles if a.document_id == "doc2")
     checks["round-up doc merged into 2 cases is model-checked"] = d2.method == "merge+llm"
-    checks["passing mention listed but not counted"] = (d2.mention == "passing" and cov2.n_passing == 1
-                                                        and cov2.n_articles == 2)
+    checks["passing mention counted and labelled (n_passing)"] = (d2.mention == "passing" and cov2.n_passing == 1
+                                                                  and cov2.n_articles == 3 and d2.same_case == "yes")
     print()
     for name, ok in checks.items():
         print(("PASS " if ok else "FAIL ") + name)

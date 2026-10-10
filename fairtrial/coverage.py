@@ -92,8 +92,8 @@ class CoverageArticle(BaseModel):
 
 
 class Coverage(BaseModel):
-    n_articles: int = 0               # same_case == yes and the case is a main subject (not a passing mention)
-    n_passing: int = 0                # articles that only mention the case in passing (round-ups, background)
+    n_articles: int = 0               # same_case == yes (round-ups and passing mentions included)
+    n_passing: int = 0                # of those, articles where the case is only a passing mention
     n_outlets: int = 0                # distinct domains among them
     n_independent: int = 0            # distinct origin groups among them
     n_copies: int = 0                 # articles that repeat another one (n_articles - n_independent)
@@ -200,8 +200,10 @@ def assign_origin_groups(arts: list[CoverageArticle], texts: dict[str, str]) -> 
 
 
 def counts(a: CoverageArticle) -> bool:
-    """Counted as coverage: same case, and the case is a main subject of the article."""
-    return a.same_case == "yes" and a.mention != "passing"
+    """Counted as coverage: the same case. A passing mention still counts (a round-up listing the case is
+    coverage of it); n_passing says how many of the counted articles are only passing mentions.
+    Excluding passing mentions was tried on the Tuning split and cut recall from 1.0 to 0.47."""
+    return a.same_case == "yes"
 
 
 def summarise(arts: list[CoverageArticle], texts: dict[str, str], searched: bool = False) -> Coverage:
@@ -258,10 +260,12 @@ def build_coverage(
         if not d:
             continue
         if (doc_case_count or {}).get(sid, 1) > 1:
+            # round-up or background mention: the merge decides membership; the model only LABELS whether
+            # the case is a main subject or a passing mention (it can no longer demote a merged article)
             a = match_article(case, d, llm, found_via="run")
-            if a.same_case == "no":          # extraction put it here, but the article is not about this case
-                a.same_case, a.rationale = "uncertain", f"merged into this case, but the check says no ({a.rationale})"
-            a.method = "merge+llm"
+            if a.same_case != "yes":
+                a.mention = "passing"
+            a.same_case, a.method = "yes", "merge+llm"
             arts.append(a)
             texts[sid] = _norm_text(d.original_text)
             seen_urls.add(d.source_url)

@@ -63,7 +63,7 @@ def main() -> int:
         g = mapping.get(c["case"]["case_id"])
         listed = {x["document_id"]: x for x in c["coverage"]["articles"]}
         found_by_search += sum(x["found_via"] == "search" and x["same_case"] == "yes" for x in listed.values())
-        counted = lambda x: x["same_case"] == "yes" and x.get("mention") != "passing"
+        counted = lambda x: x["same_case"] == "yes"
         if not g:
             continue
         pred = {d for d, x in listed.items() if counted(x) and d in arts}
